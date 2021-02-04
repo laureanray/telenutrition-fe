@@ -9,7 +9,7 @@ button {
   @apply focus:outline-none
 }
 .mat-raised-button {
-  @apply whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border font-sans border-transparent rounded-md shadow-sm text-base font-medium focus:outline-none #{!important}
+  @apply whitespace-nowrap inline-flex items-center justify-center px-4 py-3 border font-sans border-transparent rounded-md shadow-sm text-base font-medium focus:outline-none #{!important}
 }
 
 .btn-primary {

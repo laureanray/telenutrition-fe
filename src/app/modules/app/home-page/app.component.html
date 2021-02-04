@@ -1,7 +1,8 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <div class="relative bg-white">
   <div class="container mx-auto px-4 sm:px-6">
-    <div class="flex items-center border-gray-100 py-6 md:justify-start md:space-x-10">
+    <container-element [ngSwitch]="this.page">
+    <div class="flex items-center border-gray-100 py-6 md:justify-start md:space-x-10" *ngSwitchDefault>
       <div class="flex justify-start">
         <a href="#" class="flex items-center link-text-bd text-gray-800">
           <span class="sr-only">Workflow</span>
@@ -40,6 +41,8 @@
         <button routerLink="login" mat-raised-button color="primary" class="ml-2">Sign Up</button>
       </div>
     </div>
+      <div *ngSwitchCase="'admin'"><p> admin </p></div>>
+    </container-element>
   </div>
 
   <!--
