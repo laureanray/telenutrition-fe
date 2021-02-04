@@ -8,16 +8,24 @@
 button {
   @apply focus:outline-none
 }
-.btn {
-  @apply whitespace-nowrap inline-flex items-center justify-center px-3 py-2 border border-transparent rounded-md shadow-sm text-base font-medium focus:outline-none
+.mat-raised-button {
+  @apply whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border font-sans border-transparent rounded-md shadow-sm text-base font-medium focus:outline-none #{!important}
 }
 
 .btn-primary {
   @apply text-white bg-green-600 hover:bg-green-800
 }
 
+.primary {
+  color: #023216;
+}
+
+.accent {
+  color: #011f0c;
+}
+
 .btn-gray {
-  @apply text-base font-medium text-gray-500 hover:text-gray-900
+  @apply font-medium text-gray-500 hover:text-gray-900
 }
 
 .link-text-md {
@@ -27,3 +35,18 @@ button {
 .link-text-bd {
   @apply text-base font-bold
 }
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+td {
+  padding-right: 8px;
+}
+

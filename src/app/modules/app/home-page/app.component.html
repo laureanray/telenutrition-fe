@@ -20,28 +20,24 @@
           </svg>
         </button>
       </div>
-      <nav class="hidden md:flex space-x-10">
-        <a href="#" class="text-sm font-medium text-gray-500 hover:text-gray-900">
+      <nav class="hidden md:flex space-x-10 text-base">
+        <a routerLink="/" class="font-medium text-gray-500 hover:text-gray-900">
           Home
         </a>
-        <a href="#" class="text-sm font-medium text-gray-500 hover:text-gray-900">
+        <a routerLink="how-it-works" class="font-medium text-gray-500 hover:text-gray-900">
           How it Works
         </a>
-        <a href="#" class="text-sm font-medium text-gray-500 hover:text-gray-900">
+        <a routerLink="about" class="font-medium text-gray-500 hover:text-gray-900">
           About Us
         </a>
-        <a href="#" class="text-sm font-medium text-gray-500 hover:text-gray-900">
+        <a routerLink="contact" class="font-medium text-gray-500 hover:text-gray-900">
           Contact Us
         </a>
 
       </nav>
       <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-        <a routerLink="/login" class="whitespace-nowrap btn-gray">
-          Sign in
-        </a>
-        <a routerLink="/login" class="ml-8 btn btn-primary">
-          Sign up
-        </a>
+        <button routerLink="login" mat-raised-button color="accent">Sign In </button>
+        <button routerLink="login" mat-raised-button color="primary" class="ml-2">Sign Up</button>
       </div>
     </div>
   </div>
