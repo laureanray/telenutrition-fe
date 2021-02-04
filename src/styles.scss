@@ -1,14 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'custom';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+button {
+  @apply focus:outline-none
+}
 .btn {
   @apply whitespace-nowrap inline-flex items-center justify-center px-3 py-2 border border-transparent rounded-md shadow-sm text-base font-medium focus:outline-none
 }
 
 .btn-primary {
-  @apply text-white bg-pink-400 hover:bg-pink-500
+  @apply text-white bg-green-600 hover:bg-green-800
 }
 
 .btn-gray {

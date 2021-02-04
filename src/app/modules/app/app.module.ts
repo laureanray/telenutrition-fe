@@ -6,6 +6,9 @@ import {AppComponent} from './home-page/app.component';
 import {LoginAndRegisterComponent} from './login-and-register/login-and-register.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
+import { MatSliderModule } from '@angular/material/slider';
+import {MatButtonModule} from '@angular/material/button';
+
 
 @NgModule({
   declarations: [
@@ -16,7 +19,9 @@ import {RegisterComponent} from './register/register.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatSliderModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
