@@ -3,7 +3,6 @@ import {NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './home-page/app.component';
-import { LoginAndRegisterComponent } from './login-and-register/login-and-register.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HowItWorksComponent } from './how-it-works/how-it-works.component';
@@ -48,7 +47,6 @@ import {MatNativeDateModule} from '@angular/material/core';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginAndRegisterComponent,
     LoginComponent,
     RegisterComponent,
     HowItWorksComponent,
