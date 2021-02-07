@@ -2,7 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './home-page/app.component';
+import { AppComponent } from './root/app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HowItWorksComponent } from './how-it-works/how-it-works.component';
@@ -24,25 +24,14 @@ import {MatDatepicker, MatDatepickerModule} from '@angular/material/datepicker';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatGridListModule} from '@angular/material/grid-list';
-import {MatStepperModule} from '@angular/material/stepper';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import {MatChipsModule} from '@angular/material/chips';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import {MatSortModule} from '@angular/material/sort';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatTableModule} from '@angular/material/table';
-import {MatTooltipModule} from '@angular/material/tooltip';
-import {MatDialogModule} from '@angular/material/dialog';
 import {MatListModule} from '@angular/material/list';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
-import {MatNativeDateModule} from '@angular/material/core';
+import { NavigationComponent } from './navigation/navigation.component';
+import {AdminModule} from '../admin/admin.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +41,8 @@ import {MatNativeDateModule} from '@angular/material/core';
     HowItWorksComponent,
     AboutUsComponent,
     ContactUsComponent,
+    NavigationComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,21 +64,8 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatListModule,
     MatGridListModule,
     MatCardModule,
-    MatStepperModule,
-    MatTabsModule,
-    MatExpansionModule,
-    MatButtonToggleModule,
-    MatChipsModule,
     MatIconModule,
-    MatProgressSpinnerModule,
-    MatProgressBarModule,
-    MatDialogModule,
-    MatTooltipModule,
-    MatSnackBarModule,
-    MatTableModule,
-    MatSortModule,
-    MatPaginatorModule,
-    MatNativeDateModule,
+    AdminModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

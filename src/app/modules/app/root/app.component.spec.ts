@@ -14,7 +14,7 @@ describe('AppComponent', () => {
     }).compileComponents();
   });
 
-  it('should create the home-page', () => {
+  it('should create the root', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
@@ -30,6 +30,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('aklatan home-page is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('aklatan root is running!');
   });
 });

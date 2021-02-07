@@ -1,5 +1,7 @@
 import {Component} from '@angular/core';
 import {NavigationStart, Router} from '@angular/router';
+import {RouteService} from '../../../core/services/route.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +11,16 @@ import {NavigationStart, Router} from '@angular/router';
 export class AppComponent {
   title = 'aklatan';
   page = '/';
+  routeObservable: Observable<string>;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private routeService: RouteService) {
+    this.routeObservable = this.routeService.getCurrentRoute();
+
+    this.routeObservable.subscribe(r => console.log(r))
     router.events.forEach((event) => {
       if (event instanceof NavigationStart) {
         this.page = event.url;
-        console.log(this.page);
+        this.routeService.setCurrentRoute(this.page);
       }
     });
   }

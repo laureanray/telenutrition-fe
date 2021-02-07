@@ -5,13 +5,16 @@ import {HowItWorksComponent} from './how-it-works/how-it-works.component';
 import {ContactUsComponent} from './contact-us/contact-us.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
+import {AppComponent} from './root/app.component';
+import {HomeComponent} from './home/home.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: 'about', component: AboutUsComponent },
-  { path: 'how-it-works', component: HowItWorksComponent },
-  { path: 'contact', component: ContactUsComponent },
+  { path: '', component: HomeComponent },
+  { path: 'login', component: LoginComponent, pathMatch: 'full' },
+  { path: 'register', component: RegisterComponent, pathMatch: 'full'},
+  { path: 'about', component: AboutUsComponent, pathMatch: 'full' },
+  { path: 'how-it-works', component: HowItWorksComponent, pathMatch: 'full' },
+  { path: 'contact', component: ContactUsComponent, pathMatch: 'full' },
   {
     path: 'admin',
     loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule)

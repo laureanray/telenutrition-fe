@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', async () => {
     await page.navigateTo();
-    expect(await page.getTitleText()).toEqual('aklatan home-page is running!');
+    expect(await page.getTitleText()).toEqual('aklatan root is running!');
   });
 
   afterEach(async () => {
