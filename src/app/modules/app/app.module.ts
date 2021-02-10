@@ -32,6 +32,8 @@ import {MatSelectModule} from '@angular/material/select';
 import { NavigationComponent } from './navigation/navigation.component';
 import {AdminModule} from '../admin/admin.module';
 import { HomeComponent } from './home/home.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatNativeDateModule} from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -44,29 +46,32 @@ import { HomeComponent } from './home/home.component';
     NavigationComponent,
     HomeComponent,
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    MatCheckboxModule,
-    MatButtonModule,
-    MatInputModule,
-    MatAutocompleteModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatRadioModule,
-    MatSelectModule,
-    MatSliderModule,
-    MatSlideToggleModule,
-    MatMenuModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    MatListModule,
-    MatGridListModule,
-    MatCardModule,
-    MatIconModule,
-    AdminModule,
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        MatCheckboxModule,
+        MatButtonModule,
+        MatInputModule,
+        MatAutocompleteModule,
+        MatDatepickerModule,
+        MatFormFieldModule,
+        MatNativeDateModule,
+        MatRadioModule,
+        MatSelectModule,
+        MatSliderModule,
+        MatSlideToggleModule,
+        MatMenuModule,
+        MatSidenavModule,
+        MatToolbarModule,
+        MatListModule,
+        MatGridListModule,
+        MatCardModule,
+        MatIconModule,
+        AdminModule,
+        FormsModule,
+        ReactiveFormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
