@@ -8,6 +8,8 @@ import {MatButtonModule} from '@angular/material/button';
 import { AccountManagementComponent } from './account-management/account-management.component';
 import { ConfigComponent } from './config/config.component';
 import { SiteSettingsComponent } from './site-settings/site-settings.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -19,7 +21,9 @@ import { SiteSettingsComponent } from './site-settings/site-settings.component';
   imports: [
     CommonModule,
     AdminRoutingModule,
-    MatButtonModule
+    MatButtonModule,
+    MatFormFieldModule,
+    MatSelectModule
   ]
 })
 export class AdminModule { }

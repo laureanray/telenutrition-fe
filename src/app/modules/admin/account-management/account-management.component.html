@@ -6,5 +6,49 @@
   </div>
 </header>
 
+<div class="max-w-7xl mx-auto py-4 sm:px-6 lg:px-8">
+  <mat-form-field appearance="fill" class="font-sans rounded-md">
+    <mat-label>User Type</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let userT of userTypes" [value]="userT">
+        {{userT}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<p>account-management works!</p>
+  <div class="mat-elevation-z8">
+<!--    <table mat-table [dataSource]="dataSource">-->
+
+<!--      &lt;!&ndash; Position Column &ndash;&gt;-->
+<!--      <ng-container matColumnDef="position">-->
+<!--        <th mat-header-cell *matHeaderCellDef> No. </th>-->
+<!--        <td mat-cell *matCellDef="let element"> {{element.position}} </td>-->
+<!--      </ng-container>-->
+
+<!--      &lt;!&ndash; Name Column &ndash;&gt;-->
+<!--      <ng-container matColumnDef="name">-->
+<!--        <th mat-header-cell *matHeaderCellDef> Name </th>-->
+<!--        <td mat-cell *matCellDef="let element"> {{element.name}} </td>-->
+<!--      </ng-container>-->
+
+<!--      &lt;!&ndash; Weight Column &ndash;&gt;-->
+<!--      <ng-container matColumnDef="weight">-->
+<!--        <th mat-header-cell *matHeaderCellDef> Weight </th>-->
+<!--        <td mat-cell *matCellDef="let element"> {{element.weight}} </td>-->
+<!--      </ng-container>-->
+
+<!--      &lt;!&ndash; Symbol Column &ndash;&gt;-->
+<!--      <ng-container matColumnDef="symbol">-->
+<!--        <th mat-header-cell *matHeaderCellDef> Symbol </th>-->
+<!--        <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>-->
+<!--      </ng-container>-->
+
+<!--      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
+<!--      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
+<!--    </table>-->
+
+<!--    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>-->
+  </div>
+</div>
+
+
