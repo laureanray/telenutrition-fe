@@ -8,24 +8,29 @@ import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Valid
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  registerForm = this.fb.group({
-    firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
-    username: new FormControl({value: null, disabled: true}, Validators.required),
-    email: ['', Validators.required],
-    birthday: ['', Validators.required],
-    password: ['', [Validators.required, this.passwordValidator2()]],
-    passwordConfirm: new FormControl('', this.passwordValidator())
-  });
+  registerForm: FormGroup;
   tempUsername = '';
   model = new RegisterForm();
 
   constructor(private fb: FormBuilder) {
-
-
+    this.registerForm = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      username: new FormControl({value: null, disabled: true}, Validators.required),
+      email: ['', Validators.required],
+      contactNumber: ['', [Validators.required, Validators.min(11)]],
+      birthday: ['', Validators.required],
+      password: ['', [Validators.required, this.passwordValidator2(), this.passwordStrengthValidator()]],
+      passwordConfirm: new FormControl('', this.passwordValidator())
+    });
   }
 
   ngOnInit(): void {
+
+    //
+    // this.registerForm.valueChanges.subscribe(val => {
+    //   console.log(val);
+    // });
   }
 
   updateUsername(): void {
@@ -52,7 +57,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void {
-
+    console.log(this.registerForm.value);
   }
 
   passwordValidator2(): ValidatorFn {
@@ -69,5 +74,19 @@ export class RegisterComponent implements OnInit {
     return (control: AbstractControl): { [key: string]: any } | null =>
       control.value === this.registerForm?.controls.password.value
         ? null : {passwordMismatch: control.value};
+  }
+
+  passwordStrengthValidator(): ValidatorFn {
+  //  "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"
+    const regex = new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$');
+    // TODO: Fix regex to allow special characters
+    return (control: AbstractControl): { [key: string]: any } | null =>
+      regex.test(control.value)
+        ? null : {passwordStrength: control.value};
+  }
+
+  // This forces the password validator to revalidate on confirm_password keyup
+  pwKeyup(): void {
+    this.registerForm.controls.password.updateValueAndValidity();
   }
 }
