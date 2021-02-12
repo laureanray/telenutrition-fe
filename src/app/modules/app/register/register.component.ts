@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {RegisterForm} from '../../../core/models/register-form';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
+import {PatientService} from '../../../core/services/patient.service';
+import {Patient} from '../../../core/models/patient';
 
 @Component({
   selector: 'app-register',
@@ -10,9 +12,11 @@ import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Valid
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   tempUsername = '';
-  model = new RegisterForm();
+  submitting = false;
+  registerResult = '';
+  errorMessage = '';
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private patientService: PatientService) {
     this.registerForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -26,16 +30,9 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    //
-    // this.registerForm.valueChanges.subscribe(val => {
-    //   console.log(val);
-    // });
   }
 
   updateUsername(): void {
-
-    // console.log(this.registerForm.value)
     // @ts-ignore
     if (this.registerForm.value.firstName.length > 0 && this.registerForm.value.lastName.length > 0) {
       // @ts-ignore
@@ -43,21 +40,34 @@ export class RegisterComponent implements OnInit {
       const last = this.registerForm.value.lastName.replace(/\s+/g, '');
       // @ts-ignore
       this.tempUsername = first + last;
-      console.log(first);
       this.tempUsername = this.tempUsername.toLowerCase();
     }
-    this.model.username = this.tempUsername;
-    console.log(this.tempUsername);
-
     this.registerForm.patchValue({
       username: this.tempUsername
     });
-
-    console.log(this.registerForm.controls.password.value);
   }
 
   onSubmit(): void {
-    console.log(this.registerForm.value);
+    this.submitting = true;
+    const patient = {
+      firstName: this.registerForm.value.firstName,
+      lastName: this.registerForm.value.lastName,
+      username: this.registerForm.controls.username.value,
+      birthday: this.registerForm.value.birthday,
+      email: this.registerForm.value.email,
+      password: this.registerForm.value.password
+    } as Patient;
+
+    setTimeout(() => {
+      this.patientService.registerPatient(patient).subscribe(res => {
+        console.log('res' + res);
+      }, error => {
+        this.submitting = false;
+        this.registerResult = 'error';
+        console.log(error);
+        this.errorMessage = error.message;
+      });
+    }, 900);
   }
 
   passwordValidator2(): ValidatorFn {

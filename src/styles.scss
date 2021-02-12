@@ -59,3 +59,7 @@ td {
   padding-right: 8px;
 }
 
+.computed-div {
+  min-height: calc(100vh - 97px);
+}
+

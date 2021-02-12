@@ -34,6 +34,9 @@ import {AdminModule} from '../admin/admin.module';
 import { HomeComponent } from './home/home.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
+import {HttpClientModule} from '@angular/common/http';
+import { RegistrationSuccessComponent } from './registration-success/registration-success.component';
+import { RegistrationErrorComponent } from './registration-error/registration-error.component';
 
 @NgModule({
   declarations: [
@@ -45,9 +48,12 @@ import {MatNativeDateModule} from '@angular/material/core';
     ContactUsComponent,
     NavigationComponent,
     HomeComponent,
+    RegistrationSuccessComponent,
+    RegistrationErrorComponent,
   ],
     imports: [
         BrowserModule,
+        HttpClientModule,
         BrowserAnimationsModule,
         AppRoutingModule,
         MatCheckboxModule,
