@@ -41,6 +41,7 @@ import { ConfirmComponent } from './confirm/confirm.component';
 import { VerifySuccessComponent } from './verify-success/verify-success.component';
 import { VerifyErrorComponent } from './verify-error/verify-error.component';
 import { FooterComponent } from './footer/footer.component';
+import { DummyComponent } from './dummy/dummy.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { FooterComponent } from './footer/footer.component';
     VerifySuccessComponent,
     VerifyErrorComponent,
     FooterComponent,
+    DummyComponent,
   ],
     imports: [
         BrowserModule,
