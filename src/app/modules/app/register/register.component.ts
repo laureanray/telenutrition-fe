@@ -60,7 +60,10 @@ export class RegisterComponent implements OnInit {
 
     setTimeout(() => {
       this.patientService.registerPatient(patient).subscribe(res => {
-        console.log('res' + res);
+        if (res) {
+          this.submitting = false;
+          this.registerResult = 'success';
+        }
       }, error => {
         this.submitting = false;
         this.registerResult = 'error';

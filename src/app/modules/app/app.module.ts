@@ -37,6 +37,10 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {HttpClientModule} from '@angular/common/http';
 import { RegistrationSuccessComponent } from './registration-success/registration-success.component';
 import { RegistrationErrorComponent } from './registration-error/registration-error.component';
+import { ConfirmComponent } from './confirm/confirm.component';
+import { VerifySuccessComponent } from './verify-success/verify-success.component';
+import { VerifyErrorComponent } from './verify-error/verify-error.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +54,10 @@ import { RegistrationErrorComponent } from './registration-error/registration-er
     HomeComponent,
     RegistrationSuccessComponent,
     RegistrationErrorComponent,
+    ConfirmComponent,
+    VerifySuccessComponent,
+    VerifyErrorComponent,
+    FooterComponent,
   ],
     imports: [
         BrowserModule,
