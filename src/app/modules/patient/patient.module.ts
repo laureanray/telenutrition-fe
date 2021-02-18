@@ -5,15 +5,34 @@ import {RouterModule} from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {PatientRoutingModule} from './patient-routing.module';
 import { ButtonBarComponent } from './button-bar/button-bar.component';
+import { ConsultationComponent } from './consultation/consultation.component';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { SupportComponent } from './support/support.component';
+import { MedicalRecordsComponent } from './medical-records/medical-records.component';
+import { HistoryComponent } from './history/history.component';
+import { BookComponent } from './book/book.component';
+import { NutritionToolsComponent } from './nutrition-tools/nutrition-tools.component';
+import { BookAnAppointmentComponent } from './book-an-appointment/book-an-appointment.component';
+import { UserCardComponent } from './user-card/user-card.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatTableModule} from '@angular/material/table';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 
 
 @NgModule({
-  declarations: [PatientComponent, DashboardComponent, ButtonBarComponent],
+  declarations: [PatientComponent, DashboardComponent, ButtonBarComponent, ConsultationComponent, AccountSettingsComponent, SupportComponent, MedicalRecordsComponent, HistoryComponent, BookComponent, NutritionToolsComponent, BookAnAppointmentComponent, UserCardComponent],
   imports: [
     CommonModule,
     RouterModule,
-    PatientRoutingModule
+    PatientRoutingModule,
+    MatButtonModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   bootstrap: [PatientComponent]
 })
