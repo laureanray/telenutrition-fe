@@ -6,10 +6,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./patient.component.scss']
 })
 export class PatientComponent implements OnInit {
-
+  isProfileDropdownShown = false;
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  showProfileDropdown(): void {
+    this.isProfileDropdownShown = true;
+  }
+
+  hideProfileDropdown(): void {
+    this.isProfileDropdownShown = false;
+  }
+
+  toggleProfileDropdown(): void {
+    this.isProfileDropdownShown = !this.isProfileDropdownShown;
+  }
 }
