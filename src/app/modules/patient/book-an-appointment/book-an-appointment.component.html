@@ -23,8 +23,8 @@
           <ng-template matStepLabel>Select your appointment time</ng-template>
           <p class="text-base pt-4"> Listed time options are based on your selected date. </p>
           <mat-form-field appearance="outline" class="mt-4">
-            <mat-label>Favorite food</mat-label>
-            <mat-select formControlName="appointmentTime" name="food">
+            <mat-label>Appointment Time</mat-label>
+            <mat-select formControlName="appointmentTime" name="appointmentTime">
               <mat-option *ngFor="let time of times" [value]="time">
                 {{time}}
               </mat-option>
@@ -38,7 +38,7 @@
       </mat-step>
       <mat-step [stepControl]="thirdFormGroup">
         <form [formGroup]="thirdFormGroup">
-          <ng-template matStepLabel>Select your appointment time</ng-template>
+          <ng-template matStepLabel>Fill out information</ng-template>
           <mat-form-field appearance="outline" class="mt-4">
             <mat-label>Complains</mat-label>
             <textarea matInput formControlName="complaints" name="complaints"></textarea>
