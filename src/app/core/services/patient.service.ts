@@ -15,4 +15,9 @@ export class PatientService {
     return this.http
       .post(`${environment.apiUrl}/patients/register`, patient);
   }
+
+  updatePatientInformation(patient: Patient): Observable<any> {
+    return this.http
+      .post(`${environment.apiUrl}/patients/update`, patient);
+  }
 }

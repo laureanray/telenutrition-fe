@@ -19,6 +19,11 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatOptionModule} from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -32,7 +37,12 @@ import {MatInputModule} from '@angular/material/input';
     MatPaginatorModule,
     MatTableModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    ReactiveFormsModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatOptionModule,
+    MatSelectModule
   ],
   bootstrap: [PatientComponent]
 })

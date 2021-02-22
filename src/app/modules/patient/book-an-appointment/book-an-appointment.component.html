@@ -1,1 +1,69 @@
-<p>book-an-appointment works!</p>
+<div class="flex flex-row container mx-auto px-4 sm:px-6 lg:px-8 items-start computed-dashboard-div">
+  <div class="col-1 py-6 w-3/4">
+<!--    <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">-->
+<!--      {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}-->
+<!--    </button>-->
+    <mat-vertical-stepper [linear]="true" #stepper>
+      <mat-step [stepControl]="firstFormGroup">
+        <form [formGroup]="firstFormGroup">
+          <ng-template matStepLabel>Select your preferred schedule </ng-template>
+          <mat-form-field appearance="outline" >
+            <mat-label class="font-sans">Appointment Schedule</mat-label>
+            <input matInput class="font-sans" [matDatepicker]="picker" [matDatepickerFilter]="dateFilter"  placeholder="mm/dd/yyyy" required name="preferredSchedule" formControlName="preferredSchedule">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup">
+        <form [formGroup]="secondFormGroup">
+          <ng-template matStepLabel>Select your appointment time</ng-template>
+          <p class="text-base pt-4"> Listed time options are based on your selected date. </p>
+          <mat-form-field appearance="outline" class="mt-4">
+            <mat-label>Favorite food</mat-label>
+            <mat-select formControlName="appointmentTime" name="food">
+              <mat-option *ngFor="let time of times" [value]="time">
+                {{time}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="thirdFormGroup">
+        <form [formGroup]="thirdFormGroup">
+          <ng-template matStepLabel>Select your appointment time</ng-template>
+          <mat-form-field appearance="outline" class="mt-4">
+            <mat-label>Complains</mat-label>
+            <textarea matInput formControlName="complaints" name="complaints"></textarea>
+          </mat-form-field>
+          <mat-form-field appearance="outline" >
+            <mat-label>Current Medications</mat-label>
+            <textarea matInput formControlName="currentMedications" name="currentMedications"></textarea>
+          </mat-form-field>
+          <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-button matStepperNext>Next</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done.</p>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-vertical-stepper>
+  </div>
+  <div class="col-2 w-1/4 p-6 border rounded shadow-sm m-6">
+    <app-user-card></app-user-card>
+  </div>
+</div>

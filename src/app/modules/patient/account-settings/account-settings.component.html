@@ -1,1 +1,43 @@
-<p>account-settings works!</p>
+<div class="flex flex-row container mx-auto px-4 sm:px-6 lg:px-8 items-start computed-dashboard-div">
+  <div class="col-1 py-6 w-3/4">
+    <header class="bg-white">
+      <div>
+        <h1 class="text-2xl font-medium leading-tight text-gray-900">
+          Account Settings
+        </h1>
+      </div>
+    </header>
+    <div class="flex flex-row">
+      <div class="form w-1/2">
+        <img src="assets/profile.png" alt="" class="my-4 w-1/2 shadow-lg border">
+        <form class="example-form" class="flex flex-col font-sans mt-4" [formGroup]="updateAccountForm" autocomplete="off" (ngSubmit)="onSubmit()">
+<!--          <ul class="errors list-disc mx-4 transition-all">-->
+<!--            <li class="text-red-800 font-medium py-2" *ngIf="registerForm.controls.password.errors?.passwordStrength">-->
+<!--              Password too weak-->
+<!--            </li>-->
+<!--            <li class="text-red-800 font-medium py-2" *ngIf="registerForm.controls.password.errors?.passwordMismatch">-->
+<!--              Password doesn't match-->
+<!--            </li>-->
+<!--          </ul>-->
+          <input type="file" formControlName="file" #file placeholder="Choose file" (change)="fileChange(file.files)"
+                 style="display:none;">
+          <button type="button" mat-button class="button" (click)="file.click()">Upload Image</button>
+          <mat-form-field appearance="outline">
+            <mat-label class="font-sans">Contact Number</mat-label>
+            <input matInput placeholder="Ex: 09123456789" type="tel"  minlength="11" maxlength="11"  class="font-sans" autocomplete="off" spellcheck="false" required formControlName="contactNumber">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="-mt-4">
+            <mat-label class="font-sans">Password</mat-label>
+            <input matInput placeholder="Password" type="password"  class="font-sans" autocomplete="off" spellcheck="false" required formControlName="password">
+            <mat-hint>8 characters minimum, atleast one uppercase, one lowercase and one number. </mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label class="font-sans">Confirm Password</mat-label>
+            <input matInput (keyup)="pwKeyup()" placeholder="Re-type Password" type="password" class="font-sans" autocomplete="off" spellcheck="false" required formControlName="passwordConfirm">
+          </mat-form-field>
+          <button type="submit" mat-raised-button color="primary"  class="-mt-4 mb-2" [disabled]="submitting || !updateAccountForm.valid">{{ submitting ? 'Saving Changes..' : 'Save Changes' }}</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
