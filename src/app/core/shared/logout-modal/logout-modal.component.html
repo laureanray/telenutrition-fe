@@ -1,0 +1,8 @@
+<div mat-dialog-content>
+  <h3 class="mat-h3"> Logout</h3>
+  <p> Are you sure you want to end your session? </p>
+</div>
+<div mat-dialog-actions class="flex justify-items-end">
+  <button mat-raised-button (click)="onNoClick()" color="accent" class="mt-4 mb-2">Cancel</button>
+  <button mat-raised-button type="submit" color="primary" class="mt-4 mb-2" (click)="logout()">Yes, Logout</button>
+</div>

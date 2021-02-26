@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {LogoutModalComponent} from '../../../core/shared/logout-modal/logout-modal.component';
 
 @Component({
   selector: 'app-patient',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PatientComponent implements OnInit {
   isProfileDropdownShown = false;
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -22,5 +24,11 @@ export class PatientComponent implements OnInit {
 
   toggleProfileDropdown(): void {
     this.isProfileDropdownShown = !this.isProfileDropdownShown;
+  }
+
+  showLogoutModal(): void {
+    this.dialog.open(LogoutModalComponent, {
+      width: '300px'
+    });
   }
 }

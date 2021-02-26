@@ -20,4 +20,9 @@ export class PatientService {
     return this.http
       .post(`${environment.apiUrl}/patients/update`, patient);
   }
+
+  getPatient(username: string): Observable<any> {
+    return this.http
+      .get(`${environment.apiUrl}/patients/find/${username}`);
+  }
 }

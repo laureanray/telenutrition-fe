@@ -3,17 +3,17 @@
     <div class="card-heading py-4 border-b p-4">
       <h1 class="text-2xl font-bold primary"> Sign In </h1>
     </div>
-    <form class="example-form" class="flex flex-col p-4 font-sans" (submit)="$event.preventDefault()">
+    <form class="example-form" class="flex flex-col p-4 font-sans" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <mat-form-field appearance="outline" class="mb-0 pb-0" >
         <mat-label class="font-sans">Username</mat-label>
-        <input matInput placeholder="Placeholder" class="pb-0 font-sans" autocomplete="false" spellcheck="false">
+        <input matInput placeholder="Placeholder" class="pb-0 font-sans" formControlName="username" autocomplete="false" spellcheck="false">
       </mat-form-field>
       <mat-form-field appearance="outline" class="-mt-4">
         <mat-label class="font-sans">Password</mat-label>
-        <input matInput placeholder="Placeholder" type="password" class="font-sans" autocomplete="false" spellcheck="false">
-        <mat-hint>Forgot your password? Click <a href="#" class=""> here </a></mat-hint>
+        <input matInput placeholder="Placeholder" type="password" class="font-sans" formControlName="password" autocomplete="false" spellcheck="false">
+        <mat-hint>Forgot your password? Click <a routerLink="/forgot-password" class=""> here </a></mat-hint>
       </mat-form-field>
-      <button mat-raised-button routerLink="/admin" color="primary" (click)="$event.preventDefault()" class="mt-4 mb-2">Sign In</button>
+      <button mat-raised-button type="submit" color="primary" class="mt-4 mb-2">Sign In</button>
       <button mat-raised-button routerLink="/register" > Register </button>
     </form>
   </div>

@@ -34,7 +34,7 @@ import {AdminModule} from '../admin/admin.module';
 import { HomeComponent } from './home/home.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatNativeDateModule} from '@angular/material/core';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { RegistrationSuccessComponent } from './registration-success/registration-success.component';
 import { RegistrationErrorComponent } from './registration-error/registration-error.component';
 import { ConfirmComponent } from './confirm/confirm.component';
@@ -42,6 +42,7 @@ import { VerifySuccessComponent } from './verify-success/verify-success.componen
 import { VerifyErrorComponent } from './verify-error/verify-error.component';
 import { FooterComponent } from './footer/footer.component';
 import { DummyComponent } from './dummy/dummy.component';
+import {JwtInterceptor} from '../../core/authentication/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,9 @@ import { DummyComponent } from './dummy/dummy.component';
         FormsModule,
         ReactiveFormsModule
     ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

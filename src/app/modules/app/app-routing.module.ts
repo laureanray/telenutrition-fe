@@ -8,6 +8,7 @@ import {RegisterComponent} from './register/register.component';
 import {AppComponent} from './root/app.component';
 import {HomeComponent} from './home/home.component';
 import {ConfirmComponent} from './confirm/confirm.component';
+import {AuthGuard} from '../../core/authentication/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,12 +20,16 @@ const routes: Routes = [
   { path: 'confirm', component: ConfirmComponent, pathMatch: 'full' },
   {
     path: 'admin',
-    loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule)
+    loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule),
+    canActivate: [AuthGuard],
+    data: { role: 'ROLE_ADMIN'}
     // data: { role: 'ROLE_ADMIN' }
   },
   {
     path: 'patient',
-    loadChildren: () => import('../patient/patient.module').then(m => m.PatientModule)
+    loadChildren: () => import('../patient/patient.module').then(m => m.PatientModule),
+    canActivate: [AuthGuard],
+    data: { role: 'ROLE_PATIENT'}
   }
 ];
 

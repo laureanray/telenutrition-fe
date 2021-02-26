@@ -49,14 +49,18 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
     this.submitting = true;
-    const patient = {
-      firstName: this.registerForm.value.firstName,
-      lastName: this.registerForm.value.lastName,
-      username: this.registerForm.controls.username.value,
-      birthday: this.registerForm.value.birthday,
-      email: this.registerForm.value.email,
-      password: this.registerForm.value.password
-    } as Patient;
+
+    const patient = new Patient();
+    patient.firstName = this.registerForm.value.firstName;
+    patient.lastName = this.registerForm.value.lastName;
+    patient.username = this.registerForm.controls.username.value;
+    patient.birthday = this.registerForm.value.birthday;
+    patient.email = this.registerForm.value.email;
+    patient.password = this.registerForm.value.password;
+
+    console.log(patient);
+
+    console.log(this.registerForm.controls.username.value);
 
     setTimeout(() => {
       this.patientService.registerPatient(patient).subscribe(res => {

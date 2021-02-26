@@ -1,10 +1,6 @@
-export interface Patient {
+import {User} from './user';
+
+export class Patient extends User{
     id: number;
-    firstName: string;
-    lastName: string;
-    username: string;
-    email: string;
-    password: string;
-    contactNumber: string;
     birthday: string;
 }
