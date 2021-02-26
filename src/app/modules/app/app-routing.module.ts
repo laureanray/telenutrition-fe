@@ -30,6 +30,12 @@ const routes: Routes = [
     loadChildren: () => import('../patient/patient.module').then(m => m.PatientModule),
     canActivate: [AuthGuard],
     data: { role: 'ROLE_PATIENT'}
+  },
+  {
+    path: 'rnd',
+    loadChildren: () => import('../rnd/rnd.module').then(m => m.RndModule),
+    canActivate: [AuthGuard],
+    data: { role: 'ROLE_RND'}
   }
 ];
 

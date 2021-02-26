@@ -5,7 +5,7 @@
         <h1 class="text-2xl font-medium leading-tight text-gray-900">
           Dashboard
         </h1>
-        <h1 class="text-4xl font-normal mt-12"> Hello, <span class="font-bold"> Juan! </span></h1>
+        <h1 class="text-4xl font-normal mt-12"> Hello, <span class="font-bold">  {{ patient.firstName }}! </span></h1>
       </div>
     </header>
     <div class="flex flex-row">
@@ -32,7 +32,7 @@
       </div>
     </div>
   </div>
-  <div class="col-2 w-1/4 p-6 border rounded shadow-sm m-6">
+  <div  routerLink="/patient/account-settings" class="col-2 w-1/4 p-6 border rounded shadow-sm m-6 cursor-pointer hover:shadow-md outline-none">
     <app-user-card></app-user-card>
   </div>
 </div>

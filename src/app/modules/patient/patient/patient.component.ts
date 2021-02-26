@@ -28,7 +28,7 @@ export class PatientComponent implements OnInit {
 
   showLogoutModal(): void {
     this.dialog.open(LogoutModalComponent, {
-      width: '300px'
+      width: '450px'
     });
   }
 }

@@ -11,4 +11,5 @@ export class User {
   enabled: boolean;
   roleName: string;
   password: string;
+  readableRole: string;
 }

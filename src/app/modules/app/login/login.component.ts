@@ -22,7 +22,17 @@ export class LoginComponent implements OnInit {
     });
 
     if (this.authService.currentUserValue) {
-      this.router.navigate(['/patient']);
+      switch (this.authService.currentUserValue.roleName) {
+        case 'ROLE_ADMIN':
+          this.router.navigate(['/admin']);
+          break;
+        case 'ROLE_RND':
+          this.router.navigate(['/rnd']);
+          break;
+        default:
+          this.router.navigate(['/patient']);
+          break;
+      }
     }
   }
 
@@ -34,18 +44,18 @@ export class LoginComponent implements OnInit {
     const username = this.loginForm.value.username;
     const password = this.loginForm.value.password;
 
-    this.authService.login(username, password).subscribe(res => {
-      if (res) {
-        console.log(res);
+    setTimeout(() => {
+      this.authService.login(username, password).subscribe(res => {
+        if (res) {
+          this.router.navigate(['/patient']);
+        }
+      }, error => {
         this.isLoggingIn = false;
-        this.loginResult = 'success';
-      }
-    }, error => {
-      this.isLoggingIn = false;
-      this.loginResult = 'error';
-      console.log(error);
-      this.errorMessage = error.message;
-    });
+        this.loginResult = 'error';
+        console.log(error);
+        this.errorMessage = error.message;
+      });
+    }, 500);
   }
 
 }

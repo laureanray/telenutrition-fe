@@ -8,6 +8,10 @@ import {environment} from '../../../environments/environment';
 import {map} from 'rxjs/operators';
 import * as _ from 'lodash';
 import jwt_decode from 'jwt-decode';
+import {RND} from '../models/rnd';
+import {Admin} from '../models/admin';
+import {AdminService} from '../services/admin.service';
+import {RndService} from '../services/rnd.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +22,9 @@ export class AuthenticationService {
   public isLoggedIn: boolean;
   constructor(
     private http: HttpClient,
-    private patientService: PatientService
+    private patientService: PatientService,
+    private adminService: AdminService,
+    private rndService: RndService
   ) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
@@ -66,23 +72,25 @@ export class AuthenticationService {
 
         switch (tokenInfo.authorities[0]) {
           case 'ROLE_RND':
-            // let instructor = new Instructor();
+            let rnd = new RND();
             // // Set token so we can access the endpoints
-            // instructor.token = token;
-            // instructor.roleName = tokenInfo.authorities[0];
+            rnd.token = token;
+            rnd.roleName = tokenInfo.authorities[0];
+            rnd.readableRole = 'Nutritionist-Dietitian';
             // // Make this the current user
-            // this.currentUserSubject.next(instructor);
-            // this.instructorService.getInstructor(username)
-            //   .subscribe((data: Instructor) => {
-            //     instructor = _.merge(instructor, data);
-            //     localStorage.setItem('currentUser', JSON.stringify(instructor));
-            //   });
+            this.currentUserSubject.next(rnd);
+            this.rndService.getRND(username)
+              .subscribe((data: RND) => {
+                rnd = _.merge(rnd, data);
+                localStorage.setItem('currentUser', JSON.stringify(rnd));
+              });
             break;
           case 'ROLE_PATIENT':
             let patient = new Patient();
             // // Set token so we can access the endpoints
             patient.token = token;
             patient.roleName = tokenInfo.authorities[0];
+            patient.readableRole = 'Patient';
             this.currentUserSubject.next(patient);
             this.patientService.getPatient(username)
               .subscribe((data: Patient) => {
@@ -91,19 +99,17 @@ export class AuthenticationService {
               });
             break;
           case 'ROLE_ADMIN':
-            // let admin = new Admin();
-            // // Set token so we can access the endpoints
-            // console.log('admin');
-            // admin.token = token;
-            // admin.roleName = tokenInfo.authorities[0];
-            // // Make this the current user
-            // this.currentUserSubject.next(admin);
-            // this.adminService.getAdmin(username)
-            //   .subscribe((data: Admin) => {
-            //     admin = _.merge(admin, data);
-            //     localStorage.setItem('currentUser', JSON.stringify(admin));
-            //     console.log(admin);
-            //   });
+            let admin = new Admin();
+            admin.token = token;
+            admin.roleName = tokenInfo.authorities[0];
+            admin.readableRole = 'Admin';
+            this.currentUserSubject.next(admin);
+            this.adminService.getAdmin(username)
+              .subscribe((data: Admin) => {
+                admin = _.merge(admin, data);
+                localStorage.setItem('currentUser', JSON.stringify(admin));
+                console.log(admin);
+              });
             break;
           default: return;
         }

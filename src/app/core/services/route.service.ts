@@ -5,7 +5,7 @@ import {BehaviorSubject, Observable, Subject} from 'rxjs';
   providedIn: 'root'
 })
 export class RouteService {
-  private currentRoute = new BehaviorSubject("");
+  private currentRoute = new BehaviorSubject('');
 
   constructor() {
   }

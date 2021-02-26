@@ -1,6 +1,7 @@
 <container-element [ngSwitch]="this.routeObservable | async">
   <app-admin-nav *ngSwitchCase="'admin'"></app-admin-nav>
   <app-dummy *ngSwitchCase="'patient'"></app-dummy>
+  <app-dummy *ngSwitchCase="'rnd'"></app-dummy>
   <app-navigation *ngSwitchDefault></app-navigation>
 </container-element>
 <router-outlet></router-outlet>

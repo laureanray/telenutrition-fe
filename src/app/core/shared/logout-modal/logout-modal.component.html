@@ -1,8 +1,8 @@
 <div mat-dialog-content>
-  <h3 class="mat-h3"> Logout</h3>
-  <p> Are you sure you want to end your session? </p>
+  <h3 class="text-3xl font-medium"> Logout</h3>
+  <p class="text-base font-normal mt-4"> Are you sure you want to end your session? </p>
 </div>
-<div mat-dialog-actions class="flex justify-items-end">
-  <button mat-raised-button (click)="onNoClick()" color="accent" class="mt-4 mb-2">Cancel</button>
+<div mat-dialog-actions class="flex  flex-row justify-items-end">
+  <button mat-raised-button (click)="onNoClick()" color="white" class="mt-4 mb-2 ml-auto">Cancel</button>
   <button mat-raised-button type="submit" color="primary" class="mt-4 mb-2" (click)="logout()">Yes, Logout</button>
 </div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {LogoutModalComponent} from '../../../core/shared/logout-modal/logout-modal.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-admin-nav',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminNavComponent implements OnInit {
   isProfileDropdownShown = false;
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
@@ -24,4 +26,9 @@ export class AdminNavComponent implements OnInit {
     this.isProfileDropdownShown = !this.isProfileDropdownShown;
   }
 
+  showLogoutModal(): void{
+    this.dialog.open(LogoutModalComponent, {
+      width: '450px'
+    });
+  }
 }
