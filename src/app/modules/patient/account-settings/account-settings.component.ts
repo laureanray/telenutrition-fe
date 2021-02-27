@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {PatientService} from '../../../core/services/patient.service';
 import {Patient} from '../../../core/models/patient';
+import * as uuid from 'uuid';
+import {HttpEventType} from '@angular/common/http';
+import {AuthenticationService} from '../../../core/authentication/authentication.service';
+import {environment} from '../../../../environments/environment';
+import {User} from '../../../core/models/user';
+
 
 @Component({
   selector: 'app-account-settings',
@@ -18,6 +24,19 @@ export class AccountSettingsComponent implements OnInit {
   public progress = 0;
   public message = '';
 
+  patient: Patient;
+
+  constructor(private fb: FormBuilder, private patientService: PatientService, private authService: AuthenticationService) {
+    this.updateAccountForm = this.fb.group({
+      contactNumber: ['', [Validators.required, Validators.min(11)]],
+      password: ['', [Validators.required, this.passwordValidator2(), this.passwordStrengthValidator()]],
+      file: ['', Validators.required],
+      passwordConfirm: new FormControl('', this.passwordValidator())
+    });
+
+    this.patient = this.authService.currentUserValue as Patient;
+    console.log(this.patient);
+  }
 
   public uploadFile(files: any): void  {
     console.log(files);
@@ -28,17 +47,26 @@ export class AccountSettingsComponent implements OnInit {
     const fileToUpload = files[0] as File;
     const formData = new FormData();
     formData.append('file', fileToUpload, fileToUpload.name);
-
-    // this.bookService.uploadBookCover(formData)
-    //   .subscribe(event => {
-    //     if (event.type === HttpEventType.UploadProgress) {
-    //       this.progress = Math.round(100 * event.loaded / event.total);
-    //     } else if (event.type === HttpEventType.Response) {
-    //       this.message = 'Upload success.';
-    //       const body = event.body as UploadResponse;
-    //       this.uploadedFilePath = body.dbPath;
-    //     }
-    //   });
+    // uuid.v4();
+    this.patientService.uploadProfile(formData)
+      .subscribe(event => {
+        if (event.type === HttpEventType.UploadProgress) {
+          this.progress = Math.round(100 * event.loaded / event.total);
+        } else if (event.type === HttpEventType.Response) {
+          this.message = 'Upload success.';
+          const body = event.body;
+          // this.uploadedFilePath = body.dbPath;
+          // console.log(body);
+          this.patient.profileImageURL = `${environment.apiUrl}/file/files/${body.path}`;
+          console.log(this.patient);
+          this.patientService.updatePhoto(this.patient).subscribe(result => {
+            console.log(result);
+            if (result) {
+              this.authService.updateUser(result as User);
+            }
+          });
+        }
+      });
   }
 
 
@@ -46,14 +74,7 @@ export class AccountSettingsComponent implements OnInit {
     this.uploadFile(files);
   }
 
-  constructor(private fb: FormBuilder, private patientService: PatientService) {
-    this.updateAccountForm = this.fb.group({
-      contactNumber: ['', [Validators.required, Validators.min(11)]],
-      password: ['', [Validators.required, this.passwordValidator2(), this.passwordStrengthValidator()]],
-      file: ['', Validators.required],
-      passwordConfirm: new FormControl('', this.passwordValidator())
-    });
-  }
+
   ngOnInit(): void {
   }
 

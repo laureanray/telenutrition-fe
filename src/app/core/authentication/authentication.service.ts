@@ -16,8 +16,8 @@ import {RndService} from '../services/rnd.service';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private currentUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
+  private currentUserSubject: BehaviorSubject<Patient|RND|Admin>;
+  public currentUser: Observable<Patient|RND|Admin>;
   private httpOptions: { headers: HttpHeaders };
   public isLoggedIn: boolean;
   constructor(
@@ -154,7 +154,13 @@ export class AuthenticationService {
     this.currentUserSubject.next(null);
   }
 
-  public get currentUserValue(): User {
-    return this.currentUserSubject.value;
+  public get currentUserValue(): Patient|Admin|RND {
+    console.log(this.currentUserSubject.getValue());
+    return this.currentUserSubject.getValue();
+  }
+
+  public updateUser(user: Patient|Admin|RND): void {
+    this.currentUserSubject.next(user);
+    console.log(user);
   }
 }

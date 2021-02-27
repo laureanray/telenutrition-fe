@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {LogoutModalComponent} from '../../../core/shared/logout-modal/logout-modal.component';
+import {AuthenticationService} from '../../../core/authentication/authentication.service';
+import {Patient} from '../../../core/models/patient';
 
 @Component({
   selector: 'app-patient',
@@ -9,7 +11,10 @@ import {LogoutModalComponent} from '../../../core/shared/logout-modal/logout-mod
 })
 export class PatientComponent implements OnInit {
   isProfileDropdownShown = false;
-  constructor(private dialog: MatDialog) { }
+  public patient: Patient;
+  constructor(private dialog: MatDialog, private authService: AuthenticationService) {
+    this.patient = this.authService.currentUserValue as Patient;
+  }
 
   ngOnInit(): void {
   }

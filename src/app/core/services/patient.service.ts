@@ -21,8 +21,17 @@ export class PatientService {
       .post(`${environment.apiUrl}/patients/update`, patient);
   }
 
+  updatePhoto(patient: Patient): Observable<any> {
+    return this.http
+      .post(`${environment.apiUrl}/patients/updatePhoto`, patient);
+  }
+
   getPatient(username: string): Observable<any> {
     return this.http
       .get(`${environment.apiUrl}/patients/find/${username}`);
+  }
+
+  uploadProfile(formData: FormData): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/file/upload`, formData, {reportProgress: true, observe: 'events'});
   }
 }

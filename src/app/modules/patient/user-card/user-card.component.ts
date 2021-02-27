@@ -13,22 +13,7 @@ import {Admin} from '../../../core/models/admin';
 export class UserCardComponent implements OnInit {
   public user: Patient|RND|Admin;
   constructor(private authService: AuthenticationService) {
-    this.authService.currentUser.subscribe(u => {
-      if (u !== null) {
-        switch (u.roleName) {
-          case 'ROLE_RND':
-            this.user = u as RND;
-            break;
-          case 'ROLE_PATIENT':
-            this.user = u as Patient;
-            break;
-          default:
-            this.user = u as Admin;
-            break;
-        }
-      }
-
-    });
+    this.user = this.authService.currentUserValue;
   }
 
   ngOnInit(): void {

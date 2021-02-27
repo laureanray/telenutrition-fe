@@ -7,9 +7,9 @@
         </h1>
       </div>
     </header>
-    <div class="flex flex-row">
+    <div class="flex flex-row mt-4">
       <div class="form w-1/2">
-        <img src="assets/profile.png" alt="" class="my-4 w-1/2 shadow-lg border">
+        <img src="{{ this.patient.profileImageURL ? this.patient.profileImageURL : 'assets/default.png'}}" alt="" class="rounded-full my-4 max-1`w-1/2 h-auto shadow-lg border object-fill">
         <form class="example-form" class="flex flex-col font-sans mt-4" [formGroup]="updateAccountForm" autocomplete="off" (ngSubmit)="onSubmit()">
 <!--          <ul class="errors list-disc mx-4 transition-all">-->
 <!--            <li class="text-red-800 font-medium py-2" *ngIf="registerForm.controls.password.errors?.passwordStrength">-->
@@ -19,9 +19,9 @@
 <!--              Password doesn't match-->
 <!--            </li>-->
 <!--          </ul>-->
-          <input type="file" formControlName="file" #file placeholder="Choose file" (change)="fileChange(file.files)"
+          <input type="file" formControlName="file" accept=".png,.jpg,.jpeg" #file placeholder="Choose file" (change)="fileChange(file.files)"
                  style="display:none;">
-          <button type="button" mat-button class="button" (click)="file.click()">Upload Image</button>
+          <button type="button" mat-raised-button class="button" color="white" (click)="file.click()">Change Photo</button>
           <mat-form-field appearance="outline">
             <mat-label class="font-sans">Contact Number</mat-label>
             <input matInput placeholder="Ex: 09123456789" type="tel"  minlength="11" maxlength="11"  class="font-sans" autocomplete="off" spellcheck="false" required formControlName="contactNumber">
