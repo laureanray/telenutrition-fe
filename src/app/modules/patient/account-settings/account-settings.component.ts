@@ -15,7 +15,7 @@ import {User} from '../../../core/models/user';
   styleUrls: ['./account-settings.component.scss']
 })
 export class AccountSettingsComponent implements OnInit {
-  updateAccountForm: FormGroup;
+  updateForm: FormGroup;
   submitting = false;
   updateResult = '';
   errorMessage = '';
@@ -27,10 +27,9 @@ export class AccountSettingsComponent implements OnInit {
   patient: Patient;
 
   constructor(private fb: FormBuilder, private patientService: PatientService, private authService: AuthenticationService) {
-    this.updateAccountForm = this.fb.group({
+    this.updateForm = this.fb.group({
       contactNumber: ['', [Validators.required, Validators.min(11)]],
       password: ['', [Validators.required, this.passwordValidator2(), this.passwordStrengthValidator()]],
-      file: ['', Validators.required],
       passwordConfirm: new FormControl('', this.passwordValidator())
     });
 
@@ -81,8 +80,8 @@ export class AccountSettingsComponent implements OnInit {
   onSubmit(): void {
     this.submitting = true;
     const patient = {
-      email: this.updateAccountForm.value.email,
-      password: this.updateAccountForm.value.password
+      email: this.updateForm.value.email,
+      password: this.updateForm.value.password
     } as Patient;
 
     setTimeout(() => {
@@ -102,8 +101,8 @@ export class AccountSettingsComponent implements OnInit {
 
   passwordValidator2(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
-      if (this.updateAccountForm?.controls.passwordConfirm.value.length > 0) {
-        return  control.value === this.updateAccountForm?.controls.passwordConfirm.value
+      if (this.updateForm?.controls.passwordConfirm.value.length > 0) {
+        return  control.value === this.updateForm?.controls.passwordConfirm.value
           ? null : {passwordMismatch: control.value};
       }
       return  null;
@@ -112,7 +111,7 @@ export class AccountSettingsComponent implements OnInit {
 
   passwordValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null =>
-      control.value === this.updateAccountForm?.controls.password.value
+      control.value === this.updateForm?.controls.password.value
         ? null : {passwordMismatch: control.value};
   }
 
@@ -127,7 +126,7 @@ export class AccountSettingsComponent implements OnInit {
 
   // This forces the password validator to revalidate on confirm_password keyup
   pwKeyup(): void {
-    this.updateAccountForm.controls.password.updateValueAndValidity();
+    this.updateForm.controls.password.updateValueAndValidity();
   }
 
 }

@@ -38,6 +38,10 @@ export class AuthenticationService {
     }
   }
 
+  resetPassword(username: string) {
+    this.http.post
+  }
+
   // tslint:disable-next-line:typedef
   login(username: string, password: string) {
     // retuarn this.http

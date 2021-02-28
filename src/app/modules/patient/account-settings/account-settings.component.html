@@ -9,8 +9,7 @@
     </header>
     <div class="flex flex-row mt-4">
       <div class="form w-1/2">
-        <img src="{{ this.patient.profileImageURL ? this.patient.profileImageURL : 'assets/default.png'}}" alt="" class="rounded-full my-4 max-1`w-1/2 h-auto shadow-lg border object-scale-down">
-        <form class="example-form" class="flex flex-col font-sans mt-4" [formGroup]="updateAccountForm" autocomplete="off" (ngSubmit)="onSubmit()">
+        <form class="example-form" class="flex flex-col font-sans" [formGroup]="updateForm" autocomplete="off" (ngSubmit)="onSubmit()">
 <!--          <ul class="errors list-disc mx-4 transition-all">-->
 <!--            <li class="text-red-800 font-medium py-2" *ngIf="registerForm.controls.password.errors?.passwordStrength">-->
 <!--              Password too weak-->
@@ -19,10 +18,9 @@
 <!--              Password doesn't match-->
 <!--            </li>-->
 <!--          </ul>-->
-          <input type="file" formControlName="file" accept=".png,.jpg,.jpeg" #file placeholder="Choose file" (change)="fileChange(file.files)"
-                 style="display:none;">
-          <button type="button" mat-raised-button class="button" color="white" (click)="file.click()">Change Photo</button>
-          <mat-form-field appearance="outline">
+
+          <h1 class="text-xl font-medium text-gray-800 mt-8"> Change  </h1>
+          <mat-form-field appearance="outline" class="mt-4">
             <mat-label class="font-sans">Contact Number</mat-label>
             <input matInput placeholder="Ex: 09123456789" type="tel"  minlength="11" maxlength="11"  class="font-sans" autocomplete="off" spellcheck="false" required formControlName="contactNumber">
           </mat-form-field>
@@ -35,8 +33,16 @@
             <mat-label class="font-sans">Confirm Password</mat-label>
             <input matInput (keyup)="pwKeyup()" placeholder="Re-type Password" type="password" class="font-sans" autocomplete="off" spellcheck="false" required formControlName="passwordConfirm">
           </mat-form-field>
-          <button type="submit" mat-raised-button color="primary"  class="-mt-4 mb-2" [disabled]="submitting || !updateAccountForm.valid">{{ submitting ? 'Saving Changes..' : 'Save Changes' }}</button>
+          <button type="submit" mat-raised-button color="primary"  class="-mt-4 mb-2" [disabled]="submitting || !updateForm.valid">{{ submitting ? 'Saving Changes..' : 'Save Changes' }}</button>
         </form>
+      </div>
+      <div class="w-1/2 px-8">
+<!--        <form class="example-form" class="flex flex-col font-sans" [formGroup]="updatePhotoForm" autocomplete="off" (ngSubmit)="onSubmit()">-->
+          <img src="{{ this.patient.profileImageURL ? this.patient.profileImageURL : 'assets/default.png'}}" alt="" class="my-4 w-72 h-72 shadow-lg border rounded-lg object-cover">
+          <input type="file" accept=".png,.jpg,.jpeg" #file placeholder="Choose file" (change)="fileChange(file.files)"
+                 style="display:none;">
+          <button type="button" mat-raised-button class="button -mt-2 w-72" color="accent" (click)="file.click()">Update Photo</button>
+<!--        </form>-->
       </div>
     </div>
   </div>

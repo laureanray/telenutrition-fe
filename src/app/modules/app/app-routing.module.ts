@@ -9,6 +9,7 @@ import {AppComponent} from './root/app.component';
 import {HomeComponent} from './home/home.component';
 import {ConfirmComponent} from './confirm/confirm.component';
 import {AuthGuard} from '../../core/authentication/auth.guard';
+import {PasswordResetComponent} from './password-reset/password-reset.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'how-it-works', component: HowItWorksComponent, pathMatch: 'full' },
   { path: 'contact', component: ContactUsComponent, pathMatch: 'full' },
   { path: 'confirm', component: ConfirmComponent, pathMatch: 'full' },
+  { path: 'reset-password', component: PasswordResetComponent, pathMatch: 'full' },
   {
     path: 'admin',
     loadChildren: () => import('../admin/admin.module').then(m => m.AdminModule),

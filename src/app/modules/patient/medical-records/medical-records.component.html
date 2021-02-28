@@ -1,3 +1,4 @@
+
 <div class="flex flex-row container mx-auto px-4 sm:px-6 lg:px-8 items-start computed-dashboard-div">
   <div class="col-1 py-6 w-3/4">
     <header class="bg-white">
@@ -8,40 +9,110 @@
       </div>
     </header>
     <div class="controls flex flex-row justify-between mt-6">
-      <button type="submit" mat-raised-button color="accent" class="mb-6 mt-3" > Upload New Medical Record</button>
-      <mat-form-field appearance="outline" class="mt-2">
-        <mat-label>Search</mat-label>
-        <input matInput placeholder="Placeholder">
-      </mat-form-field>
+<!--      <button type="submit" mat-raised-button color="accent" class="mb-6 mt-3" > Update </button>-->
     </div>
-    <div class="shadow-sm rounded border">
-        <table mat-table [dataSource]="dataSource" class="w-full">
-          <!-- Name Column -->
-          <ng-container matColumnDef="filename">
-            <th mat-header-cell *matHeaderCellDef> Filename </th>
-            <td mat-cell *matCellDef="let element"> {{element.filename}} </td>
-          </ng-container>
-
-          <!-- Weight Column -->
-          <ng-container matColumnDef="dateUploaded">
-            <th mat-header-cell *matHeaderCellDef> Date Uploaded </th>
-            <td mat-cell *matCellDef="let element"> {{element.dateUploaded}} </td>
-          </ng-container>
-
-          <!-- Weight Column -->
-          <ng-container matColumnDef="download">
-            <th mat-header-cell> Preview/Download</th>
-            <td mat-cell> Download </td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons [pageSize]="5"></mat-paginator>
+    <div class="shadow-sm rounded border p-4">
+      <p class="text-base text-gray-600"> Click the fields you want to update. </p>
+      <h1 class="text-lg font-medium text-gray-700">
+        Basic Information
+      </h1>
+      <div class="grid grid-cols-2 gap-2 mt-4">
+        <div class="info">
+          <h1 class="text-base text-gray-900"> Name: <span class="text-base font-bold"> John F. Doe </span></h1>
+        </div>
+        <div class="info">
+          <h1 class="text-base text-gray-900"> Age: <span class="text-base font-bold"> 64 yrs old </span></h1>
+        </div>
+        <div class="info">
+          <h1 class="text-base text-gray-900"> Birthday: <span class="text-base font-bold"> January 1, 2020  </span></h1>
+        </div>
+        <div class="info">
+          <h1 class="text-base text-gray-900"> Religion: <span class="text-base font-bold"> Roman Catholic  </span></h1>
+        </div>
       </div>
+      <h1 class="text-lg mt-4 border-t font-medium text-gray-700 pt-2">
+        Anthropometric
+      </h1>
+      <div class="grid grid-cols-2 gap-2 mt-4">
+        <div class="info">
+          <h1 class="text-base text-gray-900"> Height: <span class="text-base font-bold"> 150cm </span></h1>
+        </div>
+        <div class="info">
+          <h1 class="text-base text-gray-900"> Weight: <span class="text-base font-bold"> 50kg </span></h1>
+        </div>
+        <div class="info">
+          <h1 class="text-base text-gray-900"> BMI: <span class="text-base font-bold"> 23 (normal) </span></h1>
+        </div>
+      </div>
+      <h1 class="text-lg mt-4 border-t font-medium text-gray-700 pt-2">
+        Biochemical
+      </h1>
+      <div class="grid grid-cols-4 gap-6">
+      </div>
+      <h1 class="text-lg mt-4 border-t font-medium text-gray-700 pt-2">
+        Clinical
+      </h1>
+      <div class="grid grid-cols-4 gap-6">
+
+      </div>
+      <h1 class="text-lg mt-4 border-t font-medium text-gray-700 pt-2">
+        Dietary
+      </h1>
+      <div class="grid grid-cols-4 gap-6">
+
+      </div>
+    </div>
   </div>
   <div class="col-2 w-1/4 p-6 border rounded shadow-sm m-6">
     <app-user-card></app-user-card>
   </div>
 </div>
+
+
+<!--<div class="flex flex-row container mx-auto px-4 sm:px-6 lg:px-8 items-start computed-dashboard-div">-->
+<!--  <div class="col-1 py-6 w-3/4">-->
+<!--    <header class="bg-white">-->
+<!--      <div>-->
+<!--        <h1 class="text-2xl font-medium leading-tight text-gray-900">-->
+<!--          Medical Records-->
+<!--        </h1>-->
+<!--      </div>-->
+<!--    </header>-->
+<!--    <div class="controls flex flex-row justify-between mt-6">-->
+<!--      <button type="submit" mat-raised-button color="accent" class="mb-6 mt-3" > Upload New Medical Record</button>-->
+<!--      <mat-form-field appearance="outline" class="mt-2">-->
+<!--        <mat-label>Search</mat-label>-->
+<!--        <input matInput placeholder="Placeholder">-->
+<!--      </mat-form-field>-->
+<!--    </div>-->
+<!--    <div class="shadow-sm rounded border">-->
+<!--        <table mat-table [dataSource]="dataSource" class="w-full">-->
+<!--          &lt;!&ndash; Name Column &ndash;&gt;-->
+<!--          <ng-container matColumnDef="filename">-->
+<!--            <th mat-header-cell *matHeaderCellDef> Filename </th>-->
+<!--            <td mat-cell *matCellDef="let element"> {{element.filename}} </td>-->
+<!--          </ng-container>-->
+
+<!--          &lt;!&ndash; Weight Column &ndash;&gt;-->
+<!--          <ng-container matColumnDef="dateUploaded">-->
+<!--            <th mat-header-cell *matHeaderCellDef> Date Uploaded </th>-->
+<!--            <td mat-cell *matCellDef="let element"> {{element.dateUploaded}} </td>-->
+<!--          </ng-container>-->
+
+<!--          &lt;!&ndash; Weight Column &ndash;&gt;-->
+<!--          <ng-container matColumnDef="download">-->
+<!--            <th mat-header-cell> Preview/Download</th>-->
+<!--            <td mat-cell> Download </td>-->
+<!--          </ng-container>-->
+
+<!--          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>-->
+<!--          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
+<!--        </table>-->
+
+<!--        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons [pageSize]="5"></mat-paginator>-->
+<!--      </div>-->
+<!--  </div>-->
+<!--  <div class="col-2 w-1/4 p-6 border rounded shadow-sm m-6">-->
+<!--    <app-user-card></app-user-card>-->
+<!--  </div>-->
+<!--</div>-->

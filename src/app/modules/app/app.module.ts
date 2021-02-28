@@ -43,6 +43,7 @@ import { VerifyErrorComponent } from './verify-error/verify-error.component';
 import { FooterComponent } from './footer/footer.component';
 import { DummyComponent } from './dummy/dummy.component';
 import {JwtInterceptor} from '../../core/authentication/jwt.interceptor';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import {JwtInterceptor} from '../../core/authentication/jwt.interceptor';
     VerifyErrorComponent,
     FooterComponent,
     DummyComponent,
+    PasswordResetComponent,
   ],
     imports: [
         BrowserModule,

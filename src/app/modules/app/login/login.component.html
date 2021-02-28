@@ -11,7 +11,7 @@
       <mat-form-field appearance="outline" class="-mt-4">
         <mat-label class="font-sans">Password</mat-label>
         <input matInput placeholder="Placeholder" type="password" class="font-sans" formControlName="password" autocomplete="false" spellcheck="false">
-        <mat-hint>Forgot your password? Click <a routerLink="/forgot-password" class=""> here </a></mat-hint>
+        <mat-hint class="font-sans text-sm">Forgot your password? <a routerLink="/reset-password" class="font-bold primary font-sans"> Click here </a></mat-hint>
       </mat-form-field>
       <button mat-raised-button type="submit" color="primary" class="mt-4 mb-2" [disabled]="isLoggingIn">{{ isLoggingIn ? 'Signing in...' : 'Sign In'}}</button>
       <button mat-raised-button routerLink="/register" > Register </button>
