@@ -9,7 +9,7 @@
     </header>
     <div class="flex flex-row mt-4">
       <div class="form w-1/2">
-        <img src="{{ this.patient.profileImageURL ? this.patient.profileImageURL : 'assets/default.png'}}" alt="" class="rounded-full my-4 max-1`w-1/2 h-auto shadow-lg border object-fill">
+        <img src="{{ this.patient.profileImageURL ? this.patient.profileImageURL : 'assets/default.png'}}" alt="" class="rounded-full my-4 max-1`w-1/2 h-auto shadow-lg border object-scale-down">
         <form class="example-form" class="flex flex-col font-sans mt-4" [formGroup]="updateAccountForm" autocomplete="off" (ngSubmit)="onSubmit()">
 <!--          <ul class="errors list-disc mx-4 transition-all">-->
 <!--            <li class="text-red-800 font-medium py-2" *ngIf="registerForm.controls.password.errors?.passwordStrength">-->

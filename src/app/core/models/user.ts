@@ -4,7 +4,8 @@ export class User {
   firstName: string;
   lastName: string;
   email: string;
-  token?: string;
+  token: string;
+  refreshToken: string;
   createdAt: string;
   updatedAt: string;
   profileImageURL: string;

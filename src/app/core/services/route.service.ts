@@ -15,7 +15,7 @@ export class RouteService {
     if (route.length > 0) {
       const arr = route.split('/');
       r = arr[1];
-      console.log(arr);
+      // console.log(arr);
     }
     this.currentRoute.next(r);
   }

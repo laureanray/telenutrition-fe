@@ -40,7 +40,7 @@ export class AuthenticationService {
 
   // tslint:disable-next-line:typedef
   login(username: string, password: string) {
-    // return this.http
+    // retuarn this.http
     //   .post(`${environment.apiUrl}/student/auth`, { uniqueIdentifier: studentNumber, password})
     //   .pipe(map(response => {
     //     // console.log(response);
@@ -155,12 +155,14 @@ export class AuthenticationService {
   }
 
   public get currentUserValue(): Patient|Admin|RND {
-    console.log(this.currentUserSubject.getValue());
+    // console.log(this.currentUserSubject.getValue());
     return this.currentUserSubject.getValue();
   }
 
   public updateUser(user: Patient|Admin|RND): void {
-    this.currentUserSubject.next(user);
-    console.log(user);
+    const updated = _.merge(this.currentUserValue, user);
+    this.currentUserSubject.next(updated);
+    localStorage.setItem('currentUser', JSON.stringify(updated));
+    console.log('updateUser()', updated);
   }
 }

@@ -16,7 +16,7 @@ export class AppComponent {
   constructor(private router: Router, private routeService: RouteService) {
     this.routeObservable = this.routeService.getCurrentRoute();
 
-    this.routeObservable.subscribe(r => console.log(r))
+    // this.routeObservable.subscribe(r => console.log(r))
     router.events.forEach((event) => {
       if (event instanceof NavigationStart) {
         this.page = event.url;
