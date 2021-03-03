@@ -5,7 +5,7 @@
 
   <div class="card w-1/2 my-8 mr-auto border rounded-md shadow-sm transition-all" *ngIf="registerResult == ''">
     <div class="card-heading py-4 border-b p-4">
-      <h1 class="text-2xl font-bold primary"> Register <span class="text-gray-400">as patient</span></h1>
+      <h1 class="text-2xl font-bold primary"> Register <span class="text-gray-400">as RND</span></h1>
     </div>
     <form class="example-form" class="flex flex-col p-4 font-sans"[formGroup]="registerForm" autocomplete="off" (ngSubmit)="onSubmit()">
       <ul class="errors list-disc mx-4 transition-all">
@@ -37,13 +37,7 @@
       </mat-form-field>
       <mat-form-field appearance="outline" class="-mt-4">
         <mat-label class="font-sans">Contact Number</mat-label>
-        <input matInput placeholder="Ex: 09123456789" type="tel"  minlength="11" maxlength="11"  class="font-sans" autocomplete="off" spellcheck="false" required formControlName="contactNumber">
-      </mat-form-field>
-      <mat-form-field appearance="outline" class="-mt-4">
-        <mat-label class="font-sans">Birthday</mat-label>
-        <input matInput class="font-sans" [matDatepicker]="picker" placeholder="mm/dd/yyyy" required name="birthday" formControlName="birthday">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <input matInput placeholder="Ex: 09123456789" type="tel"  minlengths="11" maxlength="11"  class="font-sans" autocomplete="off" spellcheck="false" required formControlName="contactNumber">
       </mat-form-field>
       <mat-form-field appearance="outline" class="-mt-4">
         <mat-label class="font-sans">Password</mat-label>
@@ -54,7 +48,13 @@
         <mat-label class="font-sans">Confirm Password</mat-label>
         <input matInput (keyup)="pwKeyup()" placeholder="Re-type Password" type="password" class="font-sans" autocomplete="off" spellcheck="false" required formControlName="passwordConfirm">
       </mat-form-field>
+      <mat-form-field>
+        <button type="button" mat-raised-button class="button -mt-2 w-72" color="accent" (click)="file.click()">Update Photo</button>
+      </mat-form-field>
+<!--      <img src="{{ this.patient.profileImageURL ? this.patient.profileImageURL : 'assets/default.png'}}" alt="" class="my-4 w-72 h-72 shadow-lg border rounded-lg object-cover">-->
+      <input type="file" accept=".png,.jpg,.jpeg" #file placeholder="Choose file" (change)="fileChange(file.files)"
+             style="display:none;">
       <button type="submit" mat-raised-button color="primary"  class="-mt-4 mb-2" [disabled]="submitting || !registerForm.valid">{{ submitting ? 'Signing Up ...' : 'Sign Up' }}</button>
     </form>
-</div>
+  </div>
 </div>

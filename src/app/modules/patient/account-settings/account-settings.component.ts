@@ -7,6 +7,7 @@ import {HttpEventType} from '@angular/common/http';
 import {AuthenticationService} from '../../../core/authentication/authentication.service';
 import {environment} from '../../../../environments/environment';
 import {User} from '../../../core/models/user';
+import {FileService} from '../../../core/services/file.service';
 
 
 @Component({
@@ -26,7 +27,10 @@ export class AccountSettingsComponent implements OnInit {
 
   patient: Patient;
 
-  constructor(private fb: FormBuilder, private patientService: PatientService, private authService: AuthenticationService) {
+  constructor(private fb: FormBuilder,
+              private patientService: PatientService,
+              private authService: AuthenticationService,
+              private fileService: FileService) {
     this.updateForm = this.fb.group({
       contactNumber: [this.authService.currentUserValue.contactNumber, [Validators.required, Validators.min(11)]],
       password: ['', [Validators.required, this.passwordValidator2(), this.passwordStrengthValidator()]],
@@ -45,9 +49,9 @@ export class AccountSettingsComponent implements OnInit {
 
     const fileToUpload = files[0] as File;
     const formData = new FormData();
-    formData.append('file', fileToUpload, fileToUpload.name);
+    formData.append('file', fileToUpload, uuid.v4() + '.' + fileToUpload.type.split('/')[1]);
     // uuid.v4();
-    this.patientService.uploadProfile(formData)
+    this.fileService.upload(formData)
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
           this.progress = Math.round(100 * event.loaded / event.total);

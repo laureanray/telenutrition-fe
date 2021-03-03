@@ -10,11 +10,13 @@ import {HomeComponent} from './home/home.component';
 import {ConfirmComponent} from './confirm/confirm.component';
 import {AuthGuard} from '../../core/authentication/auth.guard';
 import {PasswordResetComponent} from './password-reset/password-reset.component';
+import {RegisterRndComponent} from './register-rnd/register-rnd.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
   { path: 'register', component: RegisterComponent, pathMatch: 'full'},
+  { path: 'register-rnd', component: RegisterRndComponent, pathMatch: 'full'},
   { path: 'about', component: AboutUsComponent, pathMatch: 'full' },
   { path: 'how-it-works', component: HowItWorksComponent, pathMatch: 'full' },
   { path: 'contact', component: ContactUsComponent, pathMatch: 'full' },

@@ -44,6 +44,7 @@ import { FooterComponent } from './footer/footer.component';
 import { DummyComponent } from './dummy/dummy.component';
 import {JwtInterceptor} from '../../core/authentication/jwt.interceptor';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { RegisterRndComponent } from './register-rnd/register-rnd.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
     FooterComponent,
     DummyComponent,
     PasswordResetComponent,
+    RegisterRndComponent,
   ],
     imports: [
         BrowserModule,

@@ -36,9 +36,6 @@ export class PatientService {
       .get(`${environment.apiUrl}/patients`);
   }
 
-  uploadProfile(formData: FormData): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/file/upload`, formData, {reportProgress: true, observe: 'events'});
-  }
 
   updateAccount(patient: Patient): Observable<any> {
     return this.http
