@@ -28,7 +28,7 @@ export class AccountSettingsComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private patientService: PatientService, private authService: AuthenticationService) {
     this.updateForm = this.fb.group({
-      contactNumber: ['', [Validators.required, Validators.min(11)]],
+      contactNumber: [this.authService.currentUserValue.contactNumber, [Validators.required, Validators.min(11)]],
       password: ['', [Validators.required, this.passwordValidator2(), this.passwordStrengthValidator()]],
       passwordConfirm: new FormControl('', this.passwordValidator())
     });
@@ -80,12 +80,13 @@ export class AccountSettingsComponent implements OnInit {
   onSubmit(): void {
     this.submitting = true;
     const patient = {
-      email: this.updateForm.value.email,
-      password: this.updateForm.value.password
+      contactNumber: this.updateForm.value.contactNumber,
+      password: this.updateForm.value.password,
+      username: this.authService.currentUserValue.username
     } as Patient;
 
     setTimeout(() => {
-      this.patientService.registerPatient(patient).subscribe(res => {
+      this.patientService.updateAccount(patient).subscribe(res => {
         if (res) {
           this.submitting = false;
           this.updateResult = 'success';

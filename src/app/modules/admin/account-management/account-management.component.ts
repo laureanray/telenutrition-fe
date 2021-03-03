@@ -6,11 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./account-management.component.scss']
 })
 export class AccountManagementComponent implements OnInit {
-  userTypes = [
-    'Admin',
-    'Patient',
-    'RND'
-  ];
+
 
   constructor() { }
 

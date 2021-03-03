@@ -13,4 +13,5 @@ export class User {
   roleName: string;
   password: string;
   readableRole: string;
+  contactNumber: string;
 }

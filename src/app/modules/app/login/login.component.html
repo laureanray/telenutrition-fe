@@ -3,7 +3,12 @@
     <div class="card-heading py-4 border-b p-4">
       <h1 class="text-2xl font-bold primary"> Sign In </h1>
     </div>
-    <form class="example-form" class="flex flex-col p-4 font-sans" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <form class="example-form" class="flex flex-col p-4 font-sans" [formGroup]="loginForm" (ngSubmit)="onSubmit()" >
+      <ul class="errors list-disc mx-4 transition-all">
+        <li class="text-red-800 font-medium py-2" *ngIf="isInvalidCredentials">
+          Invalid Credentials
+        </li>
+      </ul>
       <mat-form-field appearance="outline" class="mb-0 pb-0" >
         <mat-label class="font-sans">Username</mat-label>
         <input matInput placeholder="Placeholder" class="pb-0 font-sans" formControlName="username" autocomplete="false" spellcheck="false">

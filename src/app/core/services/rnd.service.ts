@@ -13,16 +13,21 @@ export class RndService {
 
   registerRND(rnd: RND): Observable<any> {
     return this.http
-      .post(`${environment.apiUrl}/rnds/register`, rnd);
+      .post(`${environment.apiUrl}/rnd/register`, rnd);
   }
 
   updateRNDInformation(rnd: RND): Observable<any> {
     return this.http
-      .post(`${environment.apiUrl}/rnds/update`, rnd);
+      .post(`${environment.apiUrl}/rnd/update`, rnd);
   }
 
   getRND(username: string): Observable<any> {
     return this.http
-      .get(`${environment.apiUrl}/rnds/find/${username}`);
+      .get(`${environment.apiUrl}/rnd/find/${username}`);
+  }
+
+  getAllRnds(): Observable<any> {
+    return this.http
+      .get(`${environment.apiUrl}/rnd`);
   }
 }

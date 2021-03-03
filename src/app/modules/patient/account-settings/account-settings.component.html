@@ -10,15 +10,14 @@
     <div class="flex flex-row mt-4">
       <div class="form w-1/2">
         <form class="example-form" class="flex flex-col font-sans" [formGroup]="updateForm" autocomplete="off" (ngSubmit)="onSubmit()">
-<!--          <ul class="errors list-disc mx-4 transition-all">-->
-<!--            <li class="text-red-800 font-medium py-2" *ngIf="registerForm.controls.password.errors?.passwordStrength">-->
-<!--              Password too weak-->
-<!--            </li>-->
-<!--            <li class="text-red-800 font-medium py-2" *ngIf="registerForm.controls.password.errors?.passwordMismatch">-->
-<!--              Password doesn't match-->
-<!--            </li>-->
-<!--          </ul>-->
-
+          <ul class="errors list-disc mx-4 transition-all">
+            <li class="text-red-800 font-medium py-2" *ngIf="updateForm.controls.password.errors?.passwordStrength">
+              Password too weak
+            </li>
+            <li class="text-red-800 font-medium py-2" *ngIf="updateForm.controls.password.errors?.passwordMismatch">
+              Password doesn't match
+            </li>
+          </ul>
           <h1 class="text-xl font-medium text-gray-800 mt-8"> Change  </h1>
           <mat-form-field appearance="outline" class="mt-4">
             <mat-label class="font-sans">Contact Number</mat-label>

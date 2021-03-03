@@ -1,7 +1,7 @@
 <div class="container mx-auto px-4 sm:px-6 flex computed-div align-middle items-center">
 
-  <app-registration-success class="w-1/3" *ngIf="registerResult == 'success'"></app-registration-success>
-  <app-registration-error class="w-1/3" *ngIf="registerResult == 'error'" [errorMessage]="this.errorMessage"></app-registration-error>
+  <app-registration-success class="w-1/2" *ngIf="registerResult == 'success'"></app-registration-success>
+  <app-registration-error class="w-1/2" *ngIf="registerResult == 'error'" [errorMessage]="this.errorMessage"></app-registration-error>
 
   <div class="card w-1/2 my-8 mr-auto border rounded-md shadow-sm transition-all" *ngIf="registerResult == ''">
     <div class="card-heading py-4 border-b p-4">

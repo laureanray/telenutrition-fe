@@ -1,22 +1,19 @@
 <header class="bg-white shadow-sm">
-  <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-    <h1 class="text-3xl font-bold leading-tight text-gray-900">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <h1 class="text-2xl font-medium leading-tight text-gray-900">
       Account Management
     </h1>
   </div>
 </header>
 
-<div class="max-w-7xl mx-auto py-4 sm:px-6 lg:px-8">
-  <mat-form-field appearance="fill" class="font-sans rounded-md">
-    <mat-label>User Type</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let userT of userTypes" [value]="userT">
-        {{userT}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
 
-  <div class="mat-elevation-z8">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+  <div class="table">
+    <app-users-table></app-users-table>
+  </div>
+<!--  <div class="mat-elevation-z8">-->
+<!--    <-->
+
 <!--    <table mat-table [dataSource]="dataSource">-->
 
 <!--      &lt;!&ndash; Position Column &ndash;&gt;-->
@@ -48,7 +45,7 @@
 <!--    </table>-->
 
 <!--    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>-->
-  </div>
+<!--  </div>-->
 </div>
 
 

@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   isLoggingIn = false;
   loginResult = '';
   errorMessage = '';
+  isInvalidCredentials = false;
 
   constructor(private fb: FormBuilder, private authService: AuthenticationService, private router: Router) {
     this.loginForm = this.fb.group({
@@ -34,6 +35,8 @@ export class LoginComponent implements OnInit {
           break;
       }
     }
+
+
   }
 
   ngOnInit(): void {
@@ -54,6 +57,8 @@ export class LoginComponent implements OnInit {
         this.loginResult = 'error';
         console.log(error);
         this.errorMessage = error.message;
+        this.isInvalidCredentials = true;
+        this.loginForm.reset();
       });
     }, 500);
   }
