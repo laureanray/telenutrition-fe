@@ -5,7 +5,7 @@
 
   <div class="card w-1/2 my-8 mr-auto border rounded-md shadow-sm transition-all" *ngIf="registerResult == ''">
     <div class="card-heading py-4 border-b p-4">
-      <h1 class="text-2xl font-bold primary"> Sign Up </h1>
+      <h1 class="text-2xl font-bold primary"> Register <span class="text-gray-400">as patient</span></h1>
     </div>
     <form class="example-form" class="flex flex-col p-4 font-sans"[formGroup]="registerForm" autocomplete="off" (ngSubmit)="onSubmit()">
       <ul class="errors list-disc mx-4 transition-all">
