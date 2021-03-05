@@ -48,13 +48,12 @@
         <mat-label class="font-sans">Confirm Password</mat-label>
         <input matInput (keyup)="pwKeyup()" placeholder="Re-type Password" type="password" class="font-sans" autocomplete="off" spellcheck="false" required formControlName="passwordConfirm">
       </mat-form-field>
-      <mat-form-field>
-        <button type="button" mat-raised-button class="button -mt-2 w-72" color="accent" (click)="file.click()">Update Photo</button>
-      </mat-form-field>
-<!--      <img src="{{ this.patient.profileImageURL ? this.patient.profileImageURL : 'assets/default.png'}}" alt="" class="my-4 w-72 h-72 shadow-lg border rounded-lg object-cover">-->
-      <input type="file" accept=".png,.jpg,.jpeg" #file placeholder="Choose file" (change)="fileChange(file.files)"
+      <p class="text-base font-bold text-gray-700 " *ngIf="this.uploadedFilePaths.length > 0"> Files uploaded. </p>
+        <button type="button" mat-raised-button class="button mt-2 w-72" color="white" (click)="file.click()" [disabled]="this.uploadedFilePaths.length > 0">Attach Files</button>
+      <input type="file" accept=".png,.jpg,.jpeg" #file placeholder="Choose file" multiple (change)="fileChange(file.files)"
              style="display:none;">
-      <button type="submit" mat-raised-button color="primary"  class="-mt-4 mb-2" [disabled]="submitting || !registerForm.valid">{{ submitting ? 'Signing Up ...' : 'Sign Up' }}</button>
+      <button type="submit" mat-raised-button color="primary"  class="mt-4 mb-2" [disabled]="submitting || !registerForm.valid">{{ submitting ? 'Signing Up ...' : 'Sign Up' }}</button>
+<!--     <img src="{{ this.patient.profileImageURL ? this.patient.profileImageURL : 'assets/default.png'}}" alt="" class="my-4 w-72 h-72 shadow-lg border rounded-lg object-cover">-->
     </form>
   </div>
 </div>

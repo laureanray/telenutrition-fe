@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {RndService} from '../../../core/services/rnd.service';
 import {RND} from '../../../core/models/rnd';
 import {HttpEventType} from '@angular/common/http';
-import {environment} from '../../../../environments/environment';
-import {User} from '../../../core/models/user';
 import * as uuid from 'uuid';
+import {FileService} from '../../../core/services/file.service';
 
 @Component({
   selector: 'app-register-rnd',
@@ -25,7 +24,7 @@ export class RegisterRndComponent implements OnInit {
   filesToUpload = 0;
   doneUploaded = 0;
 
-  constructor(private fb: FormBuilder, private rndService: RndService) {
+  constructor(private fb: FormBuilder, private rndService: RndService, private fileService: FileService) {
     this.registerForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -39,7 +38,7 @@ export class RegisterRndComponent implements OnInit {
   }
 
 
-  public uploadFile(files: any): void  {
+  public uploadFile(files: any): void {
     console.log(files);
     if (files.length === 0) {
       return;
@@ -49,7 +48,8 @@ export class RegisterRndComponent implements OnInit {
         const fileToUpload = file as File;
         const formData = new FormData();
         formData.append('file', fileToUpload, uuid.v4() + '.' + fileToUpload.type.split('/')[1]);
-        this.rndService.uploadRNDFiles(formData)
+
+        this.fileService.upload(formData)
           .subscribe(event => {
             if (event.type === HttpEventType.UploadProgress) {
               this.progress = Math.round(100 * event.loaded / event.total);
@@ -57,16 +57,8 @@ export class RegisterRndComponent implements OnInit {
               this.message = 'Upload success.';
               const body = event.body;
               this.uploadedFilePaths.push(body.path);
-              // console.log(body);
-              // this.rnd.profileImageURL = `${environment.apiUrl}/file/files/${body.path}`;
-
-              // console.log(this.patient);
-              this.rndService.addFile(this.patient).subscribe(result => {
-                console.log(result);
-                if (result) {
-                  this.authService.updateUser(result as User);
-                }
-              });
+              console.log(this.uploadedFilePaths);
+              this.doneCallback();
             }
           });
       }
@@ -75,12 +67,19 @@ export class RegisterRndComponent implements OnInit {
 
   doneCallback(): void {
     this.doneUploaded++;
+
+    if (this.doneUploaded === this.filesToUpload) {
+      console.log('Done! uploading ' + this.filesToUpload + ' files');
+
+      this.registerForm.patchValue({
+        files: this.uploadedFilePaths
+      });
+    }
   }
 
 
-
-  fileChange(files: any): void{
-    // this.uploadFile(files);
+  fileChange(files: any): void {
+    this.uploadFile(files);
   }
 
   ngOnInit(): void {
@@ -109,6 +108,7 @@ export class RegisterRndComponent implements OnInit {
     this.rnd.username = this.registerForm.controls.username.value;
     this.rnd.email = this.registerForm.value.email;
     this.rnd.password = this.registerForm.value.password;
+    this.rnd.files = this.uploadedFilePaths;
 
     setTimeout(() => {
       this.rndService.registerRND(this.rnd).subscribe(res => {
@@ -128,10 +128,10 @@ export class RegisterRndComponent implements OnInit {
   passwordValidator2(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       if (this.registerForm?.controls.passwordConfirm.value.length > 0) {
-        return  control.value === this.registerForm?.controls.passwordConfirm.value
+        return control.value === this.registerForm?.controls.passwordConfirm.value
           ? null : {passwordMismatch: control.value};
       }
-      return  null;
+      return null;
     };
   }
 

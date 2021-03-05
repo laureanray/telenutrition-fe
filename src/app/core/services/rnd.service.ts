@@ -22,7 +22,7 @@ export class RndService {
   }
 
   addFile(id: number, pathToAdd: string): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/rnd/addFile/${id}/`, { path: pathToAdd });
+    return this.http.post(`${environment.apiUrl}/rnd/addFile/${id}`, { path: pathToAdd });
   }
 
   getRND(username: string): Observable<any> {
