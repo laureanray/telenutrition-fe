@@ -46,6 +46,12 @@
           [ngClass]="{ 'text-red-900' : !row.enabled, 'font-medium': !row.enabled}">{{row.enabled ? 'Yes' : 'No'}}</td>
     </ng-container>
 
+    <ng-container matColumnDef="isApproved">
+      <th mat-header-cell *matHeaderCellDef>Is Approved?</th>
+      <td mat-cell class="font-sans" *matCellDef="let row"
+          [ngClass]="{ 'text-red-900' : !row.isApproved, 'font-medium': !row.isApproved}">{{row.isApproved ? 'Yes' : 'No'}}</td>
+    </ng-container>
+
     <ng-container matColumnDef="createdAt">
       <th mat-header-cell *matHeaderCellDef>Created At</th>
       <td mat-cell class="font-sans" *matCellDef="let row">{{row.createdAt}}</td>
@@ -61,7 +67,8 @@
     <ng-container matColumnDef="buttons">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell class="font-sans" *matCellDef="let row">
-        <button routerLink="login" mat-raised-button color="accent">Update</button>
+        <button routerLink="login" class="font-bold bg-blue-50 p-2 rounded-sm">View</button>
+        <button routerLink="login" class="ml-2 font-bold bg-yellow-100 p-2 rounded-sm">Update</button>
       </td>
     </ng-container>
 

@@ -37,6 +37,7 @@ export class UsersTableComponent implements AfterViewInit {
     'fullName',
     'email',
     'isConfirmed',
+    'isApproved',
     'createdAt',
     'updatedAt',
     'buttons'];
@@ -77,7 +78,6 @@ export class UsersTableComponent implements AfterViewInit {
         }),
         catchError(() => {
           this.isLoadingResults = false;
-
           return observableOf([]);
         })
       ).subscribe(data => this.data = data);

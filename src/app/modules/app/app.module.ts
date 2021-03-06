@@ -46,6 +46,7 @@ import {JwtInterceptor} from '../../core/authentication/jwt.interceptor';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { RegisterRndComponent } from './register-rnd/register-rnd.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { ConfirmRndComponent } from './confirm-rnd/confirm-rnd.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     DummyComponent,
     PasswordResetComponent,
     RegisterRndComponent,
+    ConfirmRndComponent,
   ],
     imports: [
         BrowserModule,

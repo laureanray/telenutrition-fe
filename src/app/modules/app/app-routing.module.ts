@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'how-it-works', component: HowItWorksComponent, pathMatch: 'full' },
   { path: 'contact', component: ContactUsComponent, pathMatch: 'full' },
   { path: 'confirm', component: ConfirmComponent, pathMatch: 'full' },
+  // { path: 'confirm-rnd', component: }
   { path: 'reset-password', component: PasswordResetComponent, pathMatch: 'full' },
   {
     path: 'admin',

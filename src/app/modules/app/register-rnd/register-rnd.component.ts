@@ -106,7 +106,6 @@ export class RegisterRndComponent implements OnInit {
 
   onSubmit(): void {
     this.submitting = true;
-
     this.rnd.firstName = this.registerForm.value.firstName;
     this.rnd.lastName = this.registerForm.value.lastName;
     this.rnd.username = this.registerForm.controls.username.value;
