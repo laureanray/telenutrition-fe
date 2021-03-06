@@ -23,13 +23,14 @@ export class RegisterRndComponent implements OnInit {
   uploadedFilePaths = [];
   filesToUpload = 0;
   doneUploaded = 0;
+  isUploading = false;
 
   constructor(private fb: FormBuilder, private rndService: RndService, private fileService: FileService) {
     this.registerForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       username: new FormControl({value: null, disabled: true}, Validators.required),
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
       contactNumber: ['', [Validators.required, Validators.min(11)]],
       password: ['', [Validators.required, this.passwordValidator2(), this.passwordStrengthValidator()]],
       passwordConfirm: new FormControl('', this.passwordValidator()),
@@ -39,6 +40,7 @@ export class RegisterRndComponent implements OnInit {
 
 
   public uploadFile(files: any): void {
+    this.isUploading = true;
     console.log(files);
     if (files.length === 0) {
       return;
@@ -56,7 +58,7 @@ export class RegisterRndComponent implements OnInit {
             } else if (event.type === HttpEventType.Response) {
               this.message = 'Upload success.';
               const body = event.body;
-              this.uploadedFilePaths.push(body.path);
+              this.uploadedFilePaths.push({ path: body.path});
               console.log(this.uploadedFilePaths);
               this.doneCallback();
             }
@@ -74,6 +76,8 @@ export class RegisterRndComponent implements OnInit {
       this.registerForm.patchValue({
         files: this.uploadedFilePaths
       });
+
+      this.isUploading = false;
     }
   }
 

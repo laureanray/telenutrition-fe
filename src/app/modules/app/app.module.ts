@@ -45,6 +45,7 @@ import { DummyComponent } from './dummy/dummy.component';
 import {JwtInterceptor} from '../../core/authentication/jwt.interceptor';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { RegisterRndComponent } from './register-rnd/register-rnd.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -87,6 +88,7 @@ import { RegisterRndComponent } from './register-rnd/register-rnd.component';
         MatToolbarModule,
         MatListModule,
         MatGridListModule,
+        MatProgressSpinnerModule,
         MatCardModule,
         MatIconModule,
         AdminModule,
