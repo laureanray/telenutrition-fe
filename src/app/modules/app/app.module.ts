@@ -47,6 +47,7 @@ import { PasswordResetComponent } from './password-reset/password-reset.componen
 import { RegisterRndComponent } from './register-rnd/register-rnd.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ConfirmRndComponent } from './confirm-rnd/confirm-rnd.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { ConfirmRndComponent } from './confirm-rnd/confirm-rnd.component';
     PasswordResetComponent,
     RegisterRndComponent,
     ConfirmRndComponent,
+    PrivacyComponent,
   ],
     imports: [
         BrowserModule,

@@ -48,13 +48,14 @@
       <mat-form-field appearance="outline" class="-mt-4">
         <mat-label class="font-sans">Password</mat-label>
         <input matInput placeholder="Password" type="password"  class="font-sans" autocomplete="off" spellcheck="false" required formControlName="password">
-        <mat-hint>8 characters minimum, atleast one uppercase, one lowercase and one number. </mat-hint>
+        <mat-hint class="font-sans">8 characters minimum, atleast one uppercase, one lowercase and one number. </mat-hint>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label class="font-sans">Confirm Password</mat-label>
         <input matInput (keyup)="pwKeyup()" placeholder="Re-type Password" type="password" class="font-sans" autocomplete="off" spellcheck="false" required formControlName="passwordConfirm">
       </mat-form-field>
       <button type="submit" mat-raised-button color="primary"  class="-mt-4 mb-2" [disabled]="submitting || !registerForm.valid">{{ submitting ? 'Signing Up ...' : 'Sign Up' }}</button>
-    </form>
+      <p class="text-sm text-gray-500 pt-4 font-normal">By clicking Sign Up you are agreeing to our <a routerLink="/privacy" class="primary font-medium">privacy policy.</a></p>
+     </form>
 </div>
 </div>
