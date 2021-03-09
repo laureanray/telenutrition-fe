@@ -4,8 +4,8 @@
     <!--      {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}-->
     <!--    </button>-->
     <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
-    <mat-vertical-stepper [linear]="true" formArrayName="formArray" >
-      <mat-step formGroupName="0" [stepControl]="formArray.get([0])" class="font-sans">
+      <mat-vertical-stepper [linear]="true" formArrayName="formArray">
+        <mat-step formGroupName="0" [stepControl]="formArray.get([0])" class="font-sans">
           <ng-template matStepLabel class="font-sans">Select your preferred schedule</ng-template>
           <mat-form-field appearance="outline">
             <mat-label class="font-sans">Appointment Schedule</mat-label>
@@ -18,8 +18,8 @@
           <div>
             <button type="button" class="font-sans" mat-button matStepperNext>Next</button>
           </div>
-      </mat-step>
-      <mat-step formGroupName="1" [stepControl]="formArray.get([1])">
+        </mat-step>
+        <mat-step formGroupName="1" [stepControl]="formArray.get([1])">
           <ng-template matStepLabel>Select your appointment time</ng-template>
           <p class="text-base pt-4"> Listed time options are based on your selected date. </p>
           <mat-form-field appearance="outline" class="mt-4">
@@ -34,27 +34,82 @@
             <button type="button" class="font-sans" mat-button matStepperPrevious>Back</button>
             <button type="button" class="font-sans" mat-button matStepperNext>Next</button>
           </div>
-      </mat-step>
-      <mat-step formGroupName="2" [stepControl]="formArray.get([2])">
+        </mat-step>
+        <mat-step formGroupName="2" [stepControl]="formArray.get([2])">
           <ng-template matStepLabel>Fill out information</ng-template>
-          <mat-form-field appearance="outline" >
-            <mat-label class="font-sans">Complains</mat-label>
-            <textarea  class="font-sans" rows="10" matInput formControlName="complaints" name="complaints"></textarea>
-          </mat-form-field>
-          <mat-form-field appearance="outline" class="mt-1">
-            <mat-label class="font-sans">Current Medications</mat-label>
-            <textarea class="font-sans" rows="5" matInput formControlName="currentMedications" name="currentMedications"></textarea>
-          </mat-form-field>
+          <div class="flex flex-col w-1/3 mt-2">
+            <mat-form-field appearance="outline">
+              <mat-label class="font-sans">Complains</mat-label>
+              <textarea class="font-sans" rows="8" matInput formControlName="complaints" name="complaints"></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="mt-1">
+              <mat-label class="font-sans">Current Medications</mat-label>
+              <textarea class="font-sans" rows="5" matInput formControlName="currentMedications"
+                        name="currentMedications"></textarea>
+            </mat-form-field>
+          </div>
           <div>
             <button type="button" mat-button matStepperPrevious>Back</button>
             <button type="button" mat-button matStepperNext>Next</button>
           </div>
-      </mat-step>
-      <mat-step formGroupName="3" [stepControl]="formArray.get([3])">
+        </mat-step>
+        <mat-step formGroupName="3" [stepControl]="formArray.get([3])">
           <ng-template matStepLabel>Payment</ng-template>
           <p class="mt-2">You can choose to settle your account through the following bank to bank options</p>
+
+          <div [ngSwitch]="selected" class="my-2">
+            <div *ngSwitchCase="'bpi'">
+              <div class="flex flex-row">
+                <img src="/assets/bpi.png" alt="" class="h-12 mr-6">
+                <div class="info">
+                  <h1 class="text-lg font-medium text-gray-800"> Bank of the Philippine Islands </h1>
+                  <p> Branch: Lipa Poblacion, Lipa City Batangas</p>
+                  <p> Account Number: <span class="font-bold primary">9011-0017-15</span></p>
+                  <p> Account Type: Current Account</p>
+                  <p> Swift Code: BOPIPHMM </p>
+                </div>
+              </div>
+            </div>
+            <div *ngSwitchCase="'metro'">
+              <div class="flex flex-row">
+                <img src="/assets/metro.png" alt="" class="h-12 mr-6">
+                <div class="info">
+                  <h1 class="text-lg font-medium text-gray-800"> Metropolitan Bank & Trust Company</h1>
+                  <p> Branch: B. Morada Lipa City, Barangas</p>
+                  <p> Account Number: <span class="font-bold primary">145-3-14503985-2</span></p>
+                  <p> Account Type: Savings Account</p>
+                  <p> Swift Code: MBTCPHMM </p>
+                </div>
+              </div>
+            </div>
+            <div *ngSwitchCase="'union'">
+              <div class="flex flex-row">
+                <img src="/assets/unionbank.png" alt="" class="h-12 mr-6">
+                <div class="info">
+                  <h1 class="text-lg font-medium text-gray-800"> Union Bank </h1>
+                  <p> Branch: Lipa Branch, Lipa City Batangas</p>
+                  <p> Account Number: <span class="font-bold primary">002660003598</span> </p>
+                  <p> Account Type: Savings Account</p>
+                </div>
+              </div>
+            </div>
+            <div *ngSwitchCase="'bdo'">
+              <div class="flex flex-row">
+                <img src="/assets/bdo.png" alt="" class="h-12 mr-6">
+                <div class="info">
+                  <h1 class="text-lg font-medium text-gray-800"> Banco De Oro</h1>
+                  <p> Branch: Ayala Highway, Lipa City Batangas</p>
+                  <p> Account Number: <span class="font-bold primary">1880141440</span></p>
+                  <p> Account Type: Savings Account</p>
+                  <p> Swift Code: BNORTHMM </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <mat-form-field appearance="outline" class="mt-4 w-1/3">
-            <mat-select class="font-sans" formControlName="paymentMethod" name="appointmentTime" placeholder="Select Payment Method">
+            <mat-select class="font-sans" formControlName="paymentMethod" name="appointmentTime"
+                        placeholder="Select Payment Method" [(value)]="selected">
               <mat-option class="font-sans" value="bpi">
                 BPI
               </mat-option>
@@ -69,17 +124,20 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
+
+
           <div>
-            <button mat-raised-button color="accent" class="-mt-2">Submit</button>
+            <button mat-raised-button color="accent" class="mt-2">Submit</button>
           </div>
-      </mat-step>
-    </mat-vertical-stepper>
+        </mat-step>
+      </mat-vertical-stepper>
     </form>
-      <div class="summary">
+    <div class="summary">
       <h1 class="text-lg font-medium"> Summary </h1>
     </div>
   </div>
-  <div  routerLink="/patient/account-settings" class="col-2 w-1/4 p-6 border rounded shadow-sm m-6 cursor-pointer hover:shadow-md outline-none">
+  <div routerLink="/patient/account-settings"
+       class="col-2 w-1/4 p-6 border rounded shadow-sm m-6 cursor-pointer hover:shadow-md outline-none">
     <app-user-card></app-user-card>
   </div>
 </div>

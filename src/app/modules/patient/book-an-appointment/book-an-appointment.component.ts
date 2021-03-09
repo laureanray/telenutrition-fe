@@ -40,6 +40,7 @@ export class BookAnAppointmentComponent implements OnInit {
     '6:00 PM',
   ];
 
+  selected = '';
 
   ngOnInit(): void {
     this.formArray = this.formBuilder.array([
