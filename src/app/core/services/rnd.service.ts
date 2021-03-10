@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {RND} from '../models/rnd';
 import {Observable} from 'rxjs';
 import {environment} from '../../../environments/environment';
@@ -9,7 +9,8 @@ import {HttpClient} from '@angular/common/http';
 })
 export class RndService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   registerRND(rnd: RND): Observable<any> {
     return this.http
@@ -22,7 +23,7 @@ export class RndService {
   }
 
   addFile(id: number, pathToAdd: string): Observable<any> {
-    return this.http.post(`${environment.apiUrl}/rnd/addFile/${id}`, { path: pathToAdd });
+    return this.http.post(`${environment.apiUrl}/rnd/addFile/${id}`, {path: pathToAdd});
   }
 
   getRND(username: string): Observable<any> {
@@ -33,5 +34,9 @@ export class RndService {
   getAllRnds(): Observable<any> {
     return this.http
       .get(`${environment.apiUrl}/rnd`);
+  }
+
+  approveRnd(username: string): Observable<any> {
+    return this.http.get(`${environment.apiUrl}/rnd/approve/${username}`);
   }
 }

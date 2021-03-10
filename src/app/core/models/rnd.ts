@@ -9,4 +9,5 @@ export class RND extends User {
   id: number;
   license: string;
   files: File[];
+  approved: boolean;
 }

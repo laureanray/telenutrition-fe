@@ -16,11 +16,12 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { ViewRndComponent } from './view-rnd/view-rnd.component';
 import { ViewPatientComponent } from './view-patient/view-patient.component';
+import { ApproveRndModalComponent } from './approve-rnd-modal/approve-rnd-modal.component';
 
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  declarations: [AdminComponent, DashboardComponent, AdminNavComponent, AccountManagementComponent, ConfigComponent, SiteSettingsComponent, UsersTableComponent, UsersTableComponent, ViewRndComponent, ViewPatientComponent],
+  declarations: [AdminComponent, DashboardComponent, AdminNavComponent, AccountManagementComponent, ConfigComponent, SiteSettingsComponent, UsersTableComponent, UsersTableComponent, ViewRndComponent, ViewPatientComponent, ApproveRndModalComponent],
   exports: [
     AdminNavComponent
   ],

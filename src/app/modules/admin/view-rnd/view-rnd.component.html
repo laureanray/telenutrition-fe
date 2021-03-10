@@ -9,6 +9,7 @@
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
   <div class="content border p-4 rounded-md flex flex-row w-2/3">
     <div class="info">
+      <h1 class="text-2xl font-medium text-gray-600 mb-4"> User Information </h1>
       <p class="text-lg text-gray-700">
         Name: <span class="font-medium"> {{ this.rnd?.firstName }} {{ this.rnd?.lastName}}</span>
       </p>
@@ -19,20 +20,33 @@
         Email: <span class="font-medium"> {{ this.rnd?.email }}</span>
       </p>
       <p class="text-lg text-gray-700">
+        Email Confirmed:  <span class="font-medium"> {{ this.rnd?.enabled ? 'Yes' : 'No'  }}</span>
+      </p>
+      <p class="text-lg text-gray-700">
+        Approved: <span class="font-medium"> {{ this.rnd?.approved ? 'Yes' : 'No' }}</span>
+      </p>
+      <p class="text-lg text-gray-700">
         Created At: <span class="font-medium"> {{ this.moment(this.rnd?.createdAt).format('LLL') }}</span>
       </p>
-      <h1 class="text-lg font-medium mt-4">
+      <h1 class="text-lg font-medium my-4">
         Attachment(s)
       </h1>
-      <div class="grid grid-cols-3 gap-2 -mt-2">
-        <a *ngFor="let file of this.rnd?.files" href="{{this.environment.apiUrl + '/file/files/' + file?.path}}"><img
-                        src="{{ this.environment.apiUrl + '/file/files/' + file?.path }}" alt=""
-                        class="my-4 w-44 h-44 shadow-lg border rounded-lg object-cover">
-        </a>
+      <div class="grid grid-cols-3 gap-0">
+        <div *ngFor="let file of this.rnd?.files">
+          <a href="{{this.environment.apiUrl + '/file/files/' + file?.path}}"><img
+            *ngIf="file.path.split('.')[1] !== 'pdf'; else elseBlk"
+            src="{{ this.environment.apiUrl + '/file/files/' + file?.path }}" alt=""
+            class="mt-2 w-44 h-44 shadow-lg border rounded-lg object-cover">
+          </a>
+          <ng-template #elseBlk>
+            <img src="/assets/pdf.png" class="w-12 h-12" alt="">
+            <p class="text-sm font-medium text-gray-700 pt-2">{{ file.path }} </p></ng-template>
+        </div>
       </div>
     </div>
-    <div class="controls ml-auto">
-      <button routerLink="register" mat-raised-button color="accent" class="">Approve</button>
+    <div class="controls ml-auto flex flex-row h-8">
+      <button mat-raised-button color="white" >Reset Password</button>
+      <button mat-raised-button color="primary" (click)="approve()" class="ml-2" *ngIf="!this.rnd?.approved">Approve</button>
     </div>
   </div>
 </div>

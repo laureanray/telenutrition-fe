@@ -28,7 +28,7 @@ import * as moment from 'moment';
   ],
 })
 export class UsersTableComponent implements AfterViewInit {
-  selected = 'patient';
+  selected = 'rnd';
   data: User[];
 
   displayedColumns: string[] = [
