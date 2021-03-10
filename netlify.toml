@@ -15,14 +15,6 @@
   # Default build command.
   command = "yarn build-prod"
 
-
-# Production context: all deploys from the Production branch set in your site’s
-# deploy contexts will inherit these settings.
-[context.production]
-  publish = "output/"
-  command = "make publish"
-  environment = { ACCESS_TOKEN = "super secret", NODE_VERSION = "14.15.3" }
-
 # A basic redirect rule
 [[redirects]]
   from = "/*"
