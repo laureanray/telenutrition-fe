@@ -2,10 +2,10 @@
   <mat-form-field appearance="outline" class="font-sans rounded-md">
     <mat-label>User Type</mat-label>
     <mat-select [(value)]="selected" (valueChange)="valueChange($event)" class="font-sans">
-      <mat-option value="Patient" class="font-sans">
+      <mat-option value="patient" class="font-sans">
         Patient
       </mat-option>
-      <mat-option value="RND" class="font-sans">
+      <mat-option value="rnd" class="font-sans">
         RND
       </mat-option>
     </mat-select>
@@ -41,7 +41,7 @@
     </ng-container>
 
     <ng-container matColumnDef="isConfirmed">
-      <th mat-header-cell *matHeaderCellDef>Email Confirmed?</th>
+      <th mat-header-cell *matHeaderCellDef>Enabled</th>
       <td mat-cell class="font-sans" *matCellDef="let row"
           [ngClass]="{ 'text-red-900' : !row.enabled, 'font-medium': !row.enabled}">{{row.enabled ? 'Yes' : 'No'}}</td>
     </ng-container>
@@ -49,7 +49,7 @@
     <ng-container matColumnDef="isApproved">
       <th mat-header-cell *matHeaderCellDef>Is Approved?</th>
       <td mat-cell class="font-sans" *matCellDef="let row"
-          [ngClass]="{ 'text-red-900' : !row.isApproved, 'font-medium': !row.isApproved}">{{row.isApproved ? 'Yes' : 'No'}}</td>
+          [ngClass]="{ 'text-red-900' : !row.approved, 'font-medium': !row.approved}">{{row.approved ? 'Yes' : 'No'}}</td>
     </ng-container>
 
     <ng-container matColumnDef="createdAt">
@@ -67,8 +67,8 @@
     <ng-container matColumnDef="buttons">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell class="font-sans" *matCellDef="let row">
-        <button routerLink="login" class="font-bold bg-blue-50 p-2 rounded-sm">View</button>
-        <button routerLink="login" class="ml-2 font-bold bg-yellow-100 p-2 rounded-sm">Update</button>
+        <button [routerLink]="['/admin', 'account', 'view', this.selected, row.username]" class="font-bold bg-blue-50 p-2 rounded-sm">View</button>
+        <button [routerLink]="['/admin', 'account', 'update', this.selected, row.username]"  class="ml-2 font-bold bg-yellow-100 p-2 rounded-sm">Update</button>
       </td>
     </ng-container>
 

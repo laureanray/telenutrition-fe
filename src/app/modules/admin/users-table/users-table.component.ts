@@ -28,7 +28,7 @@ import * as moment from 'moment';
   ],
 })
 export class UsersTableComponent implements AfterViewInit {
-  selected = 'Patient';
+  selected = 'patient';
   data: User[];
 
   displayedColumns: string[] = [
@@ -59,7 +59,7 @@ export class UsersTableComponent implements AfterViewInit {
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
-          if (this.selected === 'Patient') {
+          if (this.selected === 'patient') {
             return this.patientService.getAllPatients();
           } else {
             return this.rndService.getAllRnds();

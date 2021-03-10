@@ -6,6 +6,8 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {AccountManagementComponent} from './account-management/account-management.component';
 import {ConfigComponent} from './config/config.component';
 import {SiteSettingsComponent} from './site-settings/site-settings.component';
+import {ViewRndComponent} from './view-rnd/view-rnd.component';
+import {ViewPatientComponent} from './view-patient/view-patient.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -15,8 +17,10 @@ const routes: Routes = [
       { path: 'account', component: AccountManagementComponent, pathMatch: 'full' },
       { path: 'config', component: ConfigComponent, pathMatch: 'full' },
       { path: 'site', component: SiteSettingsComponent, pathMatch: 'full' },
+      { path: 'account/view/rnd/:username', component: ViewRndComponent, pathMatch: 'full'},
+      { path: 'account/view/patient/:username', component: ViewPatientComponent, pathMatch: 'full'}
     ]
-  },
+  }
 ];
 
 

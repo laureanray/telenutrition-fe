@@ -14,11 +14,13 @@ import {UsersTableComponent} from './users-table/users-table.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { ViewRndComponent } from './view-rnd/view-rnd.component';
+import { ViewPatientComponent } from './view-patient/view-patient.component';
 
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  declarations: [AdminComponent, DashboardComponent, AdminNavComponent, AccountManagementComponent, ConfigComponent, SiteSettingsComponent, UsersTableComponent, UsersTableComponent],
+  declarations: [AdminComponent, DashboardComponent, AdminNavComponent, AccountManagementComponent, ConfigComponent, SiteSettingsComponent, UsersTableComponent, UsersTableComponent, ViewRndComponent, ViewPatientComponent],
   exports: [
     AdminNavComponent
   ],

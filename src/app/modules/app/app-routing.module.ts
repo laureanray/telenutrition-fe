@@ -13,6 +13,7 @@ import {PasswordResetComponent} from './password-reset/password-reset.component'
 import {RegisterRndComponent} from './register-rnd/register-rnd.component';
 import {ProviderViewContext} from '@angular/compiler/src/provider_analyzer';
 import {PrivacyComponent} from './privacy/privacy.component';
+import {ConfirmRndComponent} from './confirm-rnd/confirm-rnd.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'how-it-works', component: HowItWorksComponent, pathMatch: 'full' },
   { path: 'contact', component: ContactUsComponent, pathMatch: 'full' },
   { path: 'confirm', component: ConfirmComponent, pathMatch: 'full' },
+  { path: 'confirm-rnd', component: ConfirmRndComponent, pathMatch: 'full'},
   { path: 'privacy', component: PrivacyComponent, pathMatch: 'full'},
   // { path: 'confirm-rnd', component: }
   { path: 'reset-password', component: PasswordResetComponent, pathMatch: 'full' },

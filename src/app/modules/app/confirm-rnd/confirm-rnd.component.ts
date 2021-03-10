@@ -18,15 +18,16 @@ export class ConfirmRndComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.token = params.token;
       console.log(this.token);
-
-      if (this.token === '') {
+      if (this.token !== '') {
         this.http.get(`${environment.apiUrl}/rnd/verify/${this.token}`)
           .subscribe(res => {
             if (res) {
               this.result = 'success';
+              console.log(res);
             }
           }, error => {
             this.result = 'error';
+            console.log(error);
           });
       }
     });

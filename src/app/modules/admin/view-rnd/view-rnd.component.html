@@ -1,0 +1,39 @@
+<header class="bg-white shadow-sm">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <h1 class="text-2xl font-medium leading-tight text-gray-900">
+      <a routerLink="/admin/account">Account Management </a> <span class="text-gray-500">/ View RND </span>
+    </h1>
+  </div>
+</header>
+
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+  <div class="content border p-4 rounded-md flex flex-row w-2/3">
+    <div class="info">
+      <p class="text-lg text-gray-700">
+        Name: <span class="font-medium"> {{ this.rnd?.firstName }} {{ this.rnd?.lastName}}</span>
+      </p>
+      <p class="text-lg text-gray-700">
+        Username: <span class="font-medium"> {{ this.rnd?.username }}</span>
+      </p>
+      <p class="text-lg text-gray-700">
+        Email: <span class="font-medium"> {{ this.rnd?.email }}</span>
+      </p>
+      <p class="text-lg text-gray-700">
+        Created At: <span class="font-medium"> {{ this.moment(this.rnd?.createdAt).format('LLL') }}</span>
+      </p>
+      <h1 class="text-lg font-medium mt-4">
+        Attachment(s)
+      </h1>
+      <div class="grid grid-cols-3 gap-2 -mt-2">
+        <a *ngFor="let file of this.rnd?.files" href="{{this.environment.apiUrl + '/file/files/' + file?.path}}"><img
+                        src="{{ this.environment.apiUrl + '/file/files/' + file?.path }}" alt=""
+                        class="my-4 w-44 h-44 shadow-lg border rounded-lg object-cover">
+        </a>
+      </div>
+    </div>
+    <div class="controls ml-auto">
+      <button routerLink="register" mat-raised-button color="accent" class="">Approve</button>
+    </div>
+  </div>
+</div>
+
