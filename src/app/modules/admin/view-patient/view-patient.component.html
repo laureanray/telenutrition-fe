@@ -1,8 +1,51 @@
 <header class="bg-white shadow-sm">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
     <h1 class="text-2xl font-medium leading-tight text-gray-900">
-      Account Management
+      <a routerLink="/admin/account">Account Management </a> <span class="text-gray-500">/ View Patient </span>
     </h1>
   </div>
 </header>
+
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+  <div class="content border p-4 rounded-md flex flex-row w-2/3">
+    <div class="info">
+      <h1 class="text-2xl font-medium text-gray-600 mb-4"> User Information </h1>
+      <img src="{{ this.patient?.profileImageURL ? this.patient?.profileImageURL : 'assets/default.png'}}" alt="" class="rounded-sm w-48 h-48 shadow-lg border rounded-lg object-cover my-4">
+      <p class="text-lg text-gray-700">
+        Name: <span class="font-medium"> {{ this.patient?.firstName }} {{ this.patient?.lastName}}</span>
+      </p>
+      <p class="text-lg text-gray-700">
+        Username: <span class="font-medium"> {{ this.patient?.username }}</span>
+      </p>
+      <p class="text-lg text-gray-700">
+        Email: <span class="font-medium"> {{ this.patient?.email }}</span>
+      </p>
+      <p class="text-lg text-gray-700">
+        Email Confirmed:  <span class="font-medium"> {{ this.patient?.enabled ? 'Yes' : 'No'  }}</span>
+      </p>
+      <p class="text-lg text-gray-700">
+        Created At: <span class="font-medium"> {{ this.moment(this.patient?.createdAt).format('LLL') }}</span>
+      </p>
+      <h1 class="text-lg font-medium my-4">
+        Attachment(s)
+      </h1>
+<!--      <div class="grid grid-cols-3 gap-0">-->
+<!--        <div *ngFor="let file of this.patient?.files">-->
+<!--          <a href="{{this.environment.apiUrl + '/file/files/' + file?.path}}"><img-->
+<!--            *ngIf="file.path.split('.')[1] !== 'pdf'; else elseBlk"-->
+<!--            src="{{ this.environment.apiUrl + '/file/files/' + file?.path }}" alt=""-->
+<!--            class="mt-2 w-44 h-44 shadow-lg border rounded-lg object-cover">-->
+<!--          </a>-->
+<!--          <ng-template #elseBlk>-->
+<!--            <img src="/assets/pdf.png" class="w-12 h-12" alt="">-->
+<!--            <p class="text-sm font-medium text-gray-700 pt-2">{{ file.path }} </p></ng-template>-->
+<!--        </div>-->
+<!--      </div>-->
+    </div>
+    <div class="controls ml-auto flex flex-row h-8">
+      <button mat-raised-button color="white" >Reset Password</button>
+<!--      <button mat-raised-button color="primary" (click)="approve()" class="ml-2" *ngIf="!this.patient?.approved">Approve</button>-->
+    </div>
+  </div>
+</div>
 
