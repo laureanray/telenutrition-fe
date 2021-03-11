@@ -7,4 +7,7 @@ export class Appointment {
   patient: Patient;
   paymentMethod: string;
   status: string;
+  schedule: string;
+  currentMedications: string;
+  complaints: string;
 }

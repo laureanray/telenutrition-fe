@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PatientService} from '../../../core/services/patient.service';
-
+import * as _ from 'lodash';
+import {Appointment} from '../../../core/models/appointment';
+import * as moment from 'moment';
+import {AuthenticationService} from '../../../core/authentication/authentication.service';
 @Component({
   selector: 'app-book-an-appointment',
   templateUrl: './book-an-appointment.component.html',
@@ -9,7 +12,10 @@ import {PatientService} from '../../../core/services/patient.service';
 })
 export class BookAnAppointmentComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
-              private patientService: PatientService) {}
+              private patientService: PatientService,
+              private authService: AuthenticationService) {
+  }
+
   isLinear = false;
   // @ts-ignore
   formGroup: FormGroup;
@@ -28,16 +34,16 @@ export class BookAnAppointmentComponent implements OnInit {
 
   formArray: any;
 
-  times =  [
-    '10:00 AM',
-    '11:00 AM',
-    '12:00 AM',
-    '1:00 PM',
-    '2:00 PM',
-    '3:00 PM',
-    '4:00 PM',
-    '5:00 PM',
-    '6:00 PM',
+  times = [
+    { display: '10:00 AM', value: '10:00'},
+    { display: '11:00 AM', value: '11:00'},
+    { display: '12:00 AM', value: '12:00'},
+    { display: '1:00 PM', value: '13:00'},
+    { display: '2:00 PM', value: '14:00'},
+    { display: '3:00 PM', value: '15:00'},
+    { display: '4:00 PM', value: '16:00'},
+    { display: '5:00 PM', value: '17:00'},
+    { display: '6:00 PM', value: '18:00'},
   ];
 
   selected = '';
@@ -45,7 +51,7 @@ export class BookAnAppointmentComponent implements OnInit {
   ngOnInit(): void {
     this.formArray = this.formBuilder.array([
       this.formBuilder.group({
-        preferredSchedule: ['', Validators.required]
+        appointmentDate: ['', Validators.required]
       }),
       this.formBuilder.group({
         appointmentTime: ['', Validators.required]
@@ -60,7 +66,7 @@ export class BookAnAppointmentComponent implements OnInit {
     ]);
 
     this.formGroup = this.formBuilder.group({
-     formArray: this.formArray
+      formArray: this.formArray
     });
   }
 
@@ -75,6 +81,38 @@ export class BookAnAppointmentComponent implements OnInit {
 
   onSubmit(): void {
     this.isSubmitting = true;
-    console.log(this.formGroup.value);
+    // tslint:disable-next-line:only-arrow-functions
+    const data = this.formArray.value.reduce((acc, item) => {
+      const obj = {...item};
+      // tslint:disable-next-line:no-shadowed-variable
+      Object.keys(obj).forEach((item) => {
+        if (acc[item]) {
+          Object.assign(acc[item], obj[item]);
+        } else { // else add the key-value pair to the accumulator object.
+          acc[item] = obj[item];
+        }
+      });
+      return acc;
+    }, {});
+
+    console.log(data);
+
+    data.appointmentDate = moment(data.appointmentDate).format('L');
+
+
+    const appointment = {
+      patient: {
+        id: this.authService.currentUserValue.id
+      },
+      complaints: data.complaints,
+      currentMedications: data.currentMedications,
+      paymentMethod: data.paymentMethod,
+      schedule: moment(`${data.appointmentDate} ${data.appointmentTime}`, 'MM/DD/YYYY HH:mm').format()
+    } as Appointment;
+
+    console.log(appointment);
+
+
+
   }
 }

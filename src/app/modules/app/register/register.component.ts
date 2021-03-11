@@ -57,7 +57,7 @@ export class RegisterComponent implements OnInit {
     patient.birthday = this.registerForm.value.birthday;
     patient.email = this.registerForm.value.email;
     patient.password = this.registerForm.value.password;
-
+    patient.contactNumber = this.registerForm.value.contactNumber;
     console.log(patient);
 
     console.log(this.registerForm.controls.username.value);
