@@ -127,7 +127,7 @@
 
 
           <div>
-            <button mat-raised-button color="accent" class="mt-2">Submit</button>
+            <button mat-raised-button color="accent" class="mt-2" [disabled]="isSubmitting">{{ isSubmitting ? 'Submitting..' : 'Submit'}}</button>
           </div>
         </mat-step>
       </mat-vertical-stepper>

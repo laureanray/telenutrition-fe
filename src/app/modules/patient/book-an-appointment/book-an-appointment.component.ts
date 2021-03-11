@@ -5,6 +5,7 @@ import * as _ from 'lodash';
 import {Appointment} from '../../../core/models/appointment';
 import * as moment from 'moment';
 import {AuthenticationService} from '../../../core/authentication/authentication.service';
+import {AppointmentService} from '../../../core/services/appointment.service';
 @Component({
   selector: 'app-book-an-appointment',
   templateUrl: './book-an-appointment.component.html',
@@ -13,7 +14,8 @@ import {AuthenticationService} from '../../../core/authentication/authentication
 export class BookAnAppointmentComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private patientService: PatientService,
-              private authService: AuthenticationService) {
+              private authService: AuthenticationService,
+              private appointmentService: AppointmentService) {
   }
 
   isLinear = false;
@@ -112,7 +114,12 @@ export class BookAnAppointmentComponent implements OnInit {
 
     console.log(appointment);
 
-
+    this.appointmentService.createAppointment(appointment)
+      .subscribe(res => {
+        if (res) {
+          this.result = 'success';
+        }
+      }, error => this.result = 'error');
 
   }
 }
