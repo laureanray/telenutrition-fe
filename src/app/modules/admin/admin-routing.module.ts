@@ -8,6 +8,7 @@ import {ConfigComponent} from './config/config.component';
 import {SiteSettingsComponent} from './site-settings/site-settings.component';
 import {ViewRndComponent} from './view-rnd/view-rnd.component';
 import {ViewPatientComponent} from './view-patient/view-patient.component';
+import {AppointmentsComponent} from './appointments/appointments.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -15,6 +16,7 @@ const routes: Routes = [
     children: [
       { path: 'dashboard', component: DashboardComponent, pathMatch: 'full' },
       { path: 'account', component: AccountManagementComponent, pathMatch: 'full' },
+      { path: 'appointments', component: AppointmentsComponent, pathMatch: 'full'},
       { path: 'config', component: ConfigComponent, pathMatch: 'full' },
       { path: 'site', component: SiteSettingsComponent, pathMatch: 'full' },
       { path: 'account/view/rnd/:username', component: ViewRndComponent, pathMatch: 'full'},

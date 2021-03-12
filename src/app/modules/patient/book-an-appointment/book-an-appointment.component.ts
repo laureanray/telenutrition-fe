@@ -6,6 +6,8 @@ import {Appointment} from '../../../core/models/appointment';
 import * as moment from 'moment';
 import {AuthenticationService} from '../../../core/authentication/authentication.service';
 import {AppointmentService} from '../../../core/services/appointment.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-book-an-appointment',
   templateUrl: './book-an-appointment.component.html',
@@ -15,7 +17,9 @@ export class BookAnAppointmentComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private patientService: PatientService,
               private authService: AuthenticationService,
-              private appointmentService: AppointmentService) {
+              private appointmentService: AppointmentService,
+              private snackBar: MatSnackBar) {
+    this.moment = moment;
   }
 
   isLinear = false;
@@ -36,16 +40,20 @@ export class BookAnAppointmentComponent implements OnInit {
 
   formArray: any;
 
+  appointment: Appointment;
+
+  moment: any;
+
   times = [
-    { display: '10:00 AM', value: '10:00'},
-    { display: '11:00 AM', value: '11:00'},
-    { display: '12:00 AM', value: '12:00'},
-    { display: '1:00 PM', value: '13:00'},
-    { display: '2:00 PM', value: '14:00'},
-    { display: '3:00 PM', value: '15:00'},
-    { display: '4:00 PM', value: '16:00'},
-    { display: '5:00 PM', value: '17:00'},
-    { display: '6:00 PM', value: '18:00'},
+    {display: '10:00 AM', value: '10:00'},
+    {display: '11:00 AM', value: '11:00'},
+    {display: '12:00 AM', value: '12:00'},
+    {display: '1:00 PM', value: '13:00'},
+    {display: '2:00 PM', value: '14:00'},
+    {display: '3:00 PM', value: '15:00'},
+    {display: '4:00 PM', value: '16:00'},
+    {display: '5:00 PM', value: '17:00'},
+    {display: '6:00 PM', value: '18:00'},
   ];
 
   selected = '';
@@ -79,7 +87,7 @@ export class BookAnAppointmentComponent implements OnInit {
       d = new Date();
     }
     return (day !== 0 && day !== 6);
-  }
+  };
 
   onSubmit(): void {
     this.isSubmitting = true;
@@ -114,12 +122,20 @@ export class BookAnAppointmentComponent implements OnInit {
 
     console.log(appointment);
 
-    this.appointmentService.createAppointment(appointment)
-      .subscribe(res => {
-        if (res) {
-          this.result = 'success';
-        }
-      }, error => this.result = 'error');
+    setTimeout(() => {
+      this.appointmentService.createAppointment(appointment)
+        .subscribe(res => {
+          if (res) {
+            this.result = 'success';
+            this.isSubmitting = false;
+            this.snackBar.open('Success!');
+            this.appointment = res;
+          }
+        }, error => {
+          this.result = 'error';
+          this.isSubmitting = false;
+        });
+    }, 800);
 
   }
 }

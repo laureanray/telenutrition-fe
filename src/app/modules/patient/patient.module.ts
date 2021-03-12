@@ -25,7 +25,8 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatOptionModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {SharedModule} from '../../core/shared/shared.module';
-// import { AppointmentsComponent } from './appointments/appointments.component';
+import { AppointmentsComponent } from './appointments/appointments.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -41,8 +42,8 @@ import {SharedModule} from '../../core/shared/shared.module';
     BookComponent,
     NutritionToolsComponent,
     BookAnAppointmentComponent,
-    UserCardComponent],
-    // AppointmentsComponent],
+    UserCardComponent,
+    AppointmentsComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -57,6 +58,7 @@ import {SharedModule} from '../../core/shared/shared.module';
     MatDatepickerModule,
     MatOptionModule,
     MatSelectModule,
+    MatSnackBarModule,
     SharedModule
   ],
   bootstrap: [PatientComponent]

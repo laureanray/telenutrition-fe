@@ -1,9 +1,16 @@
 <div class="flex flex-row container mx-auto px-4 sm:px-6 lg:px-8 items-start computed-dashboard-div">
   <div class="col-1 py-6 w-3/4">
+    <header class="bg-white">
+      <div>
+        <h1 class="text-2xl font-medium mb-4 leading-tight text-gray-900">
+          Book an Appointment
+        </h1>
+      </div>
+    </header>
     <!--    <button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">-->
     <!--      {{!isLinear ? 'Enable linear mode' : 'Disable linear mode'}}-->
     <!--    </button>-->
-    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" *ngIf="false">
       <mat-vertical-stepper [linear]="true" formArrayName="formArray">
         <mat-step formGroupName="0" [stepControl]="formArray.get([0])" class="font-sans">
           <ng-template matStepLabel class="font-sans">Select your preferred date</ng-template>
@@ -124,16 +131,22 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-
-
           <div>
             <button mat-raised-button color="accent" class="mt-2" [disabled]="isSubmitting">{{ isSubmitting ? 'Submitting..' : 'Submit'}}</button>
           </div>
         </mat-step>
       </mat-vertical-stepper>
     </form>
-    <div class="summary" *ngIf="this.result === 'success'">
-      <h1 class="text-lg font-medium"> Summary </h1>
+    <div class="summary p-6 border rounded shadow-sm hover:shadow-md outline-none" *ngIf="true">
+      <h1 class="text-xl font-medium mb-2 pb-2 border-b"> Appointment Summary </h1>
+      <p class="text-lg font-medium"> Status: <span> Payment Pending </span></p>
+      <p class="text-base font-medium text-gray-500 mt-2"> Appointment Schedule </p>
+      <p class="text-lg font-medium">  {{ this.moment().format('LLL') }}
+      <p class="text-base font-medium text-gray-500 mt-2"> Payment Method  </p>
+      <p class="text-lg font-medium"> BPI</p>
+      <p class="text-base font-medium text-gray-500 mt-2"> Amount Due  </p>
+      <p class="text-lg font-medium"> ₱800 </p>
+
     </div>
   </div>
   <div routerLink="/patient/account-settings"

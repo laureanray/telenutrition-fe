@@ -1,9 +1,9 @@
-  <img src="{{ this.user.profileImageURL ? this.user.profileImageURL : 'assets/default.png'}}" alt="" class="rounded-full mx-auto w-72 h-72 shadow-lg border rounded-lg object-cover">
+  <img src="{{ this.user.profileImageURL ? this.user.profileImageURL : 'assets/default.png'}}" alt="" class="rounded-full mx-auto w-72 h-72  border-2 rounded-lg object-cover">
   <h1 class="text-xl font-medium text-gray-700 text-center pt-4"> {{ user.firstName }} {{ user.lastName}} </h1>
   <p class="text-base text-gray-600 text-center"> Patient </p>
   <div class="flex flex-row py-4 justify-around">
     <p class="text-base text-gray-600 text-center"> Sex: <strong> M </strong> </p>
-    <p class="text-base text-gray-600 text-center"> Age: <strong> 64 years old</strong> </p>
+    <p class="text-base text-gray-600 text-center"> Age: <strong> {{ this.user.medicalRecord.age }} years old</strong> </p>
   </div>
   <div class="flex flex-row py-4">
     <h1 class="text-base font-bold text-gray-700"> History </h1>

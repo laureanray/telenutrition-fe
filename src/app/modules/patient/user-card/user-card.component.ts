@@ -11,9 +11,11 @@ import {Admin} from '../../../core/models/admin';
   styleUrls: ['./user-card.component.scss']
 })
 export class UserCardComponent implements OnInit {
-  public user: Patient|RND|Admin;
+  public user: any;
   constructor(private authService: AuthenticationService) {
-    this.user = this.authService.currentUserValue;
+    if (this.authService.currentUserValue.roleName === 'ROLE_PATIENT') {
+      this.user = this.authService.currentUserValue as Patient;
+    }
   }
 
   ngOnInit(): void {
