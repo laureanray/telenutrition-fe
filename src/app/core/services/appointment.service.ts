@@ -23,7 +23,13 @@ export class AppointmentService {
       .get(`${environment.apiUrl}/appointments/active`);
   }
 
-  getAllArchivedAppointments(): Observable<any> { return this.http
+  getAllArchivedAppointments(): Observable<any> {
+    return this.http
     .get(`${environment.apiUrl}/appointments/archived`);
+  }
+
+  getAppointmentById(id: number): Observable<any>{
+    return this.http
+      .get(`${environment.apiUrl}/appointments/${id}`);
   }
 }

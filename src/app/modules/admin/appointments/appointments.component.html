@@ -37,7 +37,7 @@
 
       <ng-container matColumnDef="archived">
         <th mat-header-cell *matHeaderCellDef>Archived</th>
-        <td mat-cell class="font-sans font-bold" *matCellDef="let row">{{row.archived}}</td>
+        <td mat-cell class="font-sans font-bold" *matCellDef="let row">{{row.archived ? 'Yes' : 'No'}}</td>
       </ng-container>
 
       <ng-container matColumnDef="schedule">
@@ -66,7 +66,7 @@
       <ng-container matColumnDef="buttons">
         <th mat-header-cell *matHeaderCellDef></th>
         <td mat-cell class="font-sans" *matCellDef="let row">
-          <button [routerLink]="['/admin', 'account', 'view', this.selected, row.username]"
+          <button [routerLink]="['/admin', 'appointments', 'view', row.id]"
                   class="font-bold bg-blue-50 p-2 rounded-sm">View
           </button>
           <!--        <button [routerLink]="['/admin', 'account', 'update', this.selected, row.username]"  class="ml-2 font-bold bg-yellow-100 p-2 rounded-sm">Update</button>-->

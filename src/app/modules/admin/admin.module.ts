@@ -18,11 +18,12 @@ import { ViewRndComponent } from './view-rnd/view-rnd.component';
 import { ViewPatientComponent } from './view-patient/view-patient.component';
 import { ApproveRndModalComponent } from './approve-rnd-modal/approve-rnd-modal.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
+import { ViewAppointmentComponent } from './view-appointment/view-appointment.component';
 
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  declarations: [AdminComponent, DashboardComponent, AdminNavComponent, AccountManagementComponent, ConfigComponent, SiteSettingsComponent, UsersTableComponent, UsersTableComponent, ViewRndComponent, ViewPatientComponent, ApproveRndModalComponent, AppointmentsComponent],
+  declarations: [AdminComponent, DashboardComponent, AdminNavComponent, AccountManagementComponent, ConfigComponent, SiteSettingsComponent, UsersTableComponent, UsersTableComponent, ViewRndComponent, ViewPatientComponent, ApproveRndModalComponent, AppointmentsComponent, ViewAppointmentComponent],
   exports: [
     AdminNavComponent
   ],
