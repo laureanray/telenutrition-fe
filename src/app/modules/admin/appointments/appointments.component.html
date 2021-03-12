@@ -1,7 +1,7 @@
 <header class="bg-white shadow-sm">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
     <h1 class="text-2xl font-medium leading-tight text-gray-900">
-      Account Management
+      Appointment
     </h1>
   </div>
 </header>
@@ -10,7 +10,7 @@
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
   <div class="w-full">
     <mat-form-field appearance="outline" class="font-sans rounded-md">
-      <mat-label>User Type</mat-label>
+      <mat-label>Select</mat-label>
       <mat-select [(value)]="selected" (valueChange)="valueChange($event)" class="font-sans">
         <mat-option value="archived" class="font-sans">
           Archived
@@ -21,7 +21,7 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <h1 class="text-lg font-medium pb-2"> Showing all {{ this.selected.toLowerCase() }}s</h1>
+  <h1 class="text-lg font-medium pb-2"> Showing all {{ this.selected.toLowerCase() }} appointment(s)</h1>
   <div class="table w-full m-0 border p-2 rounded-md font-sans mb-4">
 
     <table mat-table
@@ -31,40 +31,29 @@
     >
       <!-- Number Column -->
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <th mat-header-cell *matHeaderCellDef>Appointment ID</th>
         <td mat-cell class="font-sans" *matCellDef="let row">{{row.id}}</td>
       </ng-container>
 
-      <ng-container matColumnDef="username">
-        <th mat-header-cell *matHeaderCellDef>Username</th>
-        <td mat-cell class="font-sans font-bold" *matCellDef="let row">{{row.username}}</td>
+      <ng-container matColumnDef="archived">
+        <th mat-header-cell *matHeaderCellDef>Archived</th>
+        <td mat-cell class="font-sans font-bold" *matCellDef="let row">{{row.archived}}</td>
       </ng-container>
 
-      <ng-container matColumnDef="fullName">
-        <th mat-header-cell *matHeaderCellDef>Full Name</th>
-        <td mat-cell class="font-sans" *matCellDef="let row">{{row.lastName}}, {{row.firstName}}</td>
+      <ng-container matColumnDef="schedule">
+        <th mat-header-cell *matHeaderCellDef>Schedule</th>
+        <td mat-cell class="font-sans" *matCellDef="let row">{{ this.moment(row.schedule).format('LLL') }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef>Email</th>
-        <td mat-cell class="font-sans" *matCellDef="let row">{{row.email}}</td>
+      <ng-container matColumnDef="paymentMethod">
+        <th mat-header-cell *matHeaderCellDef>Payment Method</th>
+        <td mat-cell class="font-sans font-bold" *matCellDef="let row" >{{ row.paymentMethod.toUpperCase() }}</td>
       </ng-container>
 
-      <ng-container matColumnDef="isConfirmed">
-        <th mat-header-cell *matHeaderCellDef>Enabled</th>
-        <td mat-cell class="font-sans" *matCellDef="let row"
-            [ngClass]="{ 'text-red-900' : !row.enabled, 'font-medium': !row.enabled}">{{row.enabled ? 'Yes' : 'No'}}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="isApproved">
+      <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef>Is Approved?</th>
         <td mat-cell class="font-sans" *matCellDef="let row"
-            [ngClass]="{ 'text-red-900' : !row.approved, 'font-medium': !row.approved}">{{row.approved ? 'Yes' : 'No'}}</td>
-      </ng-container>
-
-      <ng-container matColumnDef="createdAt">
-        <th mat-header-cell *matHeaderCellDef>Created At</th>
-        <td mat-cell class="font-sans" *matCellDef="let row">{{row.createdAt}}</td>
+            [ngClass]="{ 'text-red-900' : !row.approved, 'font-medium': !row.approved}">{{ row.status }}</td>
       </ng-container>
 
       <ng-container matColumnDef="updatedAt">

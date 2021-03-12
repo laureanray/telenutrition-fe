@@ -78,6 +78,11 @@ export class BookAnAppointmentComponent implements OnInit {
     this.formGroup = this.formBuilder.group({
       formArray: this.formArray
     });
+
+
+    this.formGroup.valueChanges.subscribe(s => {
+      console.log(this.formGroup.valid);
+    });
   }
 
   dateFilter = (d: Date | null): boolean => {
@@ -128,7 +133,9 @@ export class BookAnAppointmentComponent implements OnInit {
           if (res) {
             this.result = 'success';
             this.isSubmitting = false;
-            this.snackBar.open('Success!');
+            this.snackBar.open('Success!', undefined, {
+              duration: 3000
+            });
             this.appointment = res;
           }
         }, error => {

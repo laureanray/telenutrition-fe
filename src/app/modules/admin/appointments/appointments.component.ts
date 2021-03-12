@@ -15,22 +15,21 @@ import {AppointmentService} from '../../../core/services/appointment.service';
   styleUrls: ['./appointments.component.scss']
 })
 export class AppointmentsComponent implements AfterViewInit {
-  selected = 'rnd';
+  selected = 'active';
   data: User[];
 
   displayedColumns: string[] = [
     'id',
-    'username',
-    'fullName',
-    'email',
-    'isConfirmed',
-    'isApproved',
-    'createdAt',
+    'archived',
+    'schedule',
+    'paymentMethod',
+    'status',
     'updatedAt',
     'buttons'];
 
   resultsLength = 0;
   isLoadingResults = true;
+  moment: any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -38,6 +37,7 @@ export class AppointmentsComponent implements AfterViewInit {
   constructor(private patientService: PatientService,
               private rndService: RndService,
               private appointmentService: AppointmentService) {
+    this.moment = moment;
   }
 
   update(): void {
@@ -48,10 +48,10 @@ export class AppointmentsComponent implements AfterViewInit {
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
-          if (this.selected === 'patient') {
-            return this.patientService.getAllPatients();
+          if (this.selected === 'archived') {
+            return this.appointmentService.getAllArchivedAppointments();
           } else {
-            return this.rndService.getAllRnds();
+            return this.appointmentService.getAllActiveAppointments();
           }
         }),
         map(data => {
