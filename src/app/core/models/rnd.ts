@@ -1,4 +1,5 @@
 import {User} from './user';
+import {Appointment} from './appointment';
 
 export interface File {
   id: number;
@@ -10,4 +11,5 @@ export class RND extends User {
   license: string;
   files: File[];
   approved: boolean;
+  appointments: Appointment[];
 }

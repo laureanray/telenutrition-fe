@@ -92,7 +92,7 @@ export class BookAnAppointmentComponent implements OnInit {
       d = new Date();
     }
     return (day !== 0 && day !== 6);
-  };
+  }
 
   onSubmit(): void {
     this.isSubmitting = true;

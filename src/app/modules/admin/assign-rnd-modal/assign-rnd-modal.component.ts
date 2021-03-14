@@ -127,11 +127,13 @@ export class AssignRndModalComponent implements OnInit, AfterViewInit, OnDestroy
             this.snackBar.open('Success!', undefined, {
               duration: 3000
             });
+            this.dialogRef.close();
           }
         }, error => {
           this.snackBar.open('Unexpected Error Occurred!', undefined, {
             duration: 3000
           });
+          this.dialogRef.close();
         });
     });
   }

@@ -10,16 +10,34 @@
     </header>
     <div class="flex flex-row">
       <div class="w-2/4">
-      <p class="text-lg py-6">
-          You have 0 patients today.
+        <p class="text-lg py-6">
+          You have {{ this.upcoming }} upcoming patient {{ this.upcoming > 1 ? 's' : ''}} today.
         </p>
+
+        <div class="upcoming">
+          <h1 class="text-lg font-medium mb-4"> All Upcoming Appointments</h1>
+          <div class="appointment cursor-pointer hover:bg-gray-200 bg-gray-100 my-2 p-2 rounded-md shadow-sm "
+               *ngFor="let appointment of this.rnd?.appointments" [class]="{'bg-gray-300' : this.today.isSame(moment(appointment.schedule), 'day')}">
+            <div class="row flex flex-row">
+              <img
+                src="{{ appointment.patient.profileImageURL ? appointment.patient.profileImageURL : '/assets/default.png'}}"
+                class="object-cover rounded-full shadow-sm w-20 h-20" alt="">
+              <div class="info  py-2 px-4">
+                <h1
+                  class="text-lg font-medium"> {{ appointment.patient.firstName }} {{ appointment.patient.lastName }} </h1>
+                <p class="text-base"> {{ this.moment(appointment.schedule).calendar() }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="graphics">
         <img src="assets/graphics-2.png" alt="" class="pl-10 w-10/12">
       </div>
     </div>
   </div>
-  <div  routerLink="/rnd/account-settings" class="col-2 w-1/4 p-6 border rounded shadow-sm m-6 cursor-pointer hover:shadow-md outline-none">
+  <div routerLink="/rnd/account-settings"
+       class="col-2 w-1/4 p-6 border rounded shadow-sm m-6 cursor-pointer hover:shadow-md outline-none">
     <app-user-card></app-user-card>
   </div>
 </div>
