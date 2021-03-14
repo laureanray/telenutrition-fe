@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {LogoutModalComponent} from '../../../core/shared/logout-modal/logout-modal.component';
+import {RND} from '../../../core/models/rnd';
+import {AuthenticationService} from '../../../core/authentication/authentication.service';
 
 @Component({
   selector: 'app-rnd',
@@ -9,7 +11,11 @@ import {LogoutModalComponent} from '../../../core/shared/logout-modal/logout-mod
 })
 export class RndComponent implements OnInit {
   isProfileDropdownShown = false;
-  constructor(private dialog: MatDialog) { }
+  rnd: RND;
+  constructor(private dialog: MatDialog,
+              private authService: AuthenticationService) {
+    this.rnd = this.authService.currentUserValue as RND;
+  }
 
   ngOnInit(): void {
   }

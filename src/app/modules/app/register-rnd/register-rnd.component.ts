@@ -112,6 +112,7 @@ export class RegisterRndComponent implements OnInit {
     this.rnd.email = this.registerForm.value.email;
     this.rnd.password = this.registerForm.value.password;
     this.rnd.files = this.uploadedFilePaths;
+    this.rnd.contactNumber = this.registerForm.value.contactNumber;
 
     setTimeout(() => {
       this.rndService.registerRND(this.rnd).subscribe(res => {

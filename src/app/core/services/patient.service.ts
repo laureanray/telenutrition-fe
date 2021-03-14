@@ -36,7 +36,6 @@ export class PatientService {
       .get(`${environment.apiUrl}/patients`);
   }
 
-
   updateAccount(patient: Patient): Observable<any> {
     return this.http
       .post(`${environment.apiUrl}/patients/update-account/${patient.username}`, patient);

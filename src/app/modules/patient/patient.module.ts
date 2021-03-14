@@ -25,10 +25,10 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatOptionModule} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {SharedModule} from '../../core/shared/shared.module';
-import { AppointmentsComponent } from './appointments/appointments.component';
+import {AppointmentsComponent} from './appointments/appointments.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSortModule} from '@angular/material/sort';
-import { ViewAppointmentComponent } from './view-appointment/view-appointment.component';
+import {ViewAppointmentComponent} from './view-appointment/view-appointment.component';
 
 
 @NgModule({
@@ -47,24 +47,24 @@ import { ViewAppointmentComponent } from './view-appointment/view-appointment.co
     UserCardComponent,
     AppointmentsComponent,
     ViewAppointmentComponent],
-    imports: [
-        CommonModule,
-        RouterModule,
-        PatientRoutingModule,
-        MatButtonModule,
-        MatPaginatorModule,
-        MatTableModule,
-        MatFormFieldModule,
-        MatInputModule,
-        ReactiveFormsModule,
-        MatStepperModule,
-        MatDatepickerModule,
-        MatOptionModule,
-        MatSelectModule,
-        MatSnackBarModule,
-        SharedModule,
-        MatSortModule
-    ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    PatientRoutingModule,
+    MatButtonModule,
+    MatPaginatorModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatStepperModule,
+    MatDatepickerModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatSnackBarModule,
+    SharedModule,
+    MatSortModule
+  ],
   bootstrap: [PatientComponent]
 })
 export class PatientModule {

@@ -1,0 +1,48 @@
+<div class="flex flex-row container mx-auto px-4 sm:px-6 lg:px-8 items-start computed-dashboard-div">
+  <div class="col-1 py-6 w-3/4">
+    <header class="bg-white">
+      <div>
+        <h1 class="text-2xl font-medium leading-tight text-gray-900">
+          Account Settings
+        </h1>
+      </div>
+    </header>
+    <div class="flex flex-row mt-4">
+      <div class="form w-1/2">
+        <form class="example-form" class="flex flex-col font-sans" [formGroup]="updateForm" autocomplete="off" (ngSubmit)="onSubmit()">
+          <ul class="errors list-disc mx-4 transition-all">
+            <li class="text-red-800 font-medium py-2" *ngIf="updateForm.controls.password.errors?.passwordStrength">
+              Password too weak
+            </li>
+            <li class="text-red-800 font-medium py-2" *ngIf="updateForm.controls.password.errors?.passwordMismatch">
+              Password doesn't match
+            </li>
+          </ul>
+          <h1 class="text-xl font-medium text-gray-800 mt-8"> Change  </h1>
+          <mat-form-field appearance="outline" class="mt-4">
+            <mat-label class="font-sans">Contact Number</mat-label>
+            <input matInput placeholder="Ex: 09123456789" type="tel"  minlength="11" maxlength="11"  class="font-sans" autocomplete="off" spellcheck="false" required formControlName="contactNumber">
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="-mt-4">
+            <mat-label class="font-sans">Password</mat-label>
+            <input matInput placeholder="Password" type="password"  class="font-sans" autocomplete="off" spellcheck="false" required formControlName="password">
+            <mat-hint>8 characters minimum, atleast one uppercase, one lowercase and one number. </mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label class="font-sans">Confirm Password</mat-label>
+            <input matInput (keyup)="pwKeyup()" placeholder="Re-type Password" type="password" class="font-sans" autocomplete="off" spellcheck="false" required formControlName="passwordConfirm">
+          </mat-form-field>
+          <button type="submit" mat-raised-button color="primary"  class="-mt-4 mb-2" [disabled]="submitting || !updateForm.valid">{{ submitting ? 'Saving Changes..' : 'Save Changes' }}</button>
+        </form>
+      </div>
+      <div class="w-1/2 px-8">
+        <!--        <form class="example-form" class="flex flex-col font-sans" [formGroup]="updatePhotoForm" autocomplete="off" (ngSubmit)="onSubmit()">-->
+        <img src="{{ this.rnd.profileImageURL ? this.rnd.profileImageURL : 'assets/default.png'}}" alt="" class="my-4 w-72 h-72 shadow-lg border rounded-lg object-cover">
+        <input type="file" accept=".png,.jpg,.jpeg" #file placeholder="Choose file" (change)="fileChange(file.files)"
+               style="display:none;">
+        <button type="button" mat-raised-button class="button -mt-2 w-72" color="accent" (click)="file.click()">Update Photo</button>
+        <!--        </form>-->
+      </div>
+    </div>
+  </div>
+</div>
