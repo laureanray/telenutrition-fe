@@ -51,7 +51,7 @@
       </ng-container>
 
       <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef>Is Approved?</th>
+        <th mat-header-cell *matHeaderCellDef>Status</th>
         <td mat-cell class="font-sans" *matCellDef="let row"
             [ngClass]="{ 'text-red-900' : !row.approved, 'font-medium': !row.approved}">{{ row.status }}</td>
       </ng-container>

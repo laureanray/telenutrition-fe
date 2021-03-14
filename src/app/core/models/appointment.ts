@@ -1,5 +1,6 @@
 import {RND} from './rnd';
 import {Patient} from './patient';
+import {ProofOfPayment} from './proof-of-payment';
 
 export class Appointment {
   id: number;
@@ -12,4 +13,7 @@ export class Appointment {
   complaints: string;
   archived: string;
   amountDue: number;
+  createdAt: string;
+  updatedAt: string;
+  proofOfPayments: ProofOfPayment[];
 }

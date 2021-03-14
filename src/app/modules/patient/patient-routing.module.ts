@@ -11,6 +11,7 @@ import {BookAnAppointmentComponent} from './book-an-appointment/book-an-appointm
 import {NutritionToolsComponent} from './nutrition-tools/nutrition-tools.component';
 import {AccountSettingsComponent} from './account-settings/account-settings.component';
 import {AppointmentsComponent} from './appointments/appointments.component';
+import {ViewAppointmentComponent} from './view-appointment/view-appointment.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
@@ -20,6 +21,7 @@ const routes: Routes = [
       {path: 'dashboard', component: DashboardComponent, pathMatch: 'full'},
       // {path: 'consultation', component: ConsultationComponent, pathMatch: 'full'},
       {path: 'appointments', component: AppointmentsComponent, pathMatch: 'full'},
+      { path: 'appointments/view/:id', component: ViewAppointmentComponent, pathMatch: 'full'},
       {path: 'account-settings', component: AccountSettingsComponent, pathMatch: 'full'},
       {path: 'medical-records', component: MedicalRecordsComponent, pathMatch: 'full'},
       {path: 'support', component: SupportComponent, pathMatch: 'full'},

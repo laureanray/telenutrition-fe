@@ -14,16 +14,18 @@ import {UsersTableComponent} from './users-table/users-table.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import {MatPaginatorModule} from '@angular/material/paginator';
-import { ViewRndComponent } from './view-rnd/view-rnd.component';
-import { ViewPatientComponent } from './view-patient/view-patient.component';
-import { ApproveRndModalComponent } from './approve-rnd-modal/approve-rnd-modal.component';
-import { AppointmentsComponent } from './appointments/appointments.component';
-import { ViewAppointmentComponent } from './view-appointment/view-appointment.component';
+import {ViewRndComponent} from './view-rnd/view-rnd.component';
+import {ViewPatientComponent} from './view-patient/view-patient.component';
+import {ApproveRndModalComponent} from './approve-rnd-modal/approve-rnd-modal.component';
+import {AppointmentsComponent} from './appointments/appointments.component';
+import {ViewAppointmentComponent} from './view-appointment/view-appointment.component';
+import {ChangeStatusComponent} from './change-status/change-status.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  declarations: [AdminComponent, DashboardComponent, AdminNavComponent, AccountManagementComponent, ConfigComponent, SiteSettingsComponent, UsersTableComponent, UsersTableComponent, ViewRndComponent, ViewPatientComponent, ApproveRndModalComponent, AppointmentsComponent, ViewAppointmentComponent],
+  declarations: [AdminComponent, DashboardComponent, AdminNavComponent, AccountManagementComponent, ConfigComponent, SiteSettingsComponent, UsersTableComponent, UsersTableComponent, ViewRndComponent, ViewPatientComponent, ApproveRndModalComponent, AppointmentsComponent, ViewAppointmentComponent, ChangeStatusComponent],
   exports: [
     AdminNavComponent
   ],
@@ -35,7 +37,8 @@ import { ViewAppointmentComponent } from './view-appointment/view-appointment.co
     MatSelectModule,
     MatTableModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatSnackBarModule
   ]
 })
 export class AdminModule {

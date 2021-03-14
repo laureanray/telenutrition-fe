@@ -1,0 +1,18 @@
+<div mat-dialog-content>
+  <h3 class="text-3xl font-medium"> Change Status </h3>
+  <p class="text-base font-normal mt-4"> Change status from: <span class="font-medium">{{ this.data.appointment.status }}</span> to:
+    <span class="font-medium">{{ this.selected}}</span>  </p>
+  <mat-form-field appearance="outline" class="mt-2">
+    <mat-label>Change Status</mat-label>
+    <mat-select [(value)]="selected">
+      <mat-option value="PENDING_PAYMENT">Pending Payment</mat-option>
+      <mat-option value="PAID">Paid</mat-option>
+      <mat-option value="SCHEDULED">Scheduled</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="flex  flex-row justify-items-end">
+
+  <button mat-raised-button (click)="onNoClick()" color="white" class="mt-4 mb-2 ml-auto">Cancel</button>
+  <button mat-raised-button type="submit" color="primary" class="ml-2 mt-4 mb-2" (click)="apply()" [disabled]="isApplying">{{ isApplying ? 'Applying Changes' : 'Apply Changes' }}</button>
+</div>

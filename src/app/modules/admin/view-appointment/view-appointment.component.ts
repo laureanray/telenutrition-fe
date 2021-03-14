@@ -4,6 +4,9 @@ import {ActivatedRoute} from '@angular/router';
 import {AppointmentService} from '../../../core/services/appointment.service';
 import * as moment from 'moment';
 import {environment} from 'src/environments/environment';
+import {LogoutModalComponent} from '../../../core/shared/logout-modal/logout-modal.component';
+import {MatDialog} from '@angular/material/dialog';
+import {ChangeStatusComponent} from '../change-status/change-status.component';
 
 @Component({
   selector: 'app-view-appointment',
@@ -14,9 +17,11 @@ export class ViewAppointmentComponent implements OnInit {
   appointment: Appointment;
   moment: any;
   environment: any;
+  id: number;
 
   constructor(private route: ActivatedRoute,
-              private appointmentService: AppointmentService) {
+              private appointmentService: AppointmentService,
+              private dialog: MatDialog) {
     this.moment = moment;
     this.environment = environment;
   }
@@ -34,8 +39,22 @@ export class ViewAppointmentComponent implements OnInit {
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
     // tslint:disable-next-line:radix
-    const id = parseInt(routeParams.get('id'));
-    this.fetchCurrentAppointment(id);
+    this.id = parseInt(routeParams.get('id'));
+    this.fetchCurrentAppointment(this.id);
+  }
+
+  changeStatus(): void {
+    const ref = this.dialog.open(ChangeStatusComponent, {
+      width: '520px',
+      data: {
+        appointment: this.appointment
+      }
+    });
+
+
+    ref.afterClosed().subscribe(afterClosed => {
+      this.fetchCurrentAppointment(this.id);
+    });
   }
 
 }

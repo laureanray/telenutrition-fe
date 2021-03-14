@@ -8,6 +8,7 @@ import {merge, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import * as moment from 'moment';
 import {AppointmentService} from '../../../core/services/appointment.service';
+import {Appointment} from '../../../core/models/appointment';
 
 @Component({
   selector: 'app-appointments',
@@ -16,7 +17,7 @@ import {AppointmentService} from '../../../core/services/appointment.service';
 })
 export class AppointmentsComponent implements AfterViewInit {
   selected = 'active';
-  data: User[];
+  data: Appointment[];
 
   displayedColumns: string[] = [
     'id',
@@ -58,7 +59,7 @@ export class AppointmentsComponent implements AfterViewInit {
           this.isLoadingResults = false;
           this.resultsLength = data.length;
           console.log('Results length', this.resultsLength);
-          const users = data as User[];
+          const users = data as Appointment[];
           for (const d of users) {
             d.createdAt = moment(d.createdAt).format('LLL');
             d.updatedAt = moment(d.updatedAt).format('LLL');

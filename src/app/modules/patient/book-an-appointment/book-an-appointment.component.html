@@ -141,7 +141,7 @@
     </form>
     <div class="summary p-6 border rounded shadow-sm hover:shadow-md outline-none" *ngIf="result === 'success'">
       <h1 class="text-xl font-medium mb-2 pb-2 border-b"> Appointment Summary </h1>
-      <p class="text-lg font-medium"> Status: <span> {{ this.appointment.schedule}} </span></p>
+      <p class="text-lg font-medium"> Status: <span> {{ this.appointment.status }} </span></p>
       <p class="text-base font-medium text-gray-500 mt-2"> Appointment Schedule </p>
       <p class="text-lg font-medium">  {{ this.moment(this.appointment.schedule).format('LLL') }}
       <p class="text-base font-medium text-gray-500 mt-2"> Payment Method  </p>

@@ -27,6 +27,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {SharedModule} from '../../core/shared/shared.module';
 import { AppointmentsComponent } from './appointments/appointments.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatSortModule} from '@angular/material/sort';
+import { ViewAppointmentComponent } from './view-appointment/view-appointment.component';
 
 
 @NgModule({
@@ -43,24 +45,26 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     NutritionToolsComponent,
     BookAnAppointmentComponent,
     UserCardComponent,
-    AppointmentsComponent],
-  imports: [
-    CommonModule,
-    RouterModule,
-    PatientRoutingModule,
-    MatButtonModule,
-    MatPaginatorModule,
-    MatTableModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatStepperModule,
-    MatDatepickerModule,
-    MatOptionModule,
-    MatSelectModule,
-    MatSnackBarModule,
-    SharedModule
-  ],
+    AppointmentsComponent,
+    ViewAppointmentComponent],
+    imports: [
+        CommonModule,
+        RouterModule,
+        PatientRoutingModule,
+        MatButtonModule,
+        MatPaginatorModule,
+        MatTableModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatStepperModule,
+        MatDatepickerModule,
+        MatOptionModule,
+        MatSelectModule,
+        MatSnackBarModule,
+        SharedModule,
+        MatSortModule
+    ],
   bootstrap: [PatientComponent]
 })
 export class PatientModule {
