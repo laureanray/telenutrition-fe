@@ -6262,6 +6262,13 @@ next-tick@~1.0.0:
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
+ngx-mat-select-search@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/ngx-mat-select-search/-/ngx-mat-select-search-3.2.0.tgz#2feec33483b4e81302a797fcf00411f62682ed46"
+  integrity sha512-sQwmkwgyhQI8B1judJxI+vVzdwkrVRAVPPfAipDpfw82GqhOY71tJdmcAIAawUkDknZAbOY22K7QfLyzAnqhGQ==
+  dependencies:
+    tslib "^1.9.0"
+
 nice-try@^1.0.4:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"

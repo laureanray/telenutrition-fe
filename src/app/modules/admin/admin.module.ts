@@ -23,8 +23,9 @@ import {ChangeStatusComponent} from './change-status/change-status.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AssignRndModalComponent } from './assign-rnd-modal/assign-rnd-modal.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 
 @NgModule({
@@ -45,7 +46,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatSnackBarModule,
     MatSlideToggleModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    NgxMatSelectSearchModule,
+    ReactiveFormsModule
   ]
 })
 export class AdminModule {

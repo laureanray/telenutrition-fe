@@ -2,6 +2,17 @@
   <h3 class="text-3xl font-medium"> Assign RND </h3>
   <p class="text-base font-normal mt-4"> Select the RND you want to assign to this appointment  </p>
 </div>
+<mat-form-field appearance="outline" class="w-full">
+    <mat-select [formControl]="rndCtrl" placeholder="RND" #singleSelect>
+      <mat-option>
+        <ngx-mat-select-search [formControl]="rndFilterCtrl" placeholderLabel="Search RNDs"
+                               noEntriesFoundLabel="'No matching RND found'"></ngx-mat-select-search>
+      </mat-option>
+      <mat-option *ngFor="let rnd of filteredRNDs | async" [value]="rnd" class="flex flex-row">
+         {{rnd.lastName}}, {{rnd.firstName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 <div>
 
 </div>
