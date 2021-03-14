@@ -21,11 +21,15 @@ import {AppointmentsComponent} from './appointments/appointments.component';
 import {ViewAppointmentComponent} from './view-appointment/view-appointment.component';
 import {ChangeStatusComponent} from './change-status/change-status.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { AssignRndModalComponent } from './assign-rnd-modal/assign-rnd-modal.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {FormsModule} from '@angular/forms';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  declarations: [AdminComponent, DashboardComponent, AdminNavComponent, AccountManagementComponent, ConfigComponent, SiteSettingsComponent, UsersTableComponent, UsersTableComponent, ViewRndComponent, ViewPatientComponent, ApproveRndModalComponent, AppointmentsComponent, ViewAppointmentComponent, ChangeStatusComponent],
+  declarations: [AdminComponent, DashboardComponent, AdminNavComponent, AccountManagementComponent, ConfigComponent, SiteSettingsComponent, UsersTableComponent, UsersTableComponent, ViewRndComponent, ViewPatientComponent, ApproveRndModalComponent, AppointmentsComponent, ViewAppointmentComponent, ChangeStatusComponent, AssignRndModalComponent],
   exports: [
     AdminNavComponent
   ],
@@ -38,7 +42,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSlideToggleModule,
+    FormsModule,
+    MatDialogModule
   ]
 })
 export class AdminModule {

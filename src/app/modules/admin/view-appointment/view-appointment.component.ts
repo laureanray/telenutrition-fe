@@ -7,6 +7,7 @@ import {environment} from 'src/environments/environment';
 import {LogoutModalComponent} from '../../../core/shared/logout-modal/logout-modal.component';
 import {MatDialog} from '@angular/material/dialog';
 import {ChangeStatusComponent} from '../change-status/change-status.component';
+import {AssignRndModalComponent} from '../assign-rnd-modal/assign-rnd-modal.component';
 
 @Component({
   selector: 'app-view-appointment',
@@ -57,4 +58,17 @@ export class ViewAppointmentComponent implements OnInit {
     });
   }
 
+  assignRND(): void {
+    const ref = this.dialog.open(AssignRndModalComponent, {
+      width: '520px',
+      data: {
+        appointment: this.appointment
+      }
+    });
+
+
+    ref.afterClosed().subscribe(afterClosed => {
+      this.fetchCurrentAppointment(this.id);
+    });
+  }
 }
