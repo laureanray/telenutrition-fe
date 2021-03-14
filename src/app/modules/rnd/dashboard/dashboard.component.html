@@ -5,27 +5,27 @@
         <h1 class="text-2xl font-medium leading-tight text-gray-900">
           Dashboard
         </h1>
-        <h1 class="text-5xl font-light mt-8"> Hello, <span class="font-normal">  {{ rnd?.firstName }}! </span></h1>
+        <h1 class="text-5xl font-light mt-8 accent-light"> Hello, <span class="font-normal">  {{ rnd?.firstName }}! </span></h1>
       </div>
     </header>
     <div class="flex flex-row">
       <div class="w-2/4">
         <p class="text-lg py-6">
-          You have {{ this.upcoming }} upcoming patient {{ this.upcoming > 1 ? 's' : ''}} today.
+          You have <span class="font-bold accent-light">{{ this.upcoming }}</span> upcoming patient{{ this.upcoming > 1 ? 's' : ''}} today.
         </p>
 
         <div class="upcoming">
           <h1 class="text-lg font-medium mb-4"> All Upcoming Appointments</h1>
-          <div class="appointment cursor-pointer hover:bg-gray-200 bg-gray-100 my-2 p-2 rounded-md shadow-sm "
-               *ngFor="let appointment of this.rnd?.appointments" [class]="{'bg-gray-300' : this.today.isSame(moment(appointment.schedule), 'day')}">
-            <div class="row flex flex-row">
+          <div class="appointment cursor-pointer hover:bg-gray-200 bg-white my-2 p-2 border rounded-md shadow-sm w-5/6"
+               *ngFor="let appointment of this.rnd?.appointments" [class]="{'bg-green-100' : this.today.isSame(moment(appointment.schedule), 'day')}">
+            <div class="row flex flex-row ">
               <img
                 src="{{ appointment.patient.profileImageURL ? appointment.patient.profileImageURL : '/assets/default.png'}}"
-                class="object-cover rounded-full shadow-sm w-20 h-20" alt="">
-              <div class="info  py-2 px-4">
+                class="object-cover rounded-full shadow-sm w-20 h-20 border" alt="">
+              <div class="info  py-2 px-4 flex flex-col justify-center">
                 <h1
-                  class="text-lg font-medium"> {{ appointment.patient.firstName }} {{ appointment.patient.lastName }} </h1>
-                <p class="text-base"> {{ this.moment(appointment.schedule).calendar() }}</p>
+                  class="text-lg font-normal"> {{ appointment.patient.firstName }} {{ appointment.patient.lastName }} </h1>
+                <p class="text-base font-medium"> {{ this.moment(appointment.schedule).calendar() }}</p>
               </div>
             </div>
           </div>
