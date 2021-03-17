@@ -46,7 +46,7 @@
           [ngClass]="{ 'text-red-900' : !row.enabled, 'font-medium': !row.enabled}">{{row.enabled ? 'Yes' : 'No'}}</td>
     </ng-container>
 
-    <ng-container matColumnDef="isApproved">
+    <ng-container matColumnDef="isApproved" *ngIf="selected === 'rnd'">
       <th mat-header-cell *matHeaderCellDef>Is Approved?</th>
       <td mat-cell class="font-sans" *matCellDef="let row"
           [ngClass]="{ 'text-red-900' : !row.approved, 'font-medium': !row.approved}">{{row.approved ? 'Yes' : 'No'}}</td>
