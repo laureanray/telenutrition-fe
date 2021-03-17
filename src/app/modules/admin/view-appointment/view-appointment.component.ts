@@ -52,7 +52,6 @@ export class ViewAppointmentComponent implements OnInit {
       }
     });
 
-
     ref.afterClosed().subscribe(afterClosed => {
       this.fetchCurrentAppointment(this.id);
     });

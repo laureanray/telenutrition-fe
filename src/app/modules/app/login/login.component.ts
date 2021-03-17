@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../../core/authentication/authentication.service';
 import {Patient} from '../../../core/models/patient';
 import {Router} from '@angular/router';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,10 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   isInvalidCredentials = false;
 
-  constructor(private fb: FormBuilder, private authService: AuthenticationService, private router: Router) {
+  constructor(private fb: FormBuilder,
+              private authService: AuthenticationService,
+              private router: Router,
+              private snackBar: MatSnackBar) {
     this.loginForm = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -32,7 +36,6 @@ export class LoginComponent implements OnInit {
           break;
         default:
           this.router.navigate(['/patient']);
-          break;
       }
     }
 

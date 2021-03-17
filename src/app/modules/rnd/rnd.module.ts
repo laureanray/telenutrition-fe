@@ -19,9 +19,10 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {SharedModule} from '../../core/shared/shared.module';
 import {MatSortModule} from '@angular/material/sort';
 import {MatButtonModule} from '@angular/material/button';
+import { PatientsComponent } from './patients/patients.component';
 
 @NgModule({
-  declarations: [RndComponent, RndNavComponent, DashboardComponent, UserCardComponent, AccountSettingsComponent],
+  declarations: [RndComponent, RndNavComponent, DashboardComponent, UserCardComponent, AccountSettingsComponent, PatientsComponent],
   imports: [
     CommonModule,
     RndRoutingModule,

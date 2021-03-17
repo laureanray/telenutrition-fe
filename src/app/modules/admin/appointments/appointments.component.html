@@ -35,9 +35,10 @@
         <td mat-cell class="font-sans" *matCellDef="let row">{{row.id}}</td>
       </ng-container>
 
-      <ng-container matColumnDef="archived">
-        <th mat-header-cell *matHeaderCellDef>Archived</th>
-        <td mat-cell class="font-sans font-bold" *matCellDef="let row">{{row.archived ? 'Yes' : 'No'}}</td>
+
+      <ng-container matColumnDef="patient">
+        <th mat-header-cell *matHeaderCellDef>Patient</th>
+        <td mat-cell class="font-sans" *matCellDef="let row">{{ row.patient.firstName }} {{ row.patient.lastName}}</td>
       </ng-container>
 
       <ng-container matColumnDef="schedule">

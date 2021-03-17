@@ -1,0 +1,37 @@
+<div class="flex flex-row container mx-auto px-4 sm:px-6 lg:px-8 items-start computed-dashboard-div">
+  <div class="col-1 py-6 w-3/4">
+    <header class="bg-white">
+      <div>
+        <h1 class="text-2xl font-medium leading-tight text-gray-900">
+          Patients
+        </h1>
+      </div>
+    </header>
+    <div class="flex flex-row">
+      <div class="grid grid-cols-2 gap-6 mt-8 h-0 w-2/4">
+        <a routerLink="/patient/medical-records" class="rounded border p-4 shadow-sm hover:shadow-lg transition-all">
+          <img src="assets/notes.png" alt="" class="w-1/3 mx-auto">
+          <h1 class="text-lg font-medium text-gray-800 text-center pt-4"> Medical Records </h1>
+        </a>
+        <a routerLink="/patient/appointments" class="rounded border p-4 shadow-sm hover:shadow-lg transition-all">
+          <img src="assets/history.png" alt="" class="w-1/3 mx-auto">
+          <h1 class="text-lg font-medium text-gray-800 text-center pt-4"> History </h1>
+        </a>
+        <a routerLink="/patient/book-an-appointment" class="rounded border p-4 shadow-sm hover:shadow-lg transition-all">
+          <img src="assets/calendar.png" alt="" class="w-1/3 mx-auto">
+          <h1 class="text-lg font-medium text-gray-800 text-center pt-4"> Book an Appointment </h1>
+        </a>
+        <a routerLink="/patient/nutrition-tools" class="rounded border p-4 shadow-sm hover:shadow-lg transition-all">
+          <img src="assets/pyramid.png" alt="" class="w-1/3 mx-auto">
+          <h1 class="text-lg font-medium text-gray-800 text-center pt-4"> Nutrition Tools </h1>
+        </a>
+      </div>
+      <div class="graphics">
+        <img src="assets/graphics-2.png" alt="" class="pl-10 w-10/12">
+      </div>
+    </div>
+  </div>
+  <div  routerLink="/patient/account-settings" class="col-2 w-1/4 p-6 border rounded shadow-sm m-6 cursor-pointer hover:shadow-md outline-none">
+    <app-user-card></app-user-card>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 <header class="bg-white shadow-sm">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
     <h1 class="text-2xl font-medium leading-tight text-gray-900">
-      <a routerLink="/admin/account">Appointments </a> <span class="text-gray-500">/ View Appointment </span>
+      <a routerLink="/patient/appointments">Appointments </a> <span class="text-gray-500">/ View Appointment </span>
     </h1>
   </div>
 </header>
@@ -48,7 +48,7 @@
             </div>
     </div>
     <div class="controls ml-auto flex flex-row h-12">
-      <button *ngIf="this.appointment.status === 'PENDING_PAYMENT'" type="button" mat-raised-button class="button mt-2 w-72 flex flex-col" color="white" (click)="file.click()"
+      <button *ngIf="this.appointment?.status === 'PENDING_PAYMENT'" type="button" mat-raised-button class="button mt-2 w-72 flex flex-col" color="white" (click)="file.click()"
               [disabled]="this.isUploading && this.uploadedFilePaths.length === this.filesToUpload">{{ this.isUploading ? 'Attaching files...' : 'Attach proof of payment' }}
         <!--        <mat-spinner [diameter]="25z"> *ngIf="!isUploading"></mat-spinner>-->
 

@@ -1,4 +1,3 @@
-
 <div class="flex flex-row container mx-auto px-4 sm:px-6 lg:px-8 items-start computed-dashboard-div">
   <div class="col-1 py-6 w-3/4">
     <header class="bg-white">
@@ -9,61 +8,92 @@
       </div>
     </header>
     <div class="controls flex flex-row justify-between mt-6">
-<!--      <button type="submit" mat-raised-button color="accent" class="mb-6 mt-3" > Update </button>-->
+      <button type="submit" mat-raised-button color="accent"
+              class="mb-6 mt-3" *ngIf="!isEditing"
+              (click)="edit()"> {{ patient.medicalRecord ? 'Add Medical Record' : 'Edit Medical Record' }}</button>
+      <button type="submit" mat-raised-button color="accent"
+              class="mb-6 mt-3" *ngIf="isEditing" (click)="edit()"
+              [disabled]="isSaving"> {{ isSaving ? 'Saving changes...' : 'Save changes' }} </button>
     </div>
     <div class="shadow-sm rounded border p-4">
-      <p class="text-base text-gray-600"> Click the fields you want to update. </p>
-      <h1 class="text-lg font-medium text-gray-700">
-        Basic Information
-      </h1>
-      <div class="grid grid-cols-2 gap-2 mt-4">
-        <div class="info">
-          <h1 class="text-base text-gray-900"> Name: <span class="text-base font-bold"> John F. Doe </span></h1>
+<!--      <p class="text-base text-gray-600"> Click the fields you want to update. </p>-->
+      <form class="flex flex-col font-sans" [formGroup]="medicalRecordsForm" autocomplete="off"
+            (ngSubmit)="onSubmit()">
+        <h1 class="text-lg font-medium text-gray-700">
+          Basic Information
+        </h1>
+        <div class="grid grid-cols-2 gap-2 mt-4 pt-4">
+          <div class="info flex flex-row">
+            <mat-form-field appearance="outline" class="-mt-6 pb-0 flex-grow">
+              <mat-label class="font-sans">Age</mat-label>
+              <input matInput placeholder="Age" class="pb-0 font-sans" autocomplete="off"
+                     spellcheck="false" name="age" formControlName="age" required>
+            </mat-form-field>
+          </div>
+          <div class="info flex flex-row">
+            <mat-form-field appearance="outline" class="-mt-6 pb-0 flex-grow">
+              <mat-label class="font-sans">Birthday</mat-label>
+              <input matInput placeholder="Birthday" class="pb-0 font-sans" autocomplete="off"
+                     spellcheck="false" name="birthday" formControlName="birthday" required>
+            </mat-form-field>
+          </div>
+          <div class="info flex flex-row">
+            <mat-form-field appearance="outline" class="-mt-6 pb-0 flex-grow">
+              <mat-label class="font-sans">Religion</mat-label>
+              <input matInput placeholder="Birthday" class="pb-0 font-sans" autocomplete="off"
+                     spellcheck="false" name="religion" formControlName="religion" required>
+            </mat-form-field>
+          </div>
         </div>
-        <div class="info">
-          <h1 class="text-base text-gray-900"> Age: <span class="text-base font-bold"> 64 yrs old </span></h1>
+        <h1 class="text-lg mt-4 border-t font-medium text-gray-700 pt-2">
+          Anthropometric
+        </h1>
+        <div class="grid grid-cols-2 gap-2 mt-4 pt-4">
+          <div class="info flex flex-row">
+            <mat-form-field appearance="outline" class="-mt-6 pb-0 flex-grow">
+              <mat-label class="font-sans">Height (cm)</mat-label>
+              <input matInput placeholder="Height (cm" class="pb-0 font-sans" autocomplete="off"
+                     spellcheck="false" name="height" formControlName="height" required>
+            </mat-form-field>
+          </div>
+          <div class="info flex flex-row">
+            <mat-form-field appearance="outline" class="-mt-6 pb-0 flex-grow">
+              <mat-label class="font-sans">Weight</mat-label>
+              <input matInput placeholder="Weight" class="pb-0 font-sans" autocomplete="off"
+                     spellcheck="false" name="weight" formControlName="weight" required>
+            </mat-form-field>
+          </div>
+          <div class="info flex flex-row">
+            <mat-form-field appearance="outline" class="-mt-6 pb-0 flex-grow">
+              <mat-label class="font-sans">BMI</mat-label>
+              <input matInput placeholder="BMI" class="pb-0 font-sans" autocomplete="off"
+                     spellcheck="false" name="bmi" formControlName="bmi" required>
+            </mat-form-field>
+          </div>
         </div>
-        <div class="info">
-          <h1 class="text-base text-gray-900"> Birthday: <span class="text-base font-bold"> January 1, 2020  </span></h1>
+        <h1 class="text-lg mt-4 border-t font-medium text-gray-700 pt-2">
+          Biochemical
+        </h1>
+        <div class="grid grid-cols-2 gap-2 mt-4">
+          <button type="button" mat-raised-button class="button w-72 flex flex-col" color="white"
+                  (click)="file.click()">{{ this.isUploading ? 'Attaching files...' : 'Attach files' }}
+            <!--        <mat-spinner [diameter]="25z"> *ngIf="!isUploading"></mat-spinner>-->
+          </button>
+          <input type="file" accept=".png,.jpg,.jpeg,.pdf" #file placeholder="Choose file" multiple
+                 (change)="fileChange(file.files)"
+                 style="display:none;">
         </div>
-        <div class="info">
-          <h1 class="text-base text-gray-900"> Religion: <span class="text-base font-bold"> Roman Catholic  </span></h1>
-        </div>
-      </div>
-      <h1 class="text-lg mt-4 border-t font-medium text-gray-700 pt-2">
-        Anthropometric
-      </h1>
-      <div class="grid grid-cols-2 gap-2 mt-4">
-        <div class="info">
-          <h1 class="text-base text-gray-900"> Height: <span class="text-base font-bold"> 150cm </span></h1>
-        </div>
-        <div class="info">
-          <h1 class="text-base text-gray-900"> Weight: <span class="text-base font-bold"> 50kg </span></h1>
-        </div>
-        <div class="info">
-          <h1 class="text-base text-gray-900"> BMI: <span class="text-base font-bold"> 21 </span></h1>
-        </div>
-      </div>
-      <h1 class="text-lg mt-4 border-t font-medium text-gray-700 pt-2">
-        Biochemical
-      </h1>
-      <div class="grid grid-cols-4 gap-6">
-      </div>
-      <h1 class="text-lg mt-4 border-t font-medium text-gray-700 pt-2">
-        Clinical
-      </h1>
-      <div class="grid grid-cols-4 gap-6">
+<!--        <h1 class="text-lg mt-4 border-t font-medium text-gray-700 pt-2">-->
+<!--          Clinical-->
+<!--        </h1>-->
+<!--        <div class="grid grid-cols-4 gap-6">-->
 
-      </div>
-      <h1 class="text-lg mt-4 border-t font-medium text-gray-700 pt-2">
-        Dietary
-      </h1>
-      <div class="grid grid-cols-4 gap-6">
-
-      </div>
+<!--        </div>-->
+      </form>
     </div>
   </div>
-  <div  routerLink="/patient/account-settings" class="col-2 w-1/4 p-6 border rounded shadow-sm m-6 cursor-pointer hover:shadow-md outline-none">
+  <div routerLink="/patient/account-settings"
+       class="col-2 w-1/4 p-6 border rounded shadow-sm m-6 cursor-pointer hover:shadow-md outline-none">
     <app-user-card></app-user-card>
   </div>
 </div>
