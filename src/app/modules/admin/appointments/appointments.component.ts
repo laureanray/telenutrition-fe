@@ -21,10 +21,13 @@ export class AppointmentsComponent implements AfterViewInit {
 
   displayedColumns: string[] = [
     'id',
-    'patient',
+    'archived',
     'schedule',
+    'appointmentType',
     'paymentMethod',
+    'amountDue',
     'status',
+    'rnd',
     'updatedAt',
     'buttons'];
 
@@ -59,12 +62,24 @@ export class AppointmentsComponent implements AfterViewInit {
           this.isLoadingResults = false;
           this.resultsLength = data.length;
           console.log('Results length', this.resultsLength);
-          const users = data as Appointment[];
-          for (const d of users) {
+          const appointments = data as Appointment[];
+          for (const d of appointments) {
             d.createdAt = moment(d.createdAt).format('LLL');
             d.updatedAt = moment(d.updatedAt).format('LLL');
+            switch (d.appointmentType) {
+              case 'nutrition_counseling':
+                d.appointmentType = 'Nutrition Counseling';
+                break;
+              case 'one_week_cycle_menu':
+                d.appointmentType = 'One Week Cycle Menu';
+                break;
+              case 'both':
+                d.appointmentType = 'Nutrition Counseling & One Week Cycle Menu';
+                break;
+            }
           }
-          return users;
+
+          return appointments;
         }),
         catchError(() => {
           this.isLoadingResults = false;

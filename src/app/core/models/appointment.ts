@@ -15,5 +15,6 @@ export class Appointment {
   amountDue: number;
   createdAt: string;
   updatedAt: string;
+  appointmentType: string;
   proofOfPayments: ProofOfPayment[];
 }

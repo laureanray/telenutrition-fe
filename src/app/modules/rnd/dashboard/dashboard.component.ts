@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
 
           // tslint:disable-next-line:forin
           for (const appointment of  this.rnd.appointments as Appointment[]) {
-            if (this.today.isSame(moment(appointment.schedule), 'day')) {
+            if (this.today.isSame(moment(appointment.schedule), 'hour')) {
               this.upcoming++;
             }
           }
@@ -46,9 +46,11 @@ export class DashboardComponent implements OnInit {
           }
       });
 
-    this.rnd.appointments = this.rnd.appointments.filter(appointment => {
+    const res = this.rnd.appointments = this.rnd.appointments.filter(appointment => {
       return moment(appointment.schedule).isAfter();
     });
+
+    // this.upcoming = res.length;
   }
 
   ngOnInit(): void {

@@ -52,14 +52,14 @@
           <div class="info flex flex-row">
             <mat-form-field appearance="outline" class="-mt-6 pb-0 flex-grow">
               <mat-label class="font-sans">Height (cm)</mat-label>
-              <input matInput placeholder="Height (cm" class="pb-0 font-sans" autocomplete="off"
+              <input type="number" matInput placeholder="Height (cm" (keyup)="update()" class="pb-0 font-sans" autocomplete="off"
                      spellcheck="false" name="height" formControlName="height" required>
             </mat-form-field>
           </div>
           <div class="info flex flex-row">
             <mat-form-field appearance="outline" class="-mt-6 pb-0 flex-grow">
               <mat-label class="font-sans">Weight</mat-label>
-              <input matInput placeholder="Weight" class="pb-0 font-sans" autocomplete="off"
+              <input type="number" matInput placeholder="Weight" (keyup)="update()" class="pb-0 font-sans" autocomplete="off"
                      spellcheck="false" name="weight" formControlName="weight" required>
             </mat-form-field>
           </div>
@@ -68,15 +68,19 @@
               <mat-label class="font-sans">BMI</mat-label>
               <input matInput placeholder="BMI" class="pb-0 font-sans" autocomplete="off"
                      spellcheck="false" name="bmi" formControlName="bmi" required>
+              <mat-hint clas="font-sans">BMI is automatically computed</mat-hint>
             </mat-form-field>
+          </div>
+          <div class="info flex-row">
+            <h1 class="text-base font-bold pl-2" *ngIf="this.bmiString"> {{ this.bmiString }}</h1>
           </div>
         </div>
         <h1 class="text-lg mt-4 font-medium text-gray-700 pt-2">
           Biochemical
         </h1>
         <div class="grid grid-cols-2 gap-2 mt-4">
-          <button type="button" mat-raised-button class="button w-72 flex flex-col" color="white"
-                  (click)="file.click()">{{ this.isUploading ? 'Attaching files...' : 'Attach files' }}
+          <button type="button" [disabled]="!isEditing" mat-raised-button class="button w-72 flex flex-col" color="white"
+                  (click)="file.click()">{{ this.isUploading ? 'Attaching file...' : 'Attach file' }}
             <!--        <mat-spinner [diameter]="25z"> *ngIf="!isUploading"></mat-spinner>-->
           </button>
           <input type="file" accept=".png,.jpg,.jpeg,.pdf" #file placeholder="Choose file" multiple

@@ -43,6 +43,7 @@ export class BookAnAppointmentComponent implements OnInit {
   appointment: Appointment;
 
   moment: any;
+  resultId: any;
 
   times = [
     {display: '10:00 AM', value: '10:00'},
@@ -57,6 +58,8 @@ export class BookAnAppointmentComponent implements OnInit {
   ];
 
   selected = '';
+  selectedAppointmentType = '';
+
 
   ngOnInit(): void {
     this.formArray = this.formBuilder.array([
@@ -65,6 +68,9 @@ export class BookAnAppointmentComponent implements OnInit {
       }),
       this.formBuilder.group({
         appointmentTime: ['', Validators.required]
+      }),
+      this.formBuilder.group({
+        appointmentType: ['', Validators.required]
       }),
       this.formBuilder.group({
         complaints: ['', Validators.required],
@@ -92,7 +98,7 @@ export class BookAnAppointmentComponent implements OnInit {
       d = new Date();
     }
     return (day !== 0 && day !== 6);
-  }
+  };
 
   onSubmit(): void {
     this.isSubmitting = true;
@@ -114,6 +120,17 @@ export class BookAnAppointmentComponent implements OnInit {
 
     data.appointmentDate = moment(data.appointmentDate).format('L');
 
+    switch (data.appointmentType) {
+      case 'nutrition_counseling':
+        data.amountDue = 400;
+        break;
+      case 'one_week_cycle_menu':
+        data.amountDue = 500;
+        break;
+      case 'both':
+        data.amountDue = 900;
+        break;
+    }
 
     const appointment = {
       patient: {
@@ -122,6 +139,8 @@ export class BookAnAppointmentComponent implements OnInit {
       complaints: data.complaints,
       currentMedications: data.currentMedications,
       paymentMethod: data.paymentMethod,
+      appointmentType: data.appointmentType,
+      amountDue: data.amountDue,
       schedule: moment(`${data.appointmentDate} ${data.appointmentTime}`, 'MM/DD/YYYY HH:mm').format()
     } as Appointment;
 
@@ -137,6 +156,7 @@ export class BookAnAppointmentComponent implements OnInit {
               duration: 3000
             });
             this.appointment = res;
+            this.resultId = res.id;
           }
         }, error => {
           this.result = 'error';
