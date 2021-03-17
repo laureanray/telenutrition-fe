@@ -1,37 +1,48 @@
 <div class="flex flex-row container mx-auto px-4 sm:px-6 lg:px-8 items-start computed-dashboard-div">
   <div class="col-1 py-6 w-3/4">
-    <header class="bg-white">
+    <header class="bg-white flex flex-col">
       <div>
         <h1 class="text-2xl font-medium leading-tight text-gray-900">
           Patients
         </h1>
       </div>
+      <mat-form-field appearance="outline" class="mt-8 pb-0">
+        <mat-label class="font-sans">Search</mat-label>
+        <input type="text" matInput placeholder="Search" class="pb-0 font-sans" autocomplete="off"
+               spellcheck="false" required>
+      </mat-form-field>
     </header>
-    <div class="flex flex-row">
-      <div class="grid grid-cols-2 gap-6 mt-8 h-0 w-2/4">
-        <a routerLink="/patient/medical-records" class="rounded border p-4 shadow-sm hover:shadow-lg transition-all">
-          <img src="assets/notes.png" alt="" class="w-1/3 mx-auto">
-          <h1 class="text-lg font-medium text-gray-800 text-center pt-4"> Medical Records </h1>
-        </a>
-        <a routerLink="/patient/appointments" class="rounded border p-4 shadow-sm hover:shadow-lg transition-all">
-          <img src="assets/history.png" alt="" class="w-1/3 mx-auto">
-          <h1 class="text-lg font-medium text-gray-800 text-center pt-4"> History </h1>
-        </a>
-        <a routerLink="/patient/book-an-appointment" class="rounded border p-4 shadow-sm hover:shadow-lg transition-all">
-          <img src="assets/calendar.png" alt="" class="w-1/3 mx-auto">
-          <h1 class="text-lg font-medium text-gray-800 text-center pt-4"> Book an Appointment </h1>
-        </a>
-        <a routerLink="/patient/nutrition-tools" class="rounded border p-4 shadow-sm hover:shadow-lg transition-all">
-          <img src="assets/pyramid.png" alt="" class="w-1/3 mx-auto">
-          <h1 class="text-lg font-medium text-gray-800 text-center pt-4"> Nutrition Tools </h1>
-        </a>
-      </div>
-      <div class="graphics">
-        <img src="assets/graphics-2.png" alt="" class="pl-10 w-10/12">
+    <div class="flex flex-col">
+      <div class="grid grid-cols-2 gap-4 mt-2 h-0">
+        <div class="patient bg-gray-100 rounded-md border p-4 flex flex-row">
+          <img src="assets/default.png" alt="" class="rounded-full object-cover w-24 h-24 border-2">
+          <div class="info px-4">
+            <h1 class="text-lg font-medium"> Patient Name </h1>
+            <p class="text-base font-normal"> Sex: M </p>
+            <p class="text-base font-normal"> Age: 2</p>
+          </div>
+        </div>
+        <div class="patient bg-gray-100 rounded-md border p-4 flex flex-row">
+          <img src="assets/default.png" alt="" class="rounded-full object-cover w-24 h-24 border-2">
+          <div class="info px-4">
+            <h1 class="text-lg font-medium"> Patient Name </h1>
+            <p class="text-base font-normal"> Sex: M </p>
+            <p class="text-base font-normal"> Age: 2</p>
+          </div>
+        </div>
+        <div class="patient bg-gray-100 rounded-md border p-4 flex flex-row">
+          <img src="assets/default.png" alt="" class="rounded-full object-cover w-24 h-24 border-2">
+          <div class="info px-4">
+            <h1 class="text-lg font-medium"> Patient Name </h1>
+            <p class="text-base font-normal"> Sex: M </p>
+            <p class="text-base font-normal"> Age: 2</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div  routerLink="/patient/account-settings" class="col-2 w-1/4 p-6 border rounded shadow-sm m-6 cursor-pointer hover:shadow-md outline-none">
+  <div routerLink="/patient/account-settings"
+       class="col-2 w-1/4 p-6 border rounded shadow-sm m-6 cursor-pointer hover:shadow-md outline-none">
     <app-user-card></app-user-card>
   </div>
 </div>

@@ -21,9 +21,9 @@ export class CalendarComponent implements AfterViewInit {
 
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
-    initialEvents: [],
-    eventClick: this.handleEventClick.bind(this),
-    eventsSet: this.handleEvents.bind(this)
+    initialEvents: []
+    // eventClick: this.handleEventClick.bind(this),
+    // eventsSet: this.handleEvents.bind(this)
   };
 
   handleCalendarToggle(): void {
