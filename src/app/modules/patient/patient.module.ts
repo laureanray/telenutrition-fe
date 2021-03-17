@@ -29,6 +29,7 @@ import {AppointmentsComponent} from './appointments/appointments.component';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSortModule} from '@angular/material/sort';
 import {ViewAppointmentComponent} from './view-appointment/view-appointment.component';
+import { MessagesComponent } from './messages/messages.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import {ViewAppointmentComponent} from './view-appointment/view-appointment.comp
     BookAnAppointmentComponent,
     UserCardComponent,
     AppointmentsComponent,
-    ViewAppointmentComponent],
+    ViewAppointmentComponent,
+    MessagesComponent],
   imports: [
     CommonModule,
     RouterModule,

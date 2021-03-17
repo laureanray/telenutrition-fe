@@ -12,6 +12,7 @@ import {NutritionToolsComponent} from './nutrition-tools/nutrition-tools.compone
 import {AccountSettingsComponent} from './account-settings/account-settings.component';
 import {AppointmentsComponent} from './appointments/appointments.component';
 import {ViewAppointmentComponent} from './view-appointment/view-appointment.component';
+import {MessagesComponent} from './messages/messages.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
@@ -26,6 +27,7 @@ const routes: Routes = [
       {path: 'medical-records', component: MedicalRecordsComponent, pathMatch: 'full'},
       {path: 'support', component: SupportComponent, pathMatch: 'full'},
       {path: 'history', component: HistoryComponent, pathMatch: 'full'},
+      {path: 'messages', component: MessagesComponent, pathMatch: 'full'},
       {path: 'book-an-appointment', component: BookAnAppointmentComponent, pathMatch: 'full'},
       {path: 'nutrition-tools', component: NutritionToolsComponent, pathMatch: 'full'}
     ]
