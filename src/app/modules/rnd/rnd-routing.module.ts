@@ -5,6 +5,7 @@ import {RndComponent} from './rnd/rnd.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {AccountSettingsComponent} from './account-settings/account-settings.component';
 import {PatientsComponent} from './patients/patients.component';
+import {CalendarComponent} from './calendar/calendar.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
@@ -13,7 +14,8 @@ const routes: Routes = [
     children: [
       {path: 'dashboard', component: DashboardComponent, pathMatch: 'full'},
       {path: 'account-settings', component: AccountSettingsComponent, pathMatch: 'full'},
-      {path: 'patients', component: PatientsComponent, pathMatch: 'full'}
+      {path: 'patients', component: PatientsComponent, pathMatch: 'full'},
+      {path: 'calendar', component: CalendarComponent, pathMatch: 'full'}
     ]
   }
 ];
