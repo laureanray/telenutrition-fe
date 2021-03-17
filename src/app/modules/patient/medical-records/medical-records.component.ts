@@ -23,15 +23,15 @@ export class MedicalRecordsComponent implements OnInit {
               private fb: FormBuilder) {
     this.patient = this.authService.currentUserValue as Patient;
     this.medicalRecordsForm = this.fb.group({
-      age: new FormControl({value: '', disabled: true}),
-      birthday: new FormControl({value: '', disabled: true}),
-      religion: new FormControl({value: '', disabled: true}),
-      height: new FormControl({value: '', disabled: true}),
-      weight: new FormControl({value: '', disabled: true}),
-      bmi: new FormControl({value: '', disabled: true}),
-      biochemicalResults: new FormControl({value: '', disabled: true}),
-      complaints: new FormControl({value: '', disabled: true}),
-      currentMedications: new FormControl({value: '', disabled: true})
+      age: new FormControl({value: '', disabled: true}, Validators.required),
+      birthday: new FormControl({value: '', disabled: true}, Validators.required),
+      religion: new FormControl({value: '', disabled: true}, Validators.required),
+      height: new FormControl({value: '', disabled: true}, Validators.required),
+      weight: new FormControl({value: '', disabled: true}, Validators.required),
+      bmi: new FormControl({value: '', disabled: true}, Validators.required),
+      biochemicalResults: new FormControl({value: '', disabled: true}, Validators.required),
+      complaints: new FormControl({value: '', disabled: true}, Validators.required),
+      currentMedications: new FormControl({value: '', disabled: true}, Validators.required)
     });
 
     this.medicalRecordsForm.valueChanges.subscribe(

@@ -13,10 +13,10 @@
               (click)="edit()"> {{ patient.medicalRecord ? 'Add Medical Record' : 'Edit Medical Record' }}</button>
       <button type="submit" mat-raised-button color="accent"
               class="mb-6 mt-3" *ngIf="isEditing" (click)="edit()"
-              [disabled]="isSaving"> {{ isSaving ? 'Saving changes...' : 'Save changes' }} </button>
+              [disabled]="isSaving || !medicalRecordsForm.valid"> {{ isSaving ? 'Saving changes...' : 'Save changes' }} </button>
     </div>
     <div class="shadow-sm rounded border p-4">
-<!--      <p class="text-base text-gray-600"> Click the fields you want to update. </p>-->
+      <!--      <p class="text-base text-gray-600"> Click the fields you want to update. </p>-->
       <form class="flex flex-col font-sans" [formGroup]="medicalRecordsForm" autocomplete="off"
             (ngSubmit)="onSubmit()">
         <h1 class="text-lg font-medium text-gray-700">
@@ -45,7 +45,7 @@
             </mat-form-field>
           </div>
         </div>
-        <h1 class="text-lg mt-4 border-t font-medium text-gray-700 pt-2">
+        <h1 class="text-lg mt-4 font-medium text-gray-700 pt-2">
           Anthropometric
         </h1>
         <div class="grid grid-cols-2 gap-2 mt-4 pt-4">
@@ -71,7 +71,7 @@
             </mat-form-field>
           </div>
         </div>
-        <h1 class="text-lg mt-4 border-t font-medium text-gray-700 pt-2">
+        <h1 class="text-lg mt-4 font-medium text-gray-700 pt-2">
           Biochemical
         </h1>
         <div class="grid grid-cols-2 gap-2 mt-4">
@@ -81,14 +81,26 @@
           </button>
           <input type="file" accept=".png,.jpg,.jpeg,.pdf" #file placeholder="Choose file" multiple
                  (change)="fileChange(file.files)"
-                 style="display:none;">
+                 style="display:none;" name="biochemicalResults" formControlName="biochemicalResults">
         </div>
-<!--        <h1 class="text-lg mt-4 border-t font-medium text-gray-700 pt-2">-->
-<!--          Clinical-->
-<!--        </h1>-->
-<!--        <div class="grid grid-cols-4 gap-6">-->
-
-<!--        </div>-->
+        <h1 class="text-lg mt-4 font-medium text-gray-700 pt-2">
+          Clinical
+        </h1>
+        <div class="grid grid-cols-2 gap-2  mt-2">
+          <div class="flex flex-row">
+            <mat-form-field appearance="outline" class="flex-grow">
+              <mat-label class="font-sans">Complaints</mat-label>
+              <textarea class="font-sans" rows="9" matInput formControlName="complaints" name="complaints"></textarea>
+            </mat-form-field>
+          </div>
+          <div class="flex flex-row">
+            <mat-form-field appearance="outline" class="flex-grow">
+              <mat-label class="font-sans">Current Medications</mat-label>
+              <textarea class="font-sans" matInput formControlName="currentMedications"
+                        name="currentMedications" rows="9"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
       </form>
     </div>
   </div>
