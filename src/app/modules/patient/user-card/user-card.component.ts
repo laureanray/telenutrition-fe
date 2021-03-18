@@ -4,6 +4,7 @@ import {User} from '../../../core/models/user';
 import {Patient} from '../../../core/models/patient';
 import {RND} from '../../../core/models/rnd';
 import {Admin} from '../../../core/models/admin';
+import {PatientService} from '../../../core/services/patient.service';
 
 @Component({
   selector: 'app-user-card',
@@ -11,11 +12,13 @@ import {Admin} from '../../../core/models/admin';
   styleUrls: ['./user-card.component.scss']
 })
 export class UserCardComponent implements OnInit {
-  public user: any;
-  constructor(private authService: AuthenticationService) {
-    if (this.authService.currentUserValue.roleName === 'ROLE_PATIENT') {
-      this.user = this.authService.currentUserValue as Patient;
-    }
+  public patient: Patient;
+  constructor(private authService: AuthenticationService,
+              private patientService: PatientService) {
+    this.patientService.getPatient(this.authService.currentUserValue.username)
+      .subscribe((p: Patient) => {
+        this.patient = p;
+      });
   }
 
   ngOnInit(): void {

@@ -72,8 +72,8 @@
       </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-header-row *matHeaderRowDef="selected === 'rnd' ? displayedColumns : displayedColumnsPatient"></tr>
+    <tr mat-row *matRowDef="let row; columns: (selected === 'rnd' ? displayedColumns : displayedColumnsPatient)"></tr>
   </table>
 
   <mat-paginator class="font-sans" [length]="resultsLength" [pageSize]="30"></mat-paginator>

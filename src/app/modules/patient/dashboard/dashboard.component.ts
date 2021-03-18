@@ -3,6 +3,7 @@ import {AuthenticationService} from '../../../core/authentication/authentication
 import {Patient} from '../../../core/models/patient';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
+import {PatientService} from '../../../core/services/patient.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,20 +15,25 @@ export class DashboardComponent implements OnInit {
 
   constructor(private authService: AuthenticationService,
               private snackBar: MatSnackBar,
+              private patientService: PatientService,
               private router: Router) {
-    this.patient = this.authService.currentUserValue as Patient;
+    this.patientService.getPatient(this.authService.currentUserValue.username)
+      .subscribe((p: Patient) => {
+        this.patient = p;
+
+        if (!this.patient.medicalRecord) {
+          const snackbarRef = this.snackBar.open('Please complete your medical records', 'Okay go now. ', {
+            duration: 10000
+          });
+
+          snackbarRef.onAction().subscribe(a => {
+            this.router.navigate(['/patient', 'medical-records']);
+          });
+        }
+      });
   }
 
   ngOnInit(): void {
-    if (!this.patient.medicalRecord) {
-      const snackbarRef = this.snackBar.open('Please complete your medical records', 'Okay go now. ', {
-        duration: 10000
-      });
-
-      snackbarRef.onAction().subscribe(a => {
-        this.router.navigate(['/patient', 'medical-records']);
-      });
-    }
   }
 
 }

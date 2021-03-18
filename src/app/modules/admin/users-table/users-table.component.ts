@@ -42,6 +42,16 @@ export class UsersTableComponent implements AfterViewInit {
     'updatedAt',
     'buttons'];
 
+  displayedColumnsPatient: string[] = [
+    'id',
+    'username',
+    'fullName',
+    'email',
+    'isConfirmed',
+    'createdAt',
+    'updatedAt',
+    'buttons'];
+
   resultsLength = 0;
   isLoadingResults = true;
 

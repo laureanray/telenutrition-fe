@@ -224,14 +224,19 @@ export class MedicalRecordsComponent implements OnInit {
     // this.patientService.updateP
 
     this.patient.medicalRecord = medicalRecords;
-    this.patientService.updateMedicalRecords(this.patient)
-      .subscribe((p: Patient) => {
-        this.patient = p;
-        this.snackBar.open('Success!', null, {
-          duration: 2000
-        });
 
-        this.isSaving = false;
-      });
+
+    setTimeout(() => {
+      this.patientService.updateMedicalRecords(this.patient)
+        .subscribe((p: Patient) => {
+          this.patient = p;
+          this.snackBar.open('Success!', null, {
+            duration: 2000
+          });
+
+          this.isSaving = false;
+          this.isEditing = false;
+        });
+    }, 600);
   }
 }

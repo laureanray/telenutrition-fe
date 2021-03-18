@@ -33,7 +33,8 @@
           <div class="info flex flex-row">
             <mat-form-field appearance="outline" class="-mt-6 pb-0 flex-grow">
               <mat-label class="font-sans">Birthday</mat-label>
-              <input matInput class="font-sans" [matDatepicker]="picker" placeholder="mm/dd/yyyy" required name="birthday" formControlName="birthday">
+              <input matInput class="font-sans" [matDatepicker]="picker" placeholder="mm/dd/yyyy" required
+                     name="birthday" formControlName="birthday">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
@@ -48,7 +49,7 @@
           <div class="info flex flex-row">
             <mat-form-field appearance="outline" class="-mt-6 pb-0 flex-grow">
               <mat-select class="font-sans" formControlName="sex" name="sex"
-                          placeholder="Sex" >
+                          placeholder="Sex">
                 <mat-option class="font-sans" value="male">
                   Male
                 </mat-option>
@@ -66,14 +67,16 @@
           <div class="info flex flex-row">
             <mat-form-field appearance="outline" class="-mt-6 pb-0 flex-grow">
               <mat-label class="font-sans">Height (cm)</mat-label>
-              <input type="number" matInput placeholder="Height (cm)" (keyup)="update()" class="pb-0 font-sans" autocomplete="off"
+              <input type="number" matInput placeholder="Height (cm)" (keyup)="update()" class="pb-0 font-sans"
+                     autocomplete="off"
                      spellcheck="false" name="height" formControlName="height" required>
             </mat-form-field>
           </div>
           <div class="info flex flex-row">
             <mat-form-field appearance="outline" class="-mt-6 pb-0 flex-grow">
               <mat-label class="font-sans">Weight</mat-label>
-              <input type="number" matInput placeholder="Weight" (keyup)="update()" class="pb-0 font-sans" autocomplete="off"
+              <input type="number" matInput placeholder="Weight" (keyup)="update()" class="pb-0 font-sans"
+                     autocomplete="off"
                      spellcheck="false" name="weight" formControlName="weight" required>
             </mat-form-field>
           </div>
@@ -92,14 +95,23 @@
         <h1 class="text-lg mt-4 font-medium text-gray-700 pt-2">
           Biochemical
         </h1>
-        <div class="grid grid-cols-2 gap-2 mt-4">
-          <button type="button" [disabled]="!isEditing || this.isUploading                                                                                                                                                           " mat-raised-button class="button w-72 flex flex-col" color="white"
-                  (click)="file.click()">{{ this.isUploading ? 'Attaching file...' : 'Attach file' }}
+        <div class="flex flex-col">
+          <button type="button"
+                  [disabled]="!isEditing || this.isUploading                                                                                                                                                           "
+                  mat-raised-button class="mt-4 button w-72 flex flex-col" color="white"
+                  (click)="file.click()">{{
+                this.hasMedicalRecords ? ( this.isSaving ? 'Replacing file...' : 'Replace file' ) : (this.isSaving ? 'Attaching...' : 'Attach file')
+            }}
             <!--        <mat-spinner [diameter]="25z"> *ngIf="!isUploading"></mat-spinner>-->
           </button>
           <input type="file" accept=".png,.jpg,.jpeg,.pdf" #file placeholder="Choose file" multiple
                  (change)="fileChange(file.files)"
                  style="display:none;">
+          <a href="{{this.currentRecords.biochemicalResults}}" class="w-56 h-56">
+            <img class="my-4 w-56 h-56 shadow-lg border rounded-lg object-cover"
+              src="{{ this.currentRecords.biochemicalResults ? this.currentRecords.biochemicalResults : 'assets/default.png'}}"
+              alt="" >
+          </a>
         </div>
         <h1 class="text-lg mt-4 font-medium text-gray-700 pt-2">
           Clinical
