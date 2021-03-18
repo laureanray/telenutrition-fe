@@ -60,11 +60,12 @@ export class ViewAppointmentComponent implements OnInit {
 
       for (const p of this.uploadedFilePaths) {
         this.appointment.proofOfPayments.push({
+          id: 0,
           path: p.path
         } as ProofOfPayment);
       }
       this.isUploading = false;
-
+      console.log('sending.', this.appointment);
       this.appointmentService.addProofOfPayment(this.appointment.id, this.appointment)
         .subscribe(res => {
           if (res) {
@@ -73,6 +74,7 @@ export class ViewAppointmentComponent implements OnInit {
             });
           }
         }, error => {
+          console.log(error);
           this.snackBar.open('Error', undefined, {
             duration: 3000
           });

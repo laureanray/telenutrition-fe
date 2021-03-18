@@ -1,4 +1,5 @@
 export class MedicalRecord {
+  id: number;
   age: number;
   birthday: string;
   religion: string;

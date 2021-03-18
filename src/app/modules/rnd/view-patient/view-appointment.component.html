@@ -1,0 +1,89 @@
+<div class="flex flex-row container mx-auto px-4 sm:px-6 lg:px-8 items-start computed-dashboard-div">
+  <div class="col-1 py-6 w-3/4">
+    <div class="patient-info p-4 rounded-sm border">
+      <div class="flex flex-row">
+        <img src="{{ this.appointment?.patient?.profileImageURL ? this.appointment?.patient?.profileImageURL : 'assets/default.png'}}" alt=""
+             class="w-36 h-736 shadow-lg border rounded-md object-cover">
+        <div class="info px-4">
+          <h1 class="text-2xl font-medium text-gray-700">
+            {{ appointment?.patient?.firstName }} {{ appointment?.patient?.lastName }}
+          </h1>
+          <p class="text-gray-600 text-base"> Patient </p>
+
+          <div class="basic-info mt-2">
+            <p class="text-base">
+              Gender
+            </p>
+            <p class="text-base font-medium">
+              {{ this.appointment?.patient?.medicalRecord?.sex.toUpperCase()}}
+            </p>
+            <p class="text-base mt-2">
+              Age
+            </p>
+            <p class="text-base font-medium">
+              {{ this.appointment?.patient?.medicalRecord?.age}} years old
+            </p>
+          </div>
+
+        </div>
+        <div class="info px-4">
+          <div class="basic-info mt-2">
+            <p class="text-base">
+              Status
+            </p>
+            <p class="text-base font-medium">
+              {{ this.appointment?.status.toUpperCase() }}
+            </p>
+            <p class="text-base mt-2">
+              Price
+            </p>
+            <p class="text-base font-medium">
+              ₱{{ this.appointment?.amountDue }}
+            </p>
+          </div>
+        </div>
+        <div class="controls ml-auto flex flex-row h-12">
+          <button routerLink="login"  mat-raised-button  color="accent">Send Message</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="main p-4 rounded-sm border mt-4">
+      <mat-tab-group animationDuration="0ms" class="font-sans" >g
+        <mat-tab class="font-sans" label="Case Details">
+          <h1 class="text-lg font-medium py-4">
+            Case Details
+          </h1>
+          <p class="text-base font-medium"> Complaints </p>
+          <p class="text-base"> {{ appointment.complaints }}</p>
+
+          <p class="text-base font-medium mt-2"> Current Medications </p>
+          <p class="text-base"> {{ appointment.currentMedications }}</p>
+        </mat-tab>
+        <mat-tab class="font-sans" label="Attached Files">
+          <h1 class="text-lg font-medium py-4">
+            Biochemical Results
+          </h1>
+          <img src="{{ this.appointment.patient.medicalRecord.biochemicalResults ? this.appointment.patient.medicalRecord.biochemicalResults : 'assets/default.png'}}" alt=""
+               class="w-full shadow-lg border rounded-md">
+        </mat-tab>
+        <mat-tab class="font-sans" label="Notes">
+          <h1 class="text-lg font-medium py-4">
+            Notes
+          </h1>
+          <div class="flex flex-col">
+            <mat-form-field appearance="outline">
+              <mat-label class="font-sans">Notes</mat-label>
+              <textarea class="font-sans outline:none" rows="8" matInput formControlName="notes" name="notes"></textarea>
+            </mat-form-field>
+            <button routerLink="login"  mat-raised-button  color="accent">Save</button>
+          </div>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+  <div routerLink="/patient/account-settings"
+       class="col-2 w-1/4 p-6 border rounded shadow-sm m-6 cursor-pointer hover:shadow-md outline-none">
+    <app-user-card></app-user-card>
+  </div>
+</div>

@@ -21,10 +21,13 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatButtonModule} from '@angular/material/button';
 import {PatientsComponent} from './patients/patients.component';
 import {CalendarComponent} from './calendar/calendar.component';
-
 import {FullCalendarModule} from '@fullcalendar/angular'; // the main connector. must go first
 import dayGridPlugin from '@fullcalendar/daygrid'; // a plugin
-import interactionPlugin from '@fullcalendar/interaction'; // a plugin
+import interactionPlugin from '@fullcalendar/interaction';
+import {AppointmentsComponent} from './appointments/appointments.component';
+import {AppointmentComponent} from './appointment/appointment.component';
+import { ViewAppointmentComponent } from './view-patient/view-appointment.component';
+import {MatTabsModule} from '@angular/material/tabs'; // a plugin
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -32,7 +35,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
 ]);
 
 @NgModule({
-  declarations: [RndComponent, RndNavComponent, DashboardComponent, UserCardComponent, AccountSettingsComponent, PatientsComponent, CalendarComponent],
+  declarations: [RndComponent, RndNavComponent, DashboardComponent, UserCardComponent, AccountSettingsComponent, PatientsComponent, CalendarComponent, AppointmentsComponent, AppointmentComponent, ViewAppointmentComponent],
   imports: [
     CommonModule,
     RndRoutingModule,
@@ -49,7 +52,8 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     SharedModule,
     MatSortModule,
     MatButtonModule,
-    FullCalendarModule
+    FullCalendarModule,
+    MatTabsModule
   ]
 })
 export class RndModule {

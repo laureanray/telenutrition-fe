@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
 
           // tslint:disable-next-line:forin
           for (const appointment of  this.rnd.appointments as Appointment[]) {
-            if (this.today.isSame(moment(appointment.schedule), 'hour')) {
+            if (this.today.isSame(moment(appointment.schedule), 'day')) {
               this.upcoming++;
             }
           }

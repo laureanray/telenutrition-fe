@@ -6,6 +6,9 @@ import {DashboardComponent} from './dashboard/dashboard.component';
 import {AccountSettingsComponent} from './account-settings/account-settings.component';
 import {PatientsComponent} from './patients/patients.component';
 import {CalendarComponent} from './calendar/calendar.component';
+import {AppointmentsComponent} from './appointments/appointments.component';
+import {AppointmentComponent} from './appointment/appointment.component';
+import {ViewAppointmentComponent} from './view-patient/view-appointment.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
@@ -14,6 +17,9 @@ const routes: Routes = [
     children: [
       {path: 'dashboard', component: DashboardComponent, pathMatch: 'full'},
       {path: 'account-settings', component: AccountSettingsComponent, pathMatch: 'full'},
+      {path: 'appointments', component: AppointmentsComponent, pathMatch: 'full' },
+      {path: 'appointment/:id', component: AppointmentComponent, pathMatch: 'full'},
+      {path: 'view-appointment/:id', component: ViewAppointmentComponent, pathMatch: 'full'},
       {path: 'patients', component: PatientsComponent, pathMatch: 'full'},
       {path: 'calendar', component: CalendarComponent, pathMatch: 'full'}
     ]

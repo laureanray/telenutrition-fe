@@ -222,6 +222,7 @@ export class MedicalRecordsComponent implements OnInit {
     this.isSaving = true;
 
     const medicalRecords = {
+      id: this.currentRecords.id ? this.currentRecords.id : 0,
       age: this.medicalRecordsForm.controls.age.value,
       birthday: moment(this.medicalRecordsForm.controls.birthday.value).toISOString(),
       religion: this.medicalRecordsForm.controls.religion.value,

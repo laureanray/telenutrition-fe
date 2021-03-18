@@ -48,7 +48,7 @@ export class BookAnAppointmentComponent implements OnInit {
   times = [
     {display: '10:00 AM', value: '10:00'},
     {display: '11:00 AM', value: '11:00'},
-    {display: '12:00 AM', value: '12:00'},
+    {display: '12:00 PM', value: '12:00'},
     {display: '1:00 PM', value: '13:00'},
     {display: '2:00 PM', value: '14:00'},
     {display: '3:00 PM', value: '15:00'},

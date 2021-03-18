@@ -31,7 +31,7 @@
       <h1 class="text-lg font-medium my-4">
         Attachment(s)
       </h1>
-      <div class="grid grid-cols-3 gap-0">
+      <div class="grid grid-cols-3 gap-2">
         <div *ngFor="let file of this.rnd?.files">
           <a href="{{this.environment.apiUrl + '/file/files/' + file?.path}}"><img
             *ngIf="file.path.split('.')[1] !== 'pdf'; else elseBlk"

@@ -88,6 +88,7 @@ export class AuthenticationService {
               .subscribe((data: RND) => {
                 rnd = _.merge(rnd, data);
                 localStorage.setItem('currentUser', JSON.stringify(rnd));
+                this.currentUserSubject.next(rnd);
               });
             break;
           case 'ROLE_PATIENT':
@@ -118,6 +119,7 @@ export class AuthenticationService {
               .subscribe((data: Admin) => {
                 admin = _.merge(admin, data);
                 localStorage.setItem('currentUser', JSON.stringify(admin));
+                this.currentUserSubject.next(admin);
                 console.log(admin);
               });
             break;
