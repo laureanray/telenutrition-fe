@@ -1,1 +1,100 @@
-<p>appointments works!</p>
+<header class="bg-white shadow-sm">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <h1 class="text-2xl font-medium leading-tight text-gray-900">
+      Appointment
+    </h1>
+  </div>
+</header>
+
+
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+  <button routerLink="/patient/book-an-appointment" mat-raised-button color="accent" class="mb-4">Book an Appointment</button>
+  <div class="w-full">
+    <mat-form-field appearance="outline" class="font-sans rounded-md">
+      <mat-label>Select</mat-label>
+      <mat-select [(value)]="selected" (valueChange)="valueChange($event)" class="font-sans">
+        <mat-option value="archived" class="font-sans">
+          Archived
+        </mat-option>
+        <mat-option value="active" class="font-sans">
+          Active
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <h1 class="text-lg font-medium pb-2"> Showing all {{ this.selected.toLowerCase() }} appointment(s)</h1>
+  <div class="table w-full m-0 border p-2 rounded-md font-sans mb-4">
+
+    <table mat-table
+           [dataSource]="data" multiTemplateDataRows
+           class="w-full m-0"
+           matSort matSortActive="updatedAt" matSortDisableClear matSortDirection="desc"
+    >
+      <!-- Number Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Appointment ID</th>
+        <td mat-cell class="font-sans" *matCellDef="let row">{{row.id}}</td>
+      </ng-container>
+
+      <!--      <ng-container matColumnDef="archived">-->
+      <!--        <th mat-header-cell *matHeaderCellDef>Archived</th>-->
+      <!--        <td mat-cell class="font-sans font-bold" *matCellDef="let row">{{row.archived ? 'Yes' : 'No'}}</td>-->
+      <!--      </ng-container>-->
+
+      <ng-container matColumnDef="schedule">
+        <th mat-header-cell *matHeaderCellDef>Schedule</th>
+        <td mat-cell class="font-sans" *matCellDef="let row">{{ this.moment(row.schedule).format('LLL') }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="appointmentType">
+        <th mat-header-cell *matHeaderCellDef>Appointment Type</th>
+        <td mat-cell class="font-sans font-medium" *matCellDef="let row" >{{ row.appointmentType }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="paymentMethod">
+        <th mat-header-cell *matHeaderCellDef>Payment Method</th>
+        <td mat-cell class="font-sans font-bold" *matCellDef="let row" >{{ row.paymentMethod.toUpperCase() }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="amountDue">
+        <th mat-header-cell *matHeaderCellDef>Amount Due</th>
+        <td mat-cell class="font-sans font-medium" *matCellDef="let row" >₱{{ row.amountDue }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell class="font-sans" *matCellDef="let row"
+            [ngClass]="{ 'text-red-900' : !row.approved, 'font-medium': !row.approved}">{{ row.status }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="rnd">
+        <th mat-header-cell *matHeaderCellDef>Assigned RND</th>
+        <td mat-cell class="font-sans font-bold" *matCellDef="let row" >{{ !row.rnd ? 'Pending' : row.rnd.firstName}}</td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="updatedAt">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+          Updated At
+        </th>
+        <td mat-cell class="font-sans" *matCellDef="let row">{{row.updatedAt}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="buttons">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell class="font-sans" *matCellDef="let row">
+          <button [routerLink]="['/rnd', 'view-appointment', row.id]"
+                  class="font-bold bg-blue-50 p-2 rounded-sm">View
+          </button>
+          <!--        <button [routerLink]="['/admin', 'account', 'update', this.selected, row.username]"  class="ml-2 font-bold bg-yellow-100 p-2 rounded-sm">Update</button>-->
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator class="font-sans" [length]="resultsLength" [pageSize]="30"></mat-paginator>
+  </div>
+
+</div>

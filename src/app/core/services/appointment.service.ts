@@ -44,6 +44,16 @@ export class AppointmentService {
       .get(`${environment.apiUrl}/appointments/patient-active/${id}`);
   }
 
+  getArchivedAppointmentsByRND(id: number): Observable<any> {
+    return this.http
+      .get(`${environment.apiUrl}/appointments/rnd-archived/${id}`);
+  }
+
+  getActiveAppointmentsByRND(id: number): Observable<any> {
+    return this.http
+      .get(`${environment.apiUrl}/appointments/rnd-active/${id}`);
+  }
+
   addProofOfPayment(id: number, appointment: Appointment): Observable<any> {
     return this.http
       .post(`${environment.apiUrl}/appointments/upload/${id}`, appointment);
