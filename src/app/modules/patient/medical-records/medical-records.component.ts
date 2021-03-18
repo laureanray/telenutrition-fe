@@ -43,7 +43,7 @@ export class MedicalRecordsComponent implements OnInit {
         if (this.patient.medicalRecord) {
           this.hasMedicalRecords = true;
           this.currentRecords = this.patient.medicalRecord;
-          console.log(this.currentRecords);
+          console.log('current records', this.currentRecords);
           this.initFormData();
         }
 
@@ -72,12 +72,18 @@ export class MedicalRecordsComponent implements OnInit {
       currentMedications: new FormControl({value: '', disabled: true}, Validators.required)
     });
 
+    this.medicalRecordsForm.valueChanges.subscribe(
+      d => {
+        console.log(d);
+      }
+    );
+
   }
 
   initFormData(): void {
     this.medicalRecordsForm.patchValue({
       age: this.currentRecords.age,
-      birthday: this.currentRecords.birthday,
+      birthday: new Date(this.currentRecords.birthday),
       religion: this.currentRecords.religion,
       sex: this.currentRecords.sex,
       height: this.currentRecords.height,
