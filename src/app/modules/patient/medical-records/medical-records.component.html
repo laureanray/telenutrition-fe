@@ -10,9 +10,9 @@
     <div class="controls flex flex-row justify-between mt-6">
       <button type="submit" mat-raised-button color="accent"
               class="mb-6 mt-3" *ngIf="!isEditing"
-              (click)="edit()"> {{ patient.medicalRecord ? 'Add Medical Record' : 'Edit Medical Record' }}</button>
+              (click)="edit()"> {{ !hasMedicalRecords ? 'Add Medical Record' : 'Edit Medical Record' }}</button>
       <button type="submit" mat-raised-button color="accent"
-              class="mb-6 mt-3" *ngIf="isEditing" (click)="edit()"
+              class="mb-6 mt-3" *ngIf="isEditing" (click)="save()"
               [disabled]="isSaving || !medicalRecordsForm.valid"> {{ isSaving ? 'Saving changes...' : 'Save changes' }} </button>
     </div>
     <div class="shadow-sm rounded border p-4">
@@ -26,15 +26,16 @@
           <div class="info flex flex-row">
             <mat-form-field appearance="outline" class="-mt-6 pb-0 flex-grow">
               <mat-label class="font-sans">Age</mat-label>
-              <input matInput placeholder="Age" class="pb-0 font-sans" autocomplete="off"
+              <input type="number" min="1" matInput placeholder="Age" class="pb-0 font-sans" autocomplete="off"
                      spellcheck="false" name="age" formControlName="age" required>
             </mat-form-field>
           </div>
           <div class="info flex flex-row">
             <mat-form-field appearance="outline" class="-mt-6 pb-0 flex-grow">
               <mat-label class="font-sans">Birthday</mat-label>
-              <input matInput placeholder="Birthday" class="pb-0 font-sans" autocomplete="off"
-                     spellcheck="false" name="birthday" formControlName="birthday" required>
+              <input matInput class="font-sans" [matDatepicker]="picker" placeholder="mm/dd/yyyy" required name="birthday" formControlName="birthday">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
           </div>
           <div class="info flex flex-row">
@@ -42,6 +43,19 @@
               <mat-label class="font-sans">Religion</mat-label>
               <input matInput placeholder="Religion" class="pb-0 font-sans" autocomplete="off"
                      spellcheck="false" name="religion" formControlName="religion" required>
+            </mat-form-field>
+          </div>
+          <div class="info flex flex-row">
+            <mat-form-field appearance="outline" class="-mt-6 pb-0 flex-grow">
+              <mat-select class="font-sans" formControlName="sex" name="sex"
+                          placeholder="Sex" >
+                <mat-option class="font-sans" value="male">
+                  Male
+                </mat-option>
+                <mat-option class="font-sans" value="female">
+                  Female
+                </mat-option>
+              </mat-select>
             </mat-form-field>
           </div>
         </div>
@@ -52,7 +66,7 @@
           <div class="info flex flex-row">
             <mat-form-field appearance="outline" class="-mt-6 pb-0 flex-grow">
               <mat-label class="font-sans">Height (cm)</mat-label>
-              <input type="number" matInput placeholder="Height (cm" (keyup)="update()" class="pb-0 font-sans" autocomplete="off"
+              <input type="number" matInput placeholder="Height (cm)" (keyup)="update()" class="pb-0 font-sans" autocomplete="off"
                      spellcheck="false" name="height" formControlName="height" required>
             </mat-form-field>
           </div>
@@ -79,13 +93,13 @@
           Biochemical
         </h1>
         <div class="grid grid-cols-2 gap-2 mt-4">
-          <button type="button" [disabled]="!isEditing" mat-raised-button class="button w-72 flex flex-col" color="white"
+          <button type="button" [disabled]="!isEditing || this.isUploading                                                                                                                                                           " mat-raised-button class="button w-72 flex flex-col" color="white"
                   (click)="file.click()">{{ this.isUploading ? 'Attaching file...' : 'Attach file' }}
             <!--        <mat-spinner [diameter]="25z"> *ngIf="!isUploading"></mat-spinner>-->
           </button>
           <input type="file" accept=".png,.jpg,.jpeg,.pdf" #file placeholder="Choose file" multiple
                  (change)="fileChange(file.files)"
-                 style="display:none;" name="biochemicalResults" formControlName="biochemicalResults">
+                 style="display:none;">
         </div>
         <h1 class="text-lg mt-4 font-medium text-gray-700 pt-2">
           Clinical

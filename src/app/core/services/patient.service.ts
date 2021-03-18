@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {Patient} from '../models/patient';
@@ -9,7 +9,8 @@ import {Observable} from 'rxjs';
 })
 export class PatientService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   registerPatient(patient: Patient): Observable<any> {
     return this.http
@@ -39,5 +40,10 @@ export class PatientService {
   updateAccount(patient: Patient): Observable<any> {
     return this.http
       .post(`${environment.apiUrl}/patients/update-account/${patient.username}`, patient);
+  }
+
+  updateMedicalRecords(patient: Patient): Observable<any> {
+    return this.http
+      .post(`${environment.apiUrl}/patients/update-records/${patient.username}`, patient);
   }
 }

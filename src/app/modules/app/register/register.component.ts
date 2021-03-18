@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
       username: new FormControl({value: null, disabled: true}, Validators.required),
       email: ['', Validators.required],
       contactNumber: ['', [Validators.required, Validators.min(11)]],
-      birthday: ['', Validators.required],
+      // birthday: ['', Validators.required],
       password: ['', [Validators.required, this.passwordValidator2(), this.passwordStrengthValidator()]],
       passwordConfirm: new FormControl('', this.passwordValidator())
     });
@@ -54,7 +54,7 @@ export class RegisterComponent implements OnInit {
     patient.firstName = this.registerForm.value.firstName;
     patient.lastName = this.registerForm.value.lastName;
     patient.username = this.registerForm.controls.username.value;
-    patient.birthday = this.registerForm.value.birthday;
+    // patient.birthday = this.registerForm.value.birthday;
     patient.email = this.registerForm.value.email;
     patient.password = this.registerForm.value.password;
     patient.contactNumber = this.registerForm.value.contactNumber;
