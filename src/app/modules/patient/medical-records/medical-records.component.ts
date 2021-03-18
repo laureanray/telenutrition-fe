@@ -12,6 +12,7 @@ import * as uuid from 'uuid';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {PatientService} from '../../../core/services/patient.service';
 import {MedicalRecord} from '../../../core/models/medical-record';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-medical-records',
@@ -82,7 +83,7 @@ export class MedicalRecordsComponent implements OnInit {
       height: this.currentRecords.height,
       weight: this.currentRecords.weight,
       bmi: this.currentRecords.bmi,
-      bioChemicalResults: this.currentRecords.biochemicalResults,
+      biochemicalResults: this.currentRecords.biochemicalResults,
       complaints: this.currentRecords.complaints,
       currentMedications: this.currentRecords.currentMedications
     });
@@ -98,6 +99,8 @@ export class MedicalRecordsComponent implements OnInit {
   edit(): void {
     this.isEditing = true;
     this.enable();
+
+    console.log(this.medicalRecordsForm.valid, this.medicalRecordsForm.value);
   }
 
   fileChange(files: any): void {
@@ -136,6 +139,10 @@ export class MedicalRecordsComponent implements OnInit {
             this.snackBar.open('Uploaded!', null, {
               duration: 2000
             });
+
+            this.currentRecords = {
+              biochemicalResults: url
+            } as MedicalRecord;
           }
         }, error => {
           this.isUploading = false;
@@ -210,7 +217,7 @@ export class MedicalRecordsComponent implements OnInit {
 
     const medicalRecords = {
       age: this.medicalRecordsForm.controls.age.value,
-      birthday: this.medicalRecordsForm.controls.birthday.value,
+      birthday: moment(this.medicalRecordsForm.controls.birthday.value).toISOString(),
       religion: this.medicalRecordsForm.controls.religion.value,
       sex: this.medicalRecordsForm.controls.sex.value,
       height: this.medicalRecordsForm.controls.height.value,
@@ -225,6 +232,7 @@ export class MedicalRecordsComponent implements OnInit {
 
     this.patient.medicalRecord = medicalRecords;
 
+    console.log(medicalRecords);
 
     setTimeout(() => {
       this.patientService.updateMedicalRecords(this.patient)
@@ -234,8 +242,16 @@ export class MedicalRecordsComponent implements OnInit {
             duration: 2000
           });
 
+          this.currentRecords = p.medicalRecord;
+
           this.isSaving = false;
           this.isEditing = false;
+        }, error => {
+          this.snackBar.open('Unexpected Error Occured!', null, {
+            duration: 2000
+          });
+
+          console.log(error);
         });
     }, 600);
   }

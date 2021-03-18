@@ -1,7 +1,7 @@
   <img src="{{ this.patient?.profileImageURL ? this.patient?.profileImageURL : 'assets/default.png'}}" alt="" class="rounded-full mx-auto w-72 h-72  border-2 rounded-lg object-cover">
   <h1 class="text-xl font-medium text-gray-700 text-center pt-4"> {{ patient?.firstName }} {{ patient?.lastName}} </h1>
   <p class="text-base text-gray-600 text-center"> Patient </p>
-  <div class="flex flex-row py-4 justify-around" *ngIf="patient.medicalRecord; else elseBlk">
+  <div class="flex flex-row py-4 justify-around" *ngIf="patient?.medicalRecord; else elseBlk">
     <p class="text-base text-gray-600 text-center"> Sex: <strong> M </strong> </p>
     <p class="text-base text-gray-600 text-center"> Age: <strong> {{ this.patient?.medicalRecord?.age }} years old</strong> </p>
   </div>

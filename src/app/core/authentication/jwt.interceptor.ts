@@ -34,7 +34,8 @@ export class JwtInterceptor implements HttpInterceptor {
         // Removes the stored user data in localstorage
         this.authenticationService.logout();
       }
-      const error = err.error.message || err.statusText;
+      const error = err.error?.message || err.statusText;
+      console.log(err);
       return throwError(error);
     }));
   }

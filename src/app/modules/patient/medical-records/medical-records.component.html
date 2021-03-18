@@ -100,16 +100,16 @@
                   [disabled]="!isEditing || this.isUploading                                                                                                                                                           "
                   mat-raised-button class="mt-4 button w-72 flex flex-col" color="white"
                   (click)="file.click()">{{
-                this.hasMedicalRecords ? ( this.isSaving ? 'Replacing file...' : 'Replace file' ) : (this.isSaving ? 'Attaching...' : 'Attach file')
+                this.currentRecords?.biochemicalResults ? ( this.isSaving ? 'Replacing file...' : 'Replace file' ) : (this.isSaving ? 'Attaching...' : 'Attach file')
             }}
             <!--        <mat-spinner [diameter]="25z"> *ngIf="!isUploading"></mat-spinner>-->
           </button>
           <input type="file" accept=".png,.jpg,.jpeg,.pdf" #file placeholder="Choose file" multiple
                  (change)="fileChange(file.files)"
                  style="display:none;">
-          <a href="{{this.currentRecords.biochemicalResults}}" class="w-56 h-56">
+          <a href="{{this.currentRecords?.biochemicalResults}}" class="w-56 h-56" *ngIf="this.currentRecords?.biochemicalResults">
             <img class="my-4 w-56 h-56 shadow-lg border rounded-lg object-cover"
-              src="{{ this.currentRecords.biochemicalResults ? this.currentRecords.biochemicalResults : 'assets/default.png'}}"
+              src="{{ this.currentRecords?.biochemicalResults ? this.currentRecords?.biochemicalResults : 'assets/default.png'}}"
               alt="" >
           </a>
         </div>

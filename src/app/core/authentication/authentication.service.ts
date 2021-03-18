@@ -81,6 +81,7 @@ export class AuthenticationService {
             rnd.token = token;
             rnd.roleName = tokenInfo.authorities[0];
             rnd.readableRole = 'Nutritionist-Dietitian';
+            rnd.username = username;
             // // Make this the current user
             this.currentUserSubject.next(rnd);
             this.rndService.getRND(username)
@@ -91,22 +92,27 @@ export class AuthenticationService {
             break;
           case 'ROLE_PATIENT':
             let patient = new Patient();
-            // // Set token so we can access the endpoints
+            // // Set token so we can access the endpointsasldkawsldk
             patient.token = token;
             patient.roleName = tokenInfo.authorities[0];
             patient.readableRole = 'Patient';
+            patient.username = username;
             this.currentUserSubject.next(patient);
             this.patientService.getPatient(username)
               .subscribe((data: Patient) => {
                 patient = _.merge(patient, data);
                 localStorage.setItem('currentUser', JSON.stringify(patient));
+                this.currentUserSubject.next(patient);
+                console.log('ov set', patient);
               });
+
             break;
           case 'ROLE_ADMIN':
             let admin = new Admin();
             admin.token = token;
             admin.roleName = tokenInfo.authorities[0];
             admin.readableRole = 'Admin';
+            admin.username = username;
             this.currentUserSubject.next(admin);
             this.adminService.getAdmin(username)
               .subscribe((data: Admin) => {

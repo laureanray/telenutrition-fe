@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidatorFn, Validators} from '@angular/forms';
 import {PatientService} from '../../../core/services/patient.service';
 import {Patient} from '../../../core/models/patient';
@@ -8,6 +8,7 @@ import {AuthenticationService} from '../../../core/authentication/authentication
 import {environment} from '../../../../environments/environment';
 import {User} from '../../../core/models/user';
 import {FileService} from '../../../core/services/file.service';
+import {Subscription} from 'rxjs';
 
 
 @Component({
@@ -15,7 +16,7 @@ import {FileService} from '../../../core/services/file.service';
   templateUrl: './account-settings.component.html',
   styleUrls: ['./account-settings.component.scss']
 })
-export class AccountSettingsComponent implements OnInit {
+export class AccountSettingsComponent implements OnInit, OnDestroy {
   updateForm: FormGroup;
   submitting = false;
   updateResult = '';
@@ -24,6 +25,10 @@ export class AccountSettingsComponent implements OnInit {
   // uploadedFilePath: string;
   public progress = 0;
   public message = '';
+
+  fileServiceS: Subscription;
+  authServiceS: Subscription;
+  patientServiceS: Subscription;
 
   patient: Patient;
 
@@ -51,7 +56,7 @@ export class AccountSettingsComponent implements OnInit {
     const formData = new FormData();
     formData.append('file', fileToUpload, uuid.v4() + '.' + fileToUpload.type.split('/')[1]);
     // uuid.v4();
-    this.fileService.upload(formData)
+    this.fileServiceS = this.fileService.upload(formData)
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
           this.progress = Math.round(100 * event.loaded / event.total);
@@ -90,7 +95,7 @@ export class AccountSettingsComponent implements OnInit {
     } as Patient;
 
     setTimeout(() => {
-      this.patientService.updateAccount(patient).subscribe(res => {
+      this.patientServiceS = this.patientService.updateAccount(patient).subscribe(res => {
         if (res) {
           this.submitting = false;
           this.updateResult = 'success';
@@ -132,6 +137,16 @@ export class AccountSettingsComponent implements OnInit {
   // This forces the password validator to revalidate on confirm_password keyup
   pwKeyup(): void {
     this.updateForm.controls.password.updateValueAndValidity();
+  }
+
+  ngOnDestroy(): void {
+    if (this.patientServiceS) {
+      this.patientServiceS.unsubscribe();
+    }
+
+    if (this.fileServiceS) {
+      this.fileServiceS.unsubscribe();
+    }
   }
 
 }
