@@ -7,7 +7,41 @@
         </h1>
       </div>
     </header>
-    <div class="flex flex-row mt-4">
+    <div class="flex flex-row mt-4 pr-8">
+      <div class="threads flex flex-col overflow-y-auto mr-4 pr-2">
+        <div class="my-2 flex flex-row border py-2 px-4 rounded-md cursor-pointer hover:shadow-lg">
+          <div class="row flex flex-col justify-center">
+            <img src="/assets/default.png" alt="" class="w-14 h-14 border rounded-full object-cover">
+          </div>
+          <div class="texts flex flex-col align-middle justify-center mx-4">
+            <h1 class="text-base font-medium"> RND </h1>
+            <p class="text-sm"> Message </p>
+            <p class="text-xs text-gray-500"> 2 seconds ago </p>
+          </div>
+        </div>
+      </div>
+      <div class="conversation px-4 py-2 bg-dirty w-full flex flex-col rounded-sm ">
+        <div class="header border-b pb-2">
+          <h1 class="text-base font-medium"> RND </h1>
+        </div>
+        <div class="thread flex flex-col pt-4 flex-grow overflow-y-scroll max-h-96">
+          <div class="message rounded-md bg-white py-2 px-4 my-1 self-start">
+            <p class="text-base"> Hello, there. </p>
+          </div>
+          <div class="message rounded-md bg-accent  py-2 px-4 text-white p-4 my-1 self-end">
+            <p class="text-base"> Hello, there. </p>
+          </div>
+        </div>
+        <div class="message-box justify-self-end justify-end flex flex-col">
+            <h1 class="text-base font-medium"> Send Message</h1>
+            <mat-form-field appearance="outline">
+              <mat-label class="font-sans text-base">Current Medications</mat-label>
+              <textarea class="font-sans text-base" matInput rows="2"></textarea>
+            </mat-form-field>
+          <button type="submit" mat-raised-button color="accent"
+                  class="mb-6 mt-3"> Send </button>
+        </div>
+      </div>
     </div>
   </div>
   <div  routerLink="/patient/account-settings" class="col-2 w-1/4 p-6 border rounded shadow-sm m-6 cursor-pointer hover:shadow-md outline-none">

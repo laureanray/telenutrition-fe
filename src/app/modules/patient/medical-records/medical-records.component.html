@@ -67,7 +67,7 @@
           <div class="info flex flex-row">
             <mat-form-field appearance="outline" class="-mt-6 pb-0 flex-grow text-base">
               <mat-label class="font-sans">Height (cm)</mat-label>
-              <input type="number" matIut placeholder="Height (cm)" (keyup)="update()" class="pb-0 font-sans"
+              <input type="number" matInput placeholder="Height (cm)" (keyup)="update()" class="pb-0 font-sans"
                      autocomplete="off"np
                      spellcheck="false" name="height" formControlName="height" required>
             </mat-form-field>
@@ -83,7 +83,7 @@
           <div class="info flex flex-row">
             <mat-form-field appearance="outline" class="-mt-6 pb-0 flex-grow">
               <mat-label class="font-sans">BMI</mat-label>
-              <input matInput placeholder="BMI" class="pb-0 font-sans" autocomplete="off"
+              <input matInput placeholder="BMI" class="pb-0 font-sans text-base" autocomplete="off"
                      spellcheck="false" name="bmi" formControlName="bmi" required>
               <mat-hint clas="font-sans">BMI is automatically computed</mat-hint>
             </mat-form-field>
@@ -119,14 +119,14 @@
         <div class="grid grid-cols-2 gap-2  mt-2">
           <div class="flex flex-row">
             <mat-form-field appearance="outline" class="flex-grow">
-              <mat-label class="font-sans">Complaints</mat-label>
-              <textarea class="font-sans" rows="9" matInput formControlName="complaints" name="complaints"></textarea>
+              <mat-label class="font-sans text-base">Complaints</mat-label>
+              <textarea class="font-sans text-base" rows="9" matInput formControlName="complaints" name="complaints"></textarea>
             </mat-form-field>
           </div>
           <div class="flex flex-row">
             <mat-form-field appearance="outline" class="flex-grow">
-              <mat-label class="font-sans">Current Medications</mat-label>
-              <textarea class="font-sans" matInput formControlName="currentMedications"
+              <mat-label class="font-sans text-base">Current Medications</mat-label>
+              <textarea class="font-sans text-base" matInput formControlName="currentMedications"
                         name="currentMedications" rows="9"></textarea>
             </mat-form-field>
           </div>

@@ -96,6 +96,9 @@ export class MedicalRecordsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    window.onbeforeunload = () => {
+      confirm('u sure?');
+    };
   }
 
   onSubmit(): void {
@@ -196,16 +199,14 @@ export class MedicalRecordsComponent implements OnInit {
       });
 
       if (bmi) {
-        if (bmi < 18.5) {
+        if (bmi < 17.5) {
           this.bmiString = 'Underweight';
-        } else if (bmi >= 18.5 && bmi <= 22.9) {
+        } else if (bmi >= 17.5 && bmi <= 22.99  ) {
           this.bmiString = 'Normal';
-        } else if (bmi >= 23 && bmi <= 24.9) {
-          this.bmiString = 'At risk';
-        } else if (bmi >= 25 && bmi <= 29.9) {
-          this.bmiString = 'Obese I';
-        } else if (bmi > 30) {
-          this.bmiString = 'Obese II';
+        } else if (bmi >= 23 && bmi <= 27.99) {
+          this.bmiString = 'Over weight';
+        } else if (bmi >= 28) {
+          this.bmiString = 'Obese';
         }
       } else {
         this.bmiString = '';

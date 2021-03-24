@@ -30,6 +30,9 @@ function patchPostCSS(webpackConfig, tailwindConfig, components = false) {
 }
 module.exports = (config) => {
   const tailwindConfig = require("./tailwind.config.js");
+  config.node = {
+    net: 'empty'
+  };
   patchPostCSS(config, tailwindConfig, true);
   return config;
 };
