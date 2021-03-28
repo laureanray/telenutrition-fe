@@ -3,7 +3,6 @@ import {CommonModule} from '@angular/common';
 import {RouterModule, Routes} from '@angular/router';
 import {PatientComponent} from './patient/patient.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
-import {ConsultationComponent} from './consultation/consultation.component';
 import {MedicalRecordsComponent} from './medical-records/medical-records.component';
 import {SupportComponent} from './support/support.component';
 import {HistoryComponent} from './history/history.component';
