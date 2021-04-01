@@ -18,7 +18,7 @@
             RNDs: <span class="font-bold"> {{ (this.rnds | async)?.length }} </span>
           </h1>
           <h1 class="text-base font-normal leading-tight text-gray-900">
-            Active Appointments: <span class="font-bold"> 3 </span>
+            Active Appointments: <span class="font-bold"> {{ (this.appointments | async)?.length }} </span>
           </h1>
         </div>
       </header>

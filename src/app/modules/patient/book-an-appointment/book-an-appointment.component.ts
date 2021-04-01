@@ -120,17 +120,17 @@ export class BookAnAppointmentComponent implements OnInit {
 
     data.appointmentDate = moment(data.appointmentDate).format('L');
 
-    switch (data.appointmentType) {
-      case 'nutrition_counseling':
-        data.amountDue = 400;
-        break;
-      case 'one_week_cycle_menu':
-        data.amountDue = 500;
-        break;
-      case 'both':
-        data.amountDue = 900;
-        break;
-    }
+    // switch (data.appointmentType) {
+    //   case 'nutrition_counseling':
+    //     data.amountDue = 400;
+    //     break;
+    //   case 'one_week_cycle_menu':
+    //     data.amountDue = 500;
+    //     break;
+    //   case 'both':
+    //     data.amountDue = 900;
+    //     break;
+    // }
 
     const appointment = {
       patient: {

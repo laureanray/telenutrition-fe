@@ -44,13 +44,13 @@
         </mat-step>
         <mat-step formGroupName="2" [stepControl]="formArray.get([2])">
           <ng-template matStepLabel>Service to Avail</ng-template>
-          <p class="text-lg font-medium">Price:
-              <ng-container [ngSwitch]="selectedAppointmentType">
-                <span *ngSwitchCase="'nutrition_counseling'">₱400</span>
-                <span *ngSwitchCase="'one_week_cycle_menu'">₱500</span>
-                <span *ngSwitchCase="'both'">₱900</span>
-              </ng-container>
-          </p>
+<!--          <p class="text-lg font-medium">Price:-->
+<!--              <ng-container [ngSwitch]="selectedAppointmentType">-->
+<!--                <span *ngSwitchCase="'nutrition_counseling'">₱400</span>-->
+<!--                <span *ngSwitchCase="'one_week_cycle_menu'">₱500</span>-->
+<!--                <span *ngSwitchCase="'both'">₱900</span>-->
+<!--              </ng-container>-->
+<!--          </p>-->
           <mat-form-field appearance="outline" class="mt-4 w-1/3">
             <mat-select class="font-sans" formControlName="appointmentType" name="appointmentType"
                         placeholder="Select Service To Avail" [(value)]="selectedAppointmentType">
@@ -142,6 +142,15 @@
                 </div>
               </div>
             </div>
+            <div *ngSwitchCase="'on_site'">
+              <div class="flex flex-row">
+                <div class="info">
+                  <h1 class="text-lg font-medium text-gray-800"> On Site Payment </h1>
+                  <p> Proceed to the Weight Management Center for encoding and payment instructions. </p>
+                  <p> We are open from <span class="font-bold"> 6 AM - 6 PM </span>everyday </p>
+                </div>
+              </div>
+            </div>
           </div>
 
           <mat-form-field appearance="outline" class="mt-4 w-1/3">
@@ -158,6 +167,9 @@
               </mat-option>
               <mat-option class="font-sans" value="bdo">
                 BDO
+              </mat-option>
+              <mat-option class="font-sans" value="on_site">
+                On Site Payment
               </mat-option>
             </mat-select>
           </mat-form-field>

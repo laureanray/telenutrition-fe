@@ -27,7 +27,8 @@ import interactionPlugin from '@fullcalendar/interaction';
 import {AppointmentsComponent} from './appointments/appointments.component';
 import {AppointmentComponent} from './appointment/appointment.component';
 import { ViewAppointmentComponent } from './view-patient/view-appointment.component';
-import {MatTabsModule} from '@angular/material/tabs'; // a plugin
+import {MatTabsModule} from '@angular/material/tabs';
+import { MessagesComponent } from './messages/messages.component'; // a plugin
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -35,7 +36,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
 ]);
 
 @NgModule({
-  declarations: [RndComponent, RndNavComponent, DashboardComponent, UserCardComponent, AccountSettingsComponent, PatientsComponent, CalendarComponent, AppointmentsComponent, AppointmentComponent, ViewAppointmentComponent],
+  declarations: [RndComponent, RndNavComponent, DashboardComponent, UserCardComponent, AccountSettingsComponent, PatientsComponent, CalendarComponent, AppointmentsComponent, AppointmentComponent, ViewAppointmentComponent, MessagesComponent],
   imports: [
     CommonModule,
     RndRoutingModule,

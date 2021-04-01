@@ -2,7 +2,7 @@
   <h1 class="text-xl font-medium text-gray-700 text-center pt-4"> {{ patient?.firstName }} {{ patient?.lastName}} </h1>
   <p class="text-base text-gray-600 text-center"> Patient </p>
   <div class="flex flex-row py-4 justify-around" *ngIf="patient?.medicalRecord; else elseBlk">
-    <p class="text-base text-gray-600 text-center"> Sex: <strong> {{ this.patient?.medicalRecord.sex?.toUpperCase().charAt(0)}} </strong> </p>
+    <p class="text-base text-gray-600 text-center"> Sex: <strong> {{ this.patient?.medicalRecord?.sex?.toUpperCase().charAt(0)}} </strong> </p>
     <p class="text-base text-gray-600 text-center"> Age: <strong> {{ this.patient?.medicalRecord?.age }} years old</strong> </p>
   </div>
   <ng-template #elseBlk>

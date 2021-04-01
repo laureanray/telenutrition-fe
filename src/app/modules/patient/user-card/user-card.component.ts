@@ -20,6 +20,7 @@ export class UserCardComponent implements OnInit, OnDestroy {
     this.patientS = this.patientService.getPatient(this.authService.currentUserValue.username)
       .subscribe((p: Patient) => {
         this.patient = p;
+        console.log(this.patient.medicalRecord);
       });
   }
 

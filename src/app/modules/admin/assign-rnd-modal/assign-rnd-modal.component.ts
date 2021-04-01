@@ -38,7 +38,7 @@ export class AssignRndModalComponent implements OnInit, AfterViewInit, OnDestroy
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<AssignedNodesOptions>,
+    private dialogRef: MatDialogRef<AssignRndModalComponent>,
     private appointmentService: AppointmentService,
     private rndService: RndService,
     private snackBar: MatSnackBar) {

@@ -8,6 +8,7 @@ import {LogoutModalComponent} from '../../../core/shared/logout-modal/logout-mod
 import {MatDialog} from '@angular/material/dialog';
 import {ChangeStatusComponent} from '../change-status/change-status.component';
 import {AssignRndModalComponent} from '../assign-rnd-modal/assign-rnd-modal.component';
+import {UpdateAmountModalComponent} from '../update-amount-modal/update-amount-modal.component';
 
 @Component({
   selector: 'app-view-appointment',
@@ -46,6 +47,19 @@ export class ViewAppointmentComponent implements OnInit {
 
   changeStatus(): void {
     const ref = this.dialog.open(ChangeStatusComponent, {
+      width: '520px',
+      data: {
+        appointment: this.appointment
+      }
+    });
+
+    ref.afterClosed().subscribe(afterClosed => {
+      this.fetchCurrentAppointment(this.id);
+    });
+  }
+
+  updateAmount(): void {
+    const ref = this.dialog.open(UpdateAmountModalComponent, {
       width: '520px',
       data: {
         appointment: this.appointment
