@@ -27,6 +27,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { UpdateAmountModalComponent } from './update-amount-modal/update-amount-modal.component';
+import {MatInputModule} from '@angular/material/input';
 
 
 @NgModule({
@@ -35,22 +36,23 @@ import { UpdateAmountModalComponent } from './update-amount-modal/update-amount-
   exports: [
     AdminNavComponent
   ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatTableModule,
-    MatSortModule,
-    MatPaginatorModule,
-    MatSnackBarModule,
-    MatSlideToggleModule,
-    FormsModule,
-    MatDialogModule,
-    NgxMatSelectSearchModule,
-    ReactiveFormsModule
-  ]
+    imports: [
+        CommonModule,
+        AdminRoutingModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatTableModule,
+        MatSortModule,
+        MatPaginatorModule,
+        MatSnackBarModule,
+        MatSlideToggleModule,
+        FormsModule,
+        MatDialogModule,
+        NgxMatSelectSearchModule,
+        ReactiveFormsModule,
+        MatInputModule
+    ]
 })
 export class AdminModule {
 }

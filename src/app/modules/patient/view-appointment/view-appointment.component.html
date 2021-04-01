@@ -10,45 +10,125 @@
   <div class="content border p-4 rounded-md flex flex-row w-2/3">
     <div class="info">
       <h1 class="text-2xl font-medium text-gray-600 mb-4"> Appointment Details </h1>
-      <!--      <img src="{{ this.patient?.profileImageURL ? this.patient?.profileImageURL : 'assets/default.png'}}" alt="" class="rounded-sm w-48 h-48 shadow-lg border rounded-lg object-cover my-4">-->
-      <p class="text-lg text-gray-700 mt-1">
-        ID: <span class="font-medium"> {{ this.appointment?.id }}</span>
-      </p>
-      <p class="text-lg text-gray-700 mt-1 bg-yellow-100">
-        Schedule: <span class="font-bold"> {{ this.moment(this.appointment?.schedule).format('LLL') }}</span>
-      </p>
-      <p class="text-lg text-gray-700 mt-1">
-        Patient: <span class="font-medium"> {{ this.appointment?.patient.lastName}}
+      <!--      <p class="text-lg text-gray-700">-->
+      <!--        ID: <span class="pl-4 font-medium"> {{ this.appointment?.id }}</span>-->
+      <!--      </p>-->
+      <div class="text-base text-gray-700 bg-gray-100 p-4 mt-4 rounded-sm">
+        <p> Schedule: <span class="pl-4 font-bold"> {{ this.moment(this.appointment?.schedule).format('LLL') }}</span>
+        </p>
+        <p> Status:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   <span class="pl-4 font-bold"> {{ this.appointment?.status }}</span>
+        </p>
+      </div>
+      <p class="text-base text-gray-600 mt-6">
+        Patient: <span class="pl-4 font-bold text-gray-900"> {{ this.appointment?.patient.lastName}}
         , {{ this.appointment?.patient.firstName }}</span>
       </p>
-      <p class="text-lg text-gray-700 mt-1">
+      <p class="text-base text-gray-600">
         Assigned RND: <span
-        class="font-medium"> {{ this.appointment?.rnd ? this.appointment?.rnd.firstName + ' ' + this.appointment?.rnd.lastName : 'Pending...' }} </span>
+        class="pl-4 text-gray-900 font-medium"> {{ this.appointment?.rnd ? this.appointment?.rnd.firstName + ' ' + this.appointment?.rnd.lastName : 'Pending...' }} </span>
       </p>
-      <p class="text-lg text-gray-700 mt-1">
-        Created At: <span class="font-medium"> {{ this.moment(this.appointment?.createdAt).format('L') }}</span>
+      <p class="text-base text-gray-600">
+        Created At: <span
+        class="pl-4 text-gray-900 font-medium"> {{ this.moment(this.appointment?.createdAt).format('L') }}</span>
       </p>
-      <p class="text-lg text-gray-700 mt-1">
-        Payment Method: <span class="font-medium"> {{ this.appointment?.paymentMethod.toUpperCase()}}</span>
+      <p class="text-base text-gray-600">
+        Payment Method: <span
+        class="pl-4 text-gray-900 font-medium"> {{ this.appointment?.paymentMethod.toUpperCase()}}</span>
       </p>
-      <h1 class="text-lg font-medium my-4" *ngIf="this.appointment?.proofOfPayments.length > 0">
+      <p class="text-base text-gray-600">
+        Amount Due: <span
+        class="pl-4 text-gray-900 font-medium"> {{ this.appointment?.amountDue === 0 ? 'TBD' : this.appointment?.amountDue }}</span>
+      </p>
+      <h1 class="text-base font-medium my-4" *ngIf="this.appointment?.proofOfPayments.length > 0">
         Proof of payment
       </h1>
-            <div class="grid grid-cols-3 gap-1">
-              <div *ngFor="let file of this.appointment?.proofOfPayments">
-                <a href="{{this.environment.apiUrl + '/file/files/' + file?.path}}"><img
-                  *ngIf="file.path.split('.')[1] !== 'pdf'; else elseBlk"
-                  src="{{ this.environment.apiUrl + '/file/files/' + file?.path }}" alt=""
-                  class="mt-2 w-44 h-44 shadow-lg border rounded-lg object-cover">
-                </a>
-                <ng-template #elseBlk>
-                  <img src="/assets/pdf.png" class="w-12 h-12 mt-4" alt="">
-                  <p class="text-sm font-medium text-gray-700 pt-2">{{ file.path }} </p></ng-template>
+      <div class="grid grid-cols-3 gap-1">
+        <div *ngFor="let file of this.appointment?.proofOfPayments">
+          <a href="{{this.environment.apiUrl + '/file/files/' + file?.path}}"><img
+            *ngIf="file.path.split('.')[1] !== 'pdf'; else elseBlk"
+            src="{{ this.environment.apiUrl + '/file/files/' + file?.path }}" alt=""
+            class="mt-2 w-44 h-44 shadow-lg border rounded-lg object-cover">
+          </a>
+          <ng-template #elseBlk>
+            <img src="/assets/pdf.png" class="w-12 h-12 mt-4" alt="">
+            <p class="text-sm font-medium text-gray-700 pt-2">{{ file.path }} </p></ng-template>
+        </div>
+      </div>
+
+      <div class="payment-instructions mt-4">
+        <p class="text-base font-medium"> Payment Instructions </p>
+        <div [ngSwitch]="this.appointment?.paymentMethod" class="my-2">
+          <div *ngSwitchCase="'bpi'">
+            <div class="flex flex-row">
+              <img src="/assets/bpi.png" alt="" class="h-12 mr-6">
+              <div class="info">
+                <h1 class="text-lg font-medium text-gray-800"> Bank of the Philippine Islands </h1>
+                <p class="text-base text-gray-700"> Branch: Lipa Poblacion, Lipa City Batangas</p>
+                <p class="text-base text-gray-700"> Account Number: <span class="font-bold primary">9011-0017-15</span>
+                </p>
+                <p class="text-base text-gray-700"> Account Type: Current Account</p>
+                <p class="text-base text-gray-700"> Swift Code: BOPIPHMM </p>
               </div>
             </div>
+          </div>
+          <div *ngSwitchCase="'metro'">
+            <div class="flex flex-row">
+              <img src="/assets/metro.png" alt="" class="h-12 mr-6">
+              <div class="info">
+                <h1 class="text-lg font-medium text-gray-800"> Metropolitan Bank & Trust Company</h1>
+                <p class="text-base text-gray-700"> Branch: B. Morada Lipa City, Barangas</p>
+                <p class="text-base text-gray-700"> Account Number: <span
+                  class="font-bold primary">145-3-14503985-2</span></p>
+                <p class="text-base text-gray-700"> Account Type: Savings Account</p>
+                <p class="text-base text-gray-700"> Swift Code: MBTCPHMM </p>
+              </div>
+            </div>
+          </div>
+          <div *ngSwitchCase="'union'">
+            <div class="flex flex-row">
+              <img src="/assets/unionbank.png" alt="" class="h-12 mr-6">
+              <div class="info">
+                <h1 class="text-lg font-medium text-gray-800"> Union Bank </h1>
+                <p class="text-base text-gray-700"> Branch: Lipa Branch, Lipa City Batangas</p>
+                <p class="text-base text-gray-700"> Account Number: <span class="font-bold primary">002660003598</span>
+                </p>
+                <p class="text-base text-gray-700"> Account Type: Savings Account</p>
+              </div>
+            </div>
+          </div>
+          <div *ngSwitchCase="'bdo'">
+            <div class="flex flex-row">
+              <div class="image min-w-lg max-w-lg">
+                <img src="/assets/bdo.png" alt="" class="h-14 mr-6">
+              </div>
+              <div class="info">
+                <h1 class="text-lg font-medium text-gray-800"> Banco De Oro</h1>
+                <p class="text-base text-gray-700"> Branch: Ayala Highway, Lipa City Batangas</p>
+                <p class="text-base text-gray-700"> Account Number: <span class="font-bold primary">1880141440</span>
+                </p>
+                <p class="text-base text-gray-700"> Account Type: Savings Account</p>
+                <p class="text-base text-gray-700"> Swift Code: BNORTHMM </p>
+              </div>
+            </div>
+          </div>
+          <div *ngSwitchCase="'on_site'">
+            <div class="flex flex-row">
+              <div class="info">
+                <h1 class="text-lg font-medium text-gray-800"> On Site Payment </h1>
+                <p class="text-base text-gray-700"> Proceed to the Weight Management Center for encoding and payment
+                  instructions. </p>
+                <p class="text-base text-gray-700"> We are open from <span class="font-bold"> 6 AM - 6 PM </span>everyday
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
     <div class="controls ml-auto flex flex-row h-12">
-      <button *ngIf="this.appointment?.status === 'PENDING_PAYMENT'" type="button" mat-raised-button class="button mt-2 w-72 flex flex-col" color="white" (click)="file.click()"
+      <button *ngIf="this.appointment?.status === 'PENDING_PAYMENT'" type="button" mat-raised-button
+              class="button mt-2 w-72 flex flex-col" color="white" (click)="file.click()"
               [disabled]="this.isUploading && this.uploadedFilePaths.length === this.filesToUpload">{{ this.isUploading ? 'Attaching files...' : 'Attach proof of payment' }}
         <!--        <mat-spinner [diameter]="25z"> *ngIf="!isUploading"></mat-spinner>-->
 

@@ -188,7 +188,7 @@
       <p class="text-base font-medium text-gray-500 mt-2"> Payment Method </p>
       <p class="text-lg font-medium"> {{ this.appointment.paymentMethod.toUpperCase()}}</p>
       <p class="text-base font-medium text-gray-500 mt-2"> Amount Due </p>
-      <p class="text-lg font-medium"> {{ this.appointment.amountDue}} </p>
+      <p class="text-lg font-medium"> {{ this.appointment.amountDue === 0 ? 'TBD' : this.appointment.amountDue }} </p>
     </div>
   </div>
   <div routerLink="/patient/account-settings"

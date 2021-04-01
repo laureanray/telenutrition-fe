@@ -2,15 +2,14 @@
   <h3 class="text-3xl font-medium"> Update Amount  </h3>
   <p class="text-base font-normal mt-4"> Please type in the new ammount </p>
 </div>
-<div>
-  <mat-form-field appearance="outline" class="mb-0 pb-0 text-base" >
+<div class="flex flex-row w-full">
+  <mat-form-field appearance="outline" class="mb-0 pb-0 text-base flex-grow" >
     <mat-label class="font-sans">Email</mat-label>
-    <input type="email" matInput placeholder="jdcruz@example.com" class="pb-0 font-sans" autocomplete="off" spellcheck="false" name="email" formControlName="email" required>
+    <input type="number" matInput placeholder="0" class="pb-0 font-sans" autocomplete="off" spellcheck="false"required>
   </mat-form-field>
-  <!--  <p class="text-base" *ngIf="selectedRND"> RND Selected: {{ this.selectedRND?.lastName }}, {{ this.selectedRND?.firstName}}</p>-->
 </div>
 <div mat-dialog-actions class="flex  flex-row justify-items-end">
   <button mat-raised-button (click)="onNoClick()" color="white" class="mt-4 mb-2 ml-auto">Cancel</button>
   <button mat-raised-button type="submit" color="primary"
-          class="mt-4 mb-2 ml-2"> buton </button>
+          class="mt-4 mb-2 ml-2"> Apply </button>
 </div>
