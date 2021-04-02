@@ -10,7 +10,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatOptionModule} from '@angular/material/core';
@@ -37,25 +37,26 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
 
 @NgModule({
   declarations: [RndComponent, RndNavComponent, DashboardComponent, UserCardComponent, AccountSettingsComponent, PatientsComponent, CalendarComponent, AppointmentsComponent, AppointmentComponent, ViewAppointmentComponent, MessagesComponent],
-  imports: [
-    CommonModule,
-    RndRoutingModule,
-    MatPaginatorModule,
-    MatTableModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatStepperModule,
-    MatDatepickerModule,
-    MatOptionModule,
-    MatSelectModule,
-    MatSnackBarModule,
-    SharedModule,
-    MatSortModule,
-    MatButtonModule,
-    FullCalendarModule,
-    MatTabsModule
-  ]
+    imports: [
+        CommonModule,
+        RndRoutingModule,
+        MatPaginatorModule,
+        MatTableModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatStepperModule,
+        MatDatepickerModule,
+        MatOptionModule,
+        MatSelectModule,
+        MatSnackBarModule,
+        SharedModule,
+        MatSortModule,
+        MatButtonModule,
+        FullCalendarModule,
+        MatTabsModule,
+        FormsModule
+    ]
 })
 export class RndModule {
 }

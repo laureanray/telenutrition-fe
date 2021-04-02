@@ -19,7 +19,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatOptionModule} from '@angular/material/core';
@@ -49,24 +49,25 @@ import { MessagesComponent } from './messages/messages.component';
     AppointmentsComponent,
     ViewAppointmentComponent,
     MessagesComponent],
-  imports: [
-    CommonModule,
-    RouterModule,
-    PatientRoutingModule,
-    MatButtonModule,
-    MatPaginatorModule,
-    MatTableModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatStepperModule,
-    MatDatepickerModule,
-    MatOptionModule,
-    MatSelectModule,
-    MatSnackBarModule,
-    SharedModule,
-    MatSortModule
-  ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        PatientRoutingModule,
+        MatButtonModule,
+        MatPaginatorModule,
+        MatTableModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatStepperModule,
+        MatDatepickerModule,
+        MatOptionModule,
+        MatSelectModule,
+        MatSnackBarModule,
+        SharedModule,
+        MatSortModule,
+        FormsModule
+    ],
   bootstrap: [PatientComponent]
 })
 export class PatientModule {

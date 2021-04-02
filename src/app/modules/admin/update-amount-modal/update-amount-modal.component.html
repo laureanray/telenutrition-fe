@@ -3,13 +3,13 @@
   <p class="text-base font-normal mt-4"> Please type in the new ammount </p>
 </div>
 <div class="flex flex-row w-full">
-  <mat-form-field appearance="outline" class="mb-0 pb-0 text-base flex-grow" >
-    <mat-label class="font-sans">Email</mat-label>
-    <input type="number" matInput placeholder="0" class="pb-0 font-sans" autocomplete="off" spellcheck="false"required>
+  <mat-form-field appearance="outline" class="mb-0 pb-0 text-base flex-grow mt-4" >
+    <mat-label class="font-sans">Amount Due</mat-label>
+    <input type="number" matInput placeholder="0" class="pb-0 font-sans" autocomplete="off" [(ngModel)]="amount" spellcheck="false"  required>
   </mat-form-field>
 </div>
 <div mat-dialog-actions class="flex  flex-row justify-items-end">
   <button mat-raised-button (click)="onNoClick()" color="white" class="mt-4 mb-2 ml-auto">Cancel</button>
-  <button mat-raised-button type="submit" color="primary"
+  <button mat-raised-button type="submit" color="primary" (click)="submit()"
           class="mt-4 mb-2 ml-2"> Apply </button>
 </div>

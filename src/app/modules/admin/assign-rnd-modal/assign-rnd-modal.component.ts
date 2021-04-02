@@ -8,6 +8,7 @@ import {take, takeUntil} from 'rxjs/operators';
 import {FormControl} from '@angular/forms';
 import {MatSelect} from '@angular/material/select';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {Appointment} from '../../../core/models/appointment';
 
 @Component({
   selector: 'app-assign-rnd-modal',
@@ -116,12 +117,14 @@ export class AssignRndModalComponent implements OnInit, AfterViewInit, OnDestroy
 
   assign(): void {
     this.isAssigning = true;
-    this.data.appointment.rnd = {
+    const appointment = this.data.appointment as Appointment;
+    appointment.rnd = {
       id: this.selectedRND.id
     } as RND;
-    this.data.appointment.status = 'SCHEDULED';
+    appointment.status = 'SCHEDULED';
+    appointment.patient.roles = null;
     setTimeout(() => {
-      this.appointmentService.updateAppointment(this.data.appointment)
+      this.appointmentService.updateAppointment(appointment)
         .subscribe(res => {
           if (res) {
             this.snackBar.open('Success!', undefined, {

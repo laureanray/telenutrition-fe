@@ -34,6 +34,9 @@
       <p class="text-lg text-gray-700">
         Payment Method: <span class="font-medium"> {{ this.appointment?.paymentMethod.toUpperCase()}}</span>
       </p>
+      <p class="text-lg text-gray-700">
+        Amount Due: <span class="font-medium"> {{ this.appointment?.amountDue === 0 ? 'Pending' :  '₱' +  this.appointment?.amountDue }}</span>
+      </p>
       <h1 class="text-lg font-medium my-4" *ngIf="this.appointment?.proofOfPayments.length > 0">
         Proof of payment
       </h1>
@@ -53,7 +56,7 @@
     <div class="controls ml-auto flex flex-row h-12">
       <button mat-raised-button color="white"> Archive </button>
       <button mat-raised-button color="white" (click)="updateAmount()"> Update Amount </button>
-      <button mat-raised-button color="white" *ngIf="appointment?.status === 'PAID' || appointment?.status === 'SCHEDULED'" (click)="assignRND()"> Assign RND </button>
+      <button mat-raised-button color="white" (click)="assignRND()"> Assign RND </button>
       <button mat-raised-button color="primary" (click)="changeStatus()" class="ml-2"> Change Status</button>
     </div>
   </div>

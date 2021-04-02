@@ -8,38 +8,44 @@
       </div>
     </header>
     <div class="flex flex-row mt-4 pr-8">
-      <div class="threads flex flex-col overflow-y-auto mr-4 pr-2 w-1/2">
-        <div class="my-2 flex flex-row border py-2 px-4 rounded-md cursor-pointer hover:shadow-lg">
-          <div class="row flex flex-col justify-center">
-            <img src="/assets/default.png" alt="" class="w-14 h-14 border rounded-full object-cover">
-          </div>
-          <div class="texts flex flex-col align-middle justify-center mx-4">
-            <h1 class="text-base font-medium"> RND </h1>
-            <p class="text-sm"> Message </p>
-            <p class="text-xs text-gray-500"> 2 seconds ago </p>
+      <div class="threads flex flex-col overflow-y-auto mr-4 pr-2 w-1/3 max-h-96">
+        <p class="text-sm font-medium text-gray-600"> You can message assigned RND here </p>
+        <div class="my-2 flex flex-col border py-2 px-4 rounded-md cursor-pointer hover:shadow-lg"  *ngFor="let appointment of appointments"
+             (click)="selectRND(appointment.rnd)">
+          <div class="patients flex flex-row  ">
+            <div class="row flex flex-col justify-center">
+              <img src="{{appointment.rnd.profileImageURL}}" alt=""
+                   class="w-14 h-14 border rounded-full object-cover">
+            </div>
+            <div class="texts flex flex-col align-middle justify-center mx-4">
+              <h1
+                class="text-base font-medium"> {{ appointment.rnd.firstName }} {{ appointment.rnd.lastName}} </h1>
+            </div>
           </div>
         </div>
       </div>
-      <div class="conversation px-4 py-2 bg-dirty w-full flex flex-col rounded-sm ">
+      <div class="conversation px-4 py-2 bg-dirty w-2/3 flex flex-col rounded-sm" *ngIf="selectedRND">
         <div class="header border-b pb-2">
-          <h1 class="text-base font-medium"> RND </h1>
+          <h1 class="text-base font-medium"> {{ selectedRND.firstName}} {{ selectedRND.lastName}} </h1>
         </div>
-        <div class="thread flex flex-col pt-4 flex-grow overflow-y-scroll max-h-96">
-          <div class="message rounded-md bg-white py-2 px-4 my-1 self-start">
-            <p class="text-base"> Hello, there. </p>
+        <div #scrollMe class="thread flex flex-col pt-4 flex-grow overflow-y-scroll  max-h-96">
+          <div *ngFor="let message of messages" [ngClass]="{ 'self-start bg-white text-gray-900': message.sender === 'rnd', 'self-end bg-accent text-white' : message.sender === 'patient'}"
+               class="message rounded-md py-2 px-4 my-1">
+            <p class="text-base"> {{ message.message}} </p>
+            <p class="text-xs">{{ this.moment(message.createdAt).fromNow() }} </p>
           </div>
-          <div class="message rounded-md bg-accent  py-2 px-4 text-white p-4 my-1 self-end">
-            <p class="text-base"> Hello, there. </p>
-          </div>
+          <!--          <div class="message rounded-md bg-accent  py-2 px-4 text-white p-4 my-1 self-end">-->
+          <!--            <p class="text-base"> Hello, there. </p>-->
+          <!--          </div>-->
         </div>
         <div class="message-box justify-self-end justify-end flex flex-col ">
           <h1 class="text-base font-medium"> Send Message</h1>
           <mat-form-field appearance="outline" class="mt-4">
             <mat-label class="font-sans text-base">Message</mat-label>
-            <textarea class="font-sans text-base" matInput rows="2"></textarea>
+            <textarea [(ngModel)]="message" class="font-sans text-base" matInput rows="2"></textarea>
           </mat-form-field>
           <button type="submit" mat-raised-button color="accent"
-                  class="mb-6"> Send
+                  class="mb-6" (click)="sendMessage()"> Send
           </button>
         </div>
       </div>

@@ -38,11 +38,12 @@
               Price
             </p>
             <p class="text-base font-medium">
-              ₱{{ this.appointment?.amountDue }}
+              {{ this.appointment?.amountDue === 0 ? 'Pending' : '₱' + this.appointment?.amountDue }}
             </p>
           </div>
         </div>
         <div class="controls ml-auto flex flex-row h-12">
+          <button routerLink="login"  mat-raised-button  *ngIf="this.appointment?.status !== 'PAID'" color="white" (click)="updateAmount()">Update Amount Due </button>
           <button routerLink="login"  mat-raised-button  color="accent">Send Message</button>
         </div>
       </div>

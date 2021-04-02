@@ -4,6 +4,7 @@ import {AuthenticationService} from '../../../core/authentication/authentication
 import {Router} from '@angular/router';
 import {AppointmentService} from '../../../core/services/appointment.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {Appointment} from '../../../core/models/appointment';
 
 @Component({
   selector: 'app-change-status',
@@ -35,11 +36,12 @@ export class ChangeStatusComponent implements OnInit {
     // this.authenticationService.logout();
     // this.router.navigate(['/login']);
     this.isApplying = true;
-    this.data.appointment.status = this.selected;
-    // this.dialogRef.close();
 
+    const appointment = this.data.appointment as Appointment;
+    appointment.status = this.selected;
+    appointment.patient.roles = null;
     setTimeout(() => {
-      this.appointmentService.updateAppointment(this.data.appointment)
+      this.appointmentService.updateAppointment(appointment)
         .subscribe(res => {
           if (res) {
             this.snackBar.open('Success!', undefined, {

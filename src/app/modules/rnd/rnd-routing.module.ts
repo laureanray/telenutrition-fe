@@ -9,6 +9,7 @@ import {CalendarComponent} from './calendar/calendar.component';
 import {AppointmentsComponent} from './appointments/appointments.component';
 import {AppointmentComponent} from './appointment/appointment.component';
 import {ViewAppointmentComponent} from './view-patient/view-appointment.component';
+import {MessagesComponent} from './messages/messages.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
@@ -18,6 +19,7 @@ const routes: Routes = [
       {path: 'dashboard', component: DashboardComponent, pathMatch: 'full'},
       {path: 'account-settings', component: AccountSettingsComponent, pathMatch: 'full'},
       {path: 'appointments', component: AppointmentsComponent, pathMatch: 'full' },
+      {path: 'messages', component: MessagesComponent, pathMatch: 'full' },
       {path: 'appointment/:id', component: AppointmentComponent, pathMatch: 'full'},
       {path: 'view-appointment/:id', component: ViewAppointmentComponent, pathMatch: 'full'},
       {path: 'patients', component: PatientsComponent, pathMatch: 'full'},

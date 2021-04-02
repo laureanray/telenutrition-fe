@@ -1,31 +1,25 @@
-import { Injectable } from '@angular/core';
-import '../../../sockjs';
-import {Stomp} from '@stomp/stompjs';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {MessageRequest} from '../models/message-request';
+import {environment} from '../../../environments/environment';
+import {Observable} from 'rxjs';
+import {Message} from '../models/message';
+
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
-  constructor() {
-    this.initializeWebSocketConnection();
-  }
-  public stompClient;
-  public msg = [];
-  initializeWebSocketConnection(): void{
-    const serverUrl = 'http://localhost:8081/socket';
-    const ws = new SockJS(serverUrl);
-    this.stompClient = Stomp.over(ws);
-    const that = this;
-    // tslint:disable-next-line:only-arrow-functions
-    this.stompClient.connect({}, function(frame) {
-      that.stompClient.subscribe('/message', (message) => {
-        if (message.body) {
-          that.msg.push(message.body);
-        }
-      });
-    });
+
+  constructor(private http: HttpClient) {
   }
 
-  sendMessage(message): void{
-    this.stompClient.send('/app/send/message' , {}, message);
+  sendMessage(messageRequest: MessageRequest): Observable<any> {
+    return this.http
+      .post(`${environment.apiUrl}/messages/new`, messageRequest);
+  }
+
+  fetchMessages(role: string, fromId: number, toId: number): Observable<any>{
+    return this.http
+      .get(`${environment.apiUrl}/messages/${role.toLowerCase()}/${fromId}/${toId}`);
   }
 }
