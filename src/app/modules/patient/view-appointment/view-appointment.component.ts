@@ -66,6 +66,7 @@ export class ViewAppointmentComponent implements OnInit {
       }
       this.isUploading = false;
       console.log('sending.', this.appointment);
+      this.appointment.patient.roles = undefined;
       this.appointmentService.addProofOfPayment(this.appointment.id, this.appointment)
         .subscribe(res => {
           if (res) {
@@ -83,59 +84,29 @@ export class ViewAppointmentComponent implements OnInit {
   }
 
   public uploadFile(files: any): void {
+    console.log('upload files is called');
     this.isUploading = true;
-
-    setTimeout(() => {
-      console.log(files);
-      if (files.length === 0) {
-        return;
-      } else {
-        this.filesToUpload = files.length;
-        for (const file of files) {
-          const fileToUpload = file as File;
-          const formData = new FormData();
-          formData.append('file', fileToUpload, uuid.v4() + '.' + fileToUpload.type.split('/')[1]);
-
-          this.fileService.upload(formData)
-            .subscribe(event => {
-              if (event.type === HttpEventType.UploadProgress) {
-                this.progress = Math.round(100 * event.loaded / event.total);
-              } else if (event.type === HttpEventType.Response) {
-                this.message = 'Upload success.';
-                const body = event.body;
-                this.uploadedFilePaths.push({path: body.path});
-                console.log(this.uploadedFilePaths);
-                this.doneCallback();
-              }
-            });
-        }
-      }
-      this.isUploading = true;
-      console.log(files);
-      if (files.length === 0) {
-        return;
-      } else {
-        this.filesToUpload = files.length;
-        for (const file of files) {
-          const fileToUpload = file as File;
-          const formData = new FormData();
-          formData.append('file', fileToUpload, uuid.v4() + '.' + fileToUpload.type.split('/')[1]);
-
-          this.fileService.upload(formData)
-            .subscribe(event => {
-              if (event.type === HttpEventType.UploadProgress) {
-                this.progress = Math.round(100 * event.loaded / event.total);
-              } else if (event.type === HttpEventType.Response) {
-                this.message = 'Upload success.';
-                const body = event.body;
-                this.uploadedFilePaths.push({path: body.path});
-                console.log(this.uploadedFilePaths);
-                this.doneCallback();
-              }
-            });
-        }
-      }
-    }, 1500);
+    console.log(files);
+    if (files.length === 0) {
+      return;
+    } else {
+      this.filesToUpload = files.length;
+      console.log('files to upload', this.filesToUpload);
+      const formData = new FormData();
+      formData.append('file', files[0], uuid.v4() + '.' + files[0].type.split('/')[1]);
+      this.fileService.upload(formData)
+        .subscribe(event => {
+          if (event.type === HttpEventType.UploadProgress) {
+            this.progress = Math.round(100 * event.loaded / event.total);
+          } else if (event.type === HttpEventType.Response) {
+            this.message = 'Upload success.';
+            const body = event.body;
+            this.uploadedFilePaths.push({path: body.path});
+            console.log(this.uploadedFilePaths);
+            this.doneCallback();
+          }
+        });
+    }
   }
 
 

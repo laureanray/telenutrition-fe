@@ -239,6 +239,7 @@ export class MedicalRecordsComponent implements OnInit {
     // this.patientService.updateP
 
     this.patient.medicalRecord = medicalRecords;
+    this.patient.roles = undefined;
 
     console.log(medicalRecords);
 
