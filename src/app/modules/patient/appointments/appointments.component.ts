@@ -21,7 +21,7 @@ export class AppointmentsComponent implements AfterViewInit {
   data: Appointment[];
 
   displayedColumns: string[] = [
-    'id',
+    // 'id',
     // 'archived',
     'schedule',
     'appointmentType',
