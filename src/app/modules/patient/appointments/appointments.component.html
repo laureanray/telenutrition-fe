@@ -50,7 +50,7 @@
 
       <ng-container matColumnDef="amountDue">
         <th mat-header-cell *matHeaderCellDef>Amount Due</th>
-        <td mat-cell class="font-sans font-medium text-sm" *matCellDef="let row" >₱{{ row.amountDue }}</td>
+        <td mat-cell class="font-sans font-medium text-sm" *matCellDef="let row" >{{ row.amountDue === 0 ? 'Pending' : '₱' + row.amountDue }}</td>
       </ng-container>
 
       <ng-container matColumnDef="status">
