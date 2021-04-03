@@ -12,7 +12,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class SupportComponent implements OnInit {
   isSubmitting = false;
-  details: string;
+  details = '';
 
   constructor(private supportService: SupportService,
               private authService: AuthenticationService,
