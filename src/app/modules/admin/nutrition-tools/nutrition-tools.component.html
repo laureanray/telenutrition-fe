@@ -6,19 +6,74 @@
   </div>
 </header>
 
+
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
-  <div class="flex flex-row container mx-auto px-4 sm:px-6 lg:px-8 items-start computed-dashboard-div">
-    <div class="col-1 py-6 w-3/4">
-      <header class="bg-white">
-        <div class="flex flex-row w-1/2 justify-around">
-          <h1 class="text-base font-normal leading-tight text-gray-900">
-          </h1>
-          <h1 class="text-base font-normal leading-tight text-gray-900">
-          </h1>
-          <h1 class="text-base font-normal leading-tight text-gray-900">
-          </h1>
-        </div>
-      </header>
-    </div>
+  <div class="flex flex-col">
+    <button type="button"
+            [disabled]="this.isUploading                                                                                                                                                           "
+            mat-raised-button class="mt-4 button mb-8 w-72 flex flex-col" color="accent"
+            (click)="file.click()">{{ this.isUploading ? 'Uploading' : 'Upload File'}}</button>
+    <input type="file" accept=".png,.jpg,.jpeg,.pdf" #file placeholder="Choose file" multiple
+           (change)="fileChange(file.files)"
+           style="display:none;">
+    <mat-form-field appearance="outline" class="font-sans rounded-md w-1/6">
+      <mat-label>Select</mat-label>
+      <mat-select [(value)]="selected" (valueChange)="valueChange($event)" class="font-sans">
+        <mat-option value="archived" class="font-sans">
+          Archived
+        </mat-option>
+        <mat-option value="active" class="font-sans">
+          Active
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
   </div>
+  <h1 class="text-lg font-medium pb-2"> Showing all {{ this.selected.toLowerCase() }} ticket(s)</h1>
+  <div class="table w-full m-0 border p-2 rounded-md font-sans mb-4">
+
+    <table mat-table
+           [dataSource]="data" multiTemplateDataRows
+           class="w-full m-0"
+           matSort matSortActive="updatedAt" matSortDisableClear matSortDirection="desc"
+    >
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell class="font-sans" *matCellDef="let row">{{row.id}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="filename">
+        <th mat-header-cell *matHeaderCellDef>Server Filename</th>
+        <td mat-cell class="font-sans font-bold" *matCellDef="let row" >{{ row.filename }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="hits">
+        <th mat-header-cell *matHeaderCellDef>Hits/Downloads</th>
+        <td mat-cell class="font-sans font-medium" *matCellDef="let row" >  {{ row.hits }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="updatedAt">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+          Updated At
+        </th>
+        <td mat-cell class="font-sans" *matCellDef="let row">{{row.updatedAt}}</td>
+      </ng-container>
+
+      <!--      <ng-container matColumnDef="buttons">-->
+      <!--        <th mat-header-cell *matHeaderCellDef></th>-->
+      <!--        <td mat-cell class="font-sans" *matCellDef="let row">-->
+      <!--          <button [routerLink]="['/admin', 'appointments', 'view', row.id]"-->
+      <!--                  class="font-bold bg-blue-50 p-2 rounded-sm">View-->
+      <!--          </button>-->
+      <!--          &lt;!&ndash;        <button [routerLink]="['/admin', 'account', 'update', this.selected, row.username]"  class="ml-2 font-bold bg-yellow-100 p-2 rounded-sm">Update</button>&ndash;&gt;-->
+      <!--        </td>-->
+      <!--      </ng-container>-->
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator class="font-sans" [length]="resultsLength" [pageSize]="30"></mat-paginator>
+  </div>
+
 </div>

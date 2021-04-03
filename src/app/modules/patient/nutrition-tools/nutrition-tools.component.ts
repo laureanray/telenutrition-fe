@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import {NutritionTool} from '../../../core/models/nutrition-tool';
+import {NutritionToolsService} from '../../../core/services/nutrition-tools.service';
+import {Observable} from 'rxjs';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-nutrition-tools',
@@ -6,8 +11,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nutrition-tools.component.scss']
 })
 export class NutritionToolsComponent implements OnInit {
-
-  constructor() { }
+  nutritionTools: Observable<NutritionTool[]>;
+  environment: any;
+  constructor(private nutritionToolsService: NutritionToolsService) {
+    this.nutritionTools = this.nutritionToolsService.getAllNutritionTools();
+    this.environment = environment;
+  }
 
   ngOnInit(): void {
   }
