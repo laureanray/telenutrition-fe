@@ -28,11 +28,13 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { UpdateAmountModalComponent } from './update-amount-modal/update-amount-modal.component';
 import {MatInputModule} from '@angular/material/input';
+import { NutritionToolsComponent } from './nutrition-tools/nutrition-tools.component';
+import { SupportComponent } from './support/support.component';
 
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  declarations: [AdminComponent, DashboardComponent, AdminNavComponent, AccountManagementComponent, ConfigComponent, SiteSettingsComponent, UsersTableComponent, UsersTableComponent, ViewRndComponent, ViewPatientComponent, ApproveRndModalComponent, AppointmentsComponent, ViewAppointmentComponent, ChangeStatusComponent, AssignRndModalComponent, UpdateAmountModalComponent],
+  declarations: [AdminComponent, DashboardComponent, AdminNavComponent, AccountManagementComponent, ConfigComponent, SiteSettingsComponent, UsersTableComponent, UsersTableComponent, ViewRndComponent, ViewPatientComponent, ApproveRndModalComponent, AppointmentsComponent, ViewAppointmentComponent, ChangeStatusComponent, AssignRndModalComponent, UpdateAmountModalComponent, NutritionToolsComponent, SupportComponent],
   exports: [
     AdminNavComponent
   ],

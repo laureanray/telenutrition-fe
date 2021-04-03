@@ -10,6 +10,8 @@ import {ViewRndComponent} from './view-rnd/view-rnd.component';
 import {ViewPatientComponent} from './view-patient/view-patient.component';
 import {AppointmentsComponent} from './appointments/appointments.component';
 import {ViewAppointmentComponent} from './view-appointment/view-appointment.component';
+import {NutritionToolsComponent} from './nutrition-tools/nutrition-tools.component';
+import {SupportComponent} from './support/support.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -19,6 +21,8 @@ const routes: Routes = [
       { path: 'account', component: AccountManagementComponent, pathMatch: 'full' },
       { path: 'appointments', component: AppointmentsComponent, pathMatch: 'full'},
       { path: 'appointments/view/:id', component: ViewAppointmentComponent, pathMatch: 'full'},
+      { path: 'nutrition-tools', component: NutritionToolsComponent, pathMatch: 'full'},
+      { path: 'support', component: SupportComponent, pathMatch: 'full'},
       { path: 'config', component: ConfigComponent, pathMatch: 'full' },
       { path: 'site', component: SiteSettingsComponent, pathMatch: 'full' },
       { path: 'account/view/rnd/:username', component: ViewRndComponent, pathMatch: 'full'},

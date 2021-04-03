@@ -1,0 +1,94 @@
+<header class="bg-white shadow-sm">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <h1 class="text-2xl font-medium leading-tight text-gray-900">
+      Support
+    </h1>
+  </div>
+</header>
+
+
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
+  <div class="w-full">
+    <mat-form-field appearance="outline" class="font-sans rounded-md">
+      <mat-label>Select</mat-label>
+      <mat-select [(value)]="selected" (valueChange)="valueChange($event)" class="font-sans">
+        <mat-option value="resolved" class="font-sans">
+          Resolved
+        </mat-option>
+        <mat-option value="pending" class="font-sans">
+          Pending
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <h1 class="text-lg font-medium pb-2"> Showing all {{ this.selected.toLowerCase() }} ticket(s)</h1>
+  <div class="table w-full m-0 border p-2 rounded-md font-sans mb-4">
+
+    <table mat-table
+           [dataSource]="data" multiTemplateDataRows
+           class="w-full m-0"
+           matSort matSortActive="updatedAt" matSortDisableClear matSortDirection="desc"
+    >
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>Appointment ID</th>
+        <td mat-cell class="font-sans" *matCellDef="let row">{{row.id}}</td>
+      </ng-container>
+
+<!--      <ng-container matColumnDef="status">-->
+<!--        <th mat-header-cell *matHeaderCellDef>Status</th>-->
+<!--        <td mat-cell class="font-sans font-bold" *matCellDef="let row">{{row.status}}</td>-->
+<!--      </ng-container>-->
+
+
+      <ng-container matColumnDef="resolution">
+        <th mat-header-cell *matHeaderCellDef>Resolution</th>
+        <td mat-cell class="font-sans font-medium" *matCellDef="let row" >{{ row.resolution ? row.resolution : 'Not resolved yet.' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell class="font-sans font-bold" *matCellDef="let row" >{{ row.email }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="details">
+        <th mat-header-cell *matHeaderCellDef>Details</th>
+        <td mat-cell class="font-sans font-medium" *matCellDef="let row" >  {{ row.details }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell class="font-sans" *matCellDef="let row"
+            [ngClass]="{ 'text-green-900 font-medium' : row.status === 'resolved'}">{{ row.status.toUpperCase() }}</td>
+      </ng-container>
+
+<!--      <ng-container matColumnDef="rnd">-->
+<!--        <th mat-header-cell *matHeaderCellDef>Assigned RND</th>-->
+<!--        <td mat-cell class="font-sans font-bold" *matCellDef="let row" >{{ !row.rnd ? 'Pending' : row.rnd.firstName}}</td>-->
+<!--      </ng-container>-->
+
+
+      <ng-container matColumnDef="updatedAt">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header disableClear>
+          Updated At
+        </th>
+        <td mat-cell class="font-sans" *matCellDef="let row">{{row.updatedAt}}</td>
+      </ng-container>
+
+<!--      <ng-container matColumnDef="buttons">-->
+<!--        <th mat-header-cell *matHeaderCellDef></th>-->
+<!--        <td mat-cell class="font-sans" *matCellDef="let row">-->
+<!--          <button [routerLink]="['/admin', 'appointments', 'view', row.id]"-->
+<!--                  class="font-bold bg-blue-50 p-2 rounded-sm">View-->
+<!--          </button>-->
+<!--          &lt;!&ndash;        <button [routerLink]="['/admin', 'account', 'update', this.selected, row.username]"  class="ml-2 font-bold bg-yellow-100 p-2 rounded-sm">Update</button>&ndash;&gt;-->
+<!--        </td>-->
+<!--      </ng-container>-->
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator class="font-sans" [length]="resultsLength" [pageSize]="30"></mat-paginator>
+  </div>
+
+</div>

@@ -8,12 +8,12 @@
       </div>
     </header>
     <div class="flex flex-col py-4">
-      <p class="text-base"> Having trobule? Please provide details of your problem. </p>
+      <p class="text-base"> Having trouble? Please provide details of your problem. </p>
       <mat-form-field appearance="outline" class="mt-2">
-        <mat-label class="font-sans">Query</mat-label>
-        <textarea class="font-sans" rows="8" matInput></textarea>
+        <mat-label class="font-sans">Details of the problem</mat-label>
+        <textarea class="font-sans" rows="8" [(ngModel)]="details" matInput></textarea>
       </mat-form-field>
-      <button type="submit" mat-raised-button color="accent" class="-mt-5 mb-2 text-base"> Submit </button>
+      <button type="submit" mat-raised-button color="accent" [disabled]="isSubmitting" (click)="submit()" class="-mt-5 mb-2 text-base"> {{ this.isSubmitting ? 'Submitting...' : 'Submit' }} </button>
     </div>
   </div>
   <div routerLink="/patient/account-settings"
