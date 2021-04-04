@@ -1,0 +1,8 @@
+<div mat-dialog-content>
+  <h3 class="text-3xl font-medium"> Approve </h3>
+  <p class="text-base font-normal mt-4"> Are you sure you want to approve this RND? </p>
+</div>
+<div mat-dialog-actions class="flex  flex-row justify-items-end">
+  <button mat-raised-button (click)="onNoClick()" color="white" class="mt-4 mb-2 ml-auto">Cancel</button>
+  <button mat-raised-button type="submit" color="primary" class="mt-4 mb-2 ml-2" (click)="resolve()">Yes, mark resolved</button>
+</div>

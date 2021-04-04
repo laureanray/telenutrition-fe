@@ -10,6 +10,9 @@ import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {SupportService} from '../../../core/services/support.service';
 import * as moment from 'moment';
 import {SupportTicket} from '../../../core/models/support-ticket';
+import {MatDialog} from '@angular/material/dialog';
+import {MarkResolvedModalComponent} from '../mark-resolved-modal/mark-resolved-modal.component';
+
 @Component({
   selector: 'app-support',
   templateUrl: './support.component.html',
@@ -34,7 +37,8 @@ export class SupportComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private supportService: SupportService) {
+  constructor(private supportService: SupportService,
+              private dialog: MatDialog) {
     this.moment = moment;
   }
 
@@ -80,5 +84,16 @@ export class SupportComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+  }
+
+  markResolved(id: number): void {
+    const ref = this.dialog.open(MarkResolvedModalComponent, {
+      width: '540px',
+      data: id
+    });
+
+    ref.afterClosed().subscribe(_ => {
+      this.update();
+    });
   }
 }

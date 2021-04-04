@@ -53,7 +53,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
   }
 
   updateMessage(that: any): void {
-    that.messageService.fetchMessages('patient', that.authService.currentUserValue.id, that.selectedRND.id)
+    that.messageService.fetchMessages('patient', that.selectedRND.id, that.authService.currentUserValue.id)
       .subscribe(res => {
         if (res) {
           that.messages = res as Message[];
@@ -89,8 +89,8 @@ export class MessagesComponent implements OnInit, OnDestroy {
     this.isSendingMessage = true;
     const mr = new MessageRequest();
     mr.message = this.message;
-    mr.patientId = this.selectedRND.id;
-    mr.rndId = this.authService.currentUserValue.id;
+    mr.rndId = this.selectedRND.id;
+    mr.patientId = this.authService.currentUserValue.id;
     mr.sender = 'patient';
     this.messageService.sendMessage(mr)
       .subscribe(res => {
