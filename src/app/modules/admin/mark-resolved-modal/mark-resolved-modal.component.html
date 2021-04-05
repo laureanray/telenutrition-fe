@@ -1,8 +1,15 @@
 <div mat-dialog-content>
-  <h3 class="text-3xl font-medium"> Approve </h3>
-  <p class="text-base font-normal mt-4"> Are you sure you want to approve this RND? </p>
+  <h3 class="text-3xl font-medium"> Mark Resolve </h3>
+  <p class="text-base font-normal mt-4"> Please provide the details of the resolution.  </p>
+  <div class="flex flex-row">
+    <mat-form-field appearance="outline" class="w-full mt-1">
+      <mat-label class="font-sans">Resolution</mat-label>
+      <textarea class="font-sans" rows="5" matInput [(ngModel)]="resolution"></textarea>
+    </mat-form-field>
+  </div>
 </div>
+
 <div mat-dialog-actions class="flex  flex-row justify-items-end">
   <button mat-raised-button (click)="onNoClick()" color="white" class="mt-4 mb-2 ml-auto">Cancel</button>
-  <button mat-raised-button type="submit" color="primary" class="mt-4 mb-2 ml-2" (click)="resolve()">Yes, mark resolved</button>
+  <button mat-raised-button type="submit" color="primary" class="mt-4 mb-2 ml-2" [disabled]="resolution.length === 0" (click)="resolve()">Mark resolved</button>
 </div>

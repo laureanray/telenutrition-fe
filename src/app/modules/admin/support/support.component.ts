@@ -28,7 +28,8 @@ export class SupportComponent implements OnInit, AfterViewInit {
     'resolution',
     'email',
     'details',
-    'updatedAt'];
+    'updatedAt',
+    'buttons'];
 
   resultsLength = 0;
   isLoadingResults = true;
@@ -87,6 +88,7 @@ export class SupportComponent implements OnInit, AfterViewInit {
   }
 
   markResolved(id: number): void {
+    console.log(id);
     const ref = this.dialog.open(MarkResolvedModalComponent, {
       width: '540px',
       data: id

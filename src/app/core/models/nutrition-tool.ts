@@ -5,4 +5,6 @@ export class NutritionTool {
   isArchived: boolean;
   createdAt: string;
   updatedAt: string;
+  ageGroup: string;
+  group: string;
 }

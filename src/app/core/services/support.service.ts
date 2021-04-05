@@ -27,6 +27,11 @@ export class SupportService {
       .get(`${environment.apiUrl}/ticket/status/${status}`);
   }
 
+  getTicketById(id: number): Observable<any> {
+    return this.http
+      .get(`${environment.apiUrl}/ticket/${id}`);
+  }
+
   updateTicket(ticket: SupportTicket): Observable<any> {
     return this.http
       .post(`${environment.apiUrl}/ticket/update`, ticket);

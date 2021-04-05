@@ -1,0 +1,24 @@
+<div mat-dialog-content>
+  <h3 class="text-3xl font-medium"> Add Nutrition Tool </h3>
+  <p class="text-base font-normal mt-4"> Please provide the following details </p>
+  <div class="form">
+    <mat-form-field appearance="outline" class="mt-4 w-1/3">
+      <mat-select class="font-sans" formControlName="appointmentType" name="appointmentType"
+                  placeholder="Select Service To Avail">
+        <mat-option class="font-sans" value="nutrition_counseling">
+          Nutrition Counseling
+        </mat-option>
+        <mat-option class="font-sans" value="one_week_cycle_menu">
+          One Week Cycle Menu
+        </mat-option>
+        <mat-option class="font-sans" value="both">
+          Nutrition Counseling & One Week Cycle Menu
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions class="flex  flex-row justify-items-end">
+  <button mat-raised-button (click)="onNoClick()" color="white" class="mt-4 mb-2 ml-auto">Cancel</button>
+  <button mat-raised-button type="submit" color="primary" class="mt-4 mb-2 ml-2" (click)="approve()">Yes, Approve</button>
+</div>

@@ -31,11 +31,12 @@ import {MatInputModule} from '@angular/material/input';
 import { NutritionToolsComponent } from './nutrition-tools/nutrition-tools.component';
 import { SupportComponent } from './support/support.component';
 import { MarkResolvedModalComponent } from './mark-resolved-modal/mark-resolved-modal.component';
+import { AddNutritionToolComponent } from './add-nutrition-tool/add-nutrition-tool.component';
 
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  declarations: [AdminComponent, DashboardComponent, AdminNavComponent, AccountManagementComponent, ConfigComponent, SiteSettingsComponent, UsersTableComponent, UsersTableComponent, ViewRndComponent, ViewPatientComponent, ApproveRndModalComponent, AppointmentsComponent, ViewAppointmentComponent, ChangeStatusComponent, AssignRndModalComponent, UpdateAmountModalComponent, NutritionToolsComponent, SupportComponent, MarkResolvedModalComponent],
+  declarations: [AdminComponent, DashboardComponent, AdminNavComponent, AccountManagementComponent, ConfigComponent, SiteSettingsComponent, UsersTableComponent, UsersTableComponent, ViewRndComponent, ViewPatientComponent, ApproveRndModalComponent, AppointmentsComponent, ViewAppointmentComponent, ChangeStatusComponent, AssignRndModalComponent, UpdateAmountModalComponent, NutritionToolsComponent, SupportComponent, MarkResolvedModalComponent, AddNutritionToolComponent],
   exports: [
     AdminNavComponent
   ],
