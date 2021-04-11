@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import {AuthenticationService} from '../../../core/authentication/authentication.service';
 import {AppointmentService} from '../../../core/services/appointment.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {Patient} from '../../../core/models/patient';
 
 @Component({
   selector: 'app-book-an-appointment',
@@ -20,8 +21,17 @@ export class BookAnAppointmentComponent implements OnInit {
               private appointmentService: AppointmentService,
               private snackBar: MatSnackBar) {
     this.moment = moment;
+    this.patientService.getPatient(this.authService.currentUserValue.username)
+        .subscribe((pt: Patient) => {
+          this.patient = pt;
+          this.formArray.controls[3].patchValue({
+            complaints: pt.medicalRecord?.complaints,
+            currentMedications: pt.medicalRecord?.currentMedications
+          });
+        });
   }
 
+  patient: Patient;
   isLinear = false;
   // @ts-ignore
   formGroup: FormGroup;
@@ -60,7 +70,6 @@ export class BookAnAppointmentComponent implements OnInit {
   selected = '';
   selectedAppointmentType = '';
 
-
   ngOnInit(): void {
     this.formArray = this.formBuilder.array([
       this.formBuilder.group({
@@ -81,6 +90,7 @@ export class BookAnAppointmentComponent implements OnInit {
       })
     ]);
 
+
     this.formGroup = this.formBuilder.group({
       formArray: this.formArray
     });
@@ -89,6 +99,9 @@ export class BookAnAppointmentComponent implements OnInit {
     this.formGroup.valueChanges.subscribe(s => {
       console.log(this.formGroup.valid);
     });
+
+    // console.log();
+
   }
 
   dateFilter = (d: Date | null): boolean => {

@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "build-prod": "ng build --prod",
+    "start": "ng serve ",
+    "build": "ng build && npm run move-static",
+    "build-prod": "ng build --prod && npm run move-static",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "move-static": "cp -a ./node_modules/@pdftron/webviewer/public/. ./dist/public/webviewer"
   },
   "private": true,
   "dependencies": {
@@ -25,6 +26,7 @@
     "@fullcalendar/angular": "^5.5.0",
     "@fullcalendar/daygrid": "^5.5.0",
     "@fullcalendar/interaction": "^5.5.0",
+    "@pdftron/webviewer": "^7.3.0",
     "@stomp/ng2-stompjs": "^8.0.0",
     "autoprefixer": "^10.2.4",
     "jwt-decode": "^3.1.2",

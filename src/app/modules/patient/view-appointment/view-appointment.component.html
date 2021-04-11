@@ -39,6 +39,7 @@
         Amount Due: <span
         class="pl-4 text-gray-900 font-medium"> {{ this.appointment?.amountDue === 0 ? 'TBD' : this.appointment?.amountDue }}</span>
       </p>
+
       <h1 class="text-base font-medium my-4" *ngIf="this.appointment?.proofOfPayments.length > 0">
         Proof of payment
       </h1>

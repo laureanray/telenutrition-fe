@@ -7,7 +7,7 @@
         </h1>
       </div>
     </header>
-    <div class="shadow-sm rounded border mt-4 p-4">
+    <div class="shadow-sm rounded border mt-4 p-4" *ngIf="nutritionTools">
       <a class="flex flex-row p-2 text-base font-medium shadow-sm hover:shadow-lg rounded-md" href="{{ environment.apiRoot + '/api/nt/get/' + nt.id}}"
          *ngFor="let nt of nutritionTools | async">
         <img src="/assets/pdf.png" class="w-12 h-12 mr-4" alt="">

@@ -21,6 +21,7 @@ const routes: Routes = [
       {path: 'dashboard', component: DashboardComponent, pathMatch: 'full'},
       // {path: 'consultation', component: ConsultationComponent, pathMatch: 'full'},
       {path: 'appointments', component: AppointmentsComponent, pathMatch: 'full'},
+      {path: 'appointments/:optional', component: AppointmentsComponent, pathMatch: 'full'},
       { path: 'appointments/view/:id', component: ViewAppointmentComponent, pathMatch: 'full'},
       {path: 'account-settings', component: AccountSettingsComponent, pathMatch: 'full'},
       {path: 'medical-records', component: MedicalRecordsComponent, pathMatch: 'full'},

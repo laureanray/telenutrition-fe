@@ -38,6 +38,7 @@ export class ViewAppointmentComponent implements OnInit, OnDestroy {
     this.appointmentServiceS = this.appointmentService.getAppointmentById(parseInt(this.id, 10))
       .subscribe((appointment: Appointment) => {
         this.appointment = appointment;
+        console.log(this.appointment);
       });
   }
 

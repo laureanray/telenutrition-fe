@@ -1,7 +1,7 @@
 <header class="bg-white shadow-sm">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
     <h1 class="text-2xl font-medium leading-tight text-gray-900">
-      Appointment
+      Appointments
     </h1>
   </div>
 </header>
@@ -9,9 +9,9 @@
 <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-4">
   <button routerLink="/patient/book-an-appointment" mat-raised-button color="accent" class="mb-4">Book an Appointment</button>
   <div class="w-full">
-    <mat-form-field appearance="outline" class="font-sans rounded-md">
+    <mat-form-field appearance="outline" class="font-sans rounded-md text-base">
       <mat-label>Select</mat-label>
-      <mat-select [(value)]="selected" (valueChange)="valueChange($event)" class="font-sans">
+      <mat-select [(value)]="selected" (valueChange)="valueChange($event)" class="text-base font-sans">
         <mat-option value="archived" class="font-sans">
           Archived
         </mat-option>

@@ -29,7 +29,7 @@
         <mat-step formGroupName="1" [stepControl]="formArray.get([1])">
           <ng-template matStepLabel class="font-sans">Select your appointment time</ng-template>
           <p class="text-base pt-4"> Listed time options are based on your selected date. </p>
-          <mat-form-field appearance="outline" class="mt-4 font-sans" >
+          <mat-form-field appearance="outline" class="mt-4 font-sans">
             <mat-label class="font-sans">Appointment Time</mat-label>
             <mat-select formControlName="appointmentTime" name="appointmentTime" class="font-sans">
               <mat-option *ngFor="let time of times" [value]="time.value" class="font-sans">
@@ -44,13 +44,13 @@
         </mat-step>
         <mat-step formGroupName="2" [stepControl]="formArray.get([2])">
           <ng-template matStepLabel>Service to Avail</ng-template>
-<!--          <p class="text-lg font-medium">Price:-->
-<!--              <ng-container [ngSwitch]="selectedAppointmentType">-->
-<!--                <span *ngSwitchCase="'nutrition_counseling'">₱400</span>-->
-<!--                <span *ngSwitchCase="'one_week_cycle_menu'">₱500</span>-->
-<!--                <span *ngSwitchCase="'both'">₱900</span>-->
-<!--              </ng-container>-->
-<!--          </p>-->
+          <!--          <p class="text-lg font-medium">Price:-->
+          <!--              <ng-container [ngSwitch]="selectedAppointmentType">-->
+          <!--                <span *ngSwitchCase="'nutrition_counseling'">₱400</span>-->
+          <!--                <span *ngSwitchCase="'one_week_cycle_menu'">₱500</span>-->
+          <!--                <span *ngSwitchCase="'both'">₱900</span>-->
+          <!--              </ng-container>-->
+          <!--          </p>-->
           <mat-form-field appearance="outline" class="mt-4 w-1/3">
             <mat-select class="font-sans" formControlName="appointmentType" name="appointmentType"
                         placeholder="Select Service To Avail" [(value)]="selectedAppointmentType">
@@ -180,7 +180,8 @@
         </mat-step>
       </mat-vertical-stepper>
     </form>
-    <div class="summary p-6 border rounded shadow-sm hover:shadow-md outline-none cursor-pointer" [routerLink]="'./appointments/view/' + this.resultId" *ngIf="result === 'success'">
+    <div class="summary p-6 border rounded shadow-sm hover:shadow-md outline-none cursor-pointer"
+         [routerLink]="'./appointments/view/' + this.resultId" *ngIf="result === 'success'">
       <h1 class="text-xl font-medium mb-2 pb-2 border-b"> Appointment Summary </h1>
       <p class="text-lg font-medium"> Status: <span> {{ this.appointment.status }} </span></p>
       <p class="text-base font-medium text-gray-500 mt-2"> Appointment Schedule </p>
@@ -189,6 +190,8 @@
       <p class="text-lg font-medium"> {{ this.appointment.paymentMethod.toUpperCase()}}</p>
       <p class="text-base font-medium text-gray-500 mt-2"> Amount Due </p>
       <p class="text-lg font-medium"> {{ this.appointment.amountDue === 0 ? 'TBD' : this.appointment.amountDue }} </p>
+      <p class="text-lg font-medium">
+        Please wait for the total price of your session to reflect in your appointment’s summary page</p>
     </div>
   </div>
   <div routerLink="/patient/account-settings"

@@ -10,6 +10,7 @@ import {merge, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import * as moment from 'moment';
 import {AuthenticationService} from '../../../core/authentication/authentication.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-appointments',
@@ -41,6 +42,7 @@ export class AppointmentsComponent implements AfterViewInit {
 
   constructor(private patientService: PatientService,
               private rndService: RndService,
+              private route: ActivatedRoute,
               private appointmentService: AppointmentService,
               private authService: AuthenticationService) {
     this.moment = moment;
@@ -90,6 +92,14 @@ export class AppointmentsComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    const routeParams = this.route.snapshot.paramMap;
+    // tslint:disable-next-line:radix
+    const optional = routeParams.get('optional');
+    // this.fetchCurrentAppointment(id);
+    if (optional) {
+      this.selected = 'archived';
+    }
+
     this.update();
   }
 
