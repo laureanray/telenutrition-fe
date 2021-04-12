@@ -8,6 +8,7 @@ import {Appointment} from '../../../core/models/appointment';
 import {environment} from 'src/environments/environment';
 import {UpdateAmountModalComponent} from '../../admin/update-amount-modal/update-amount-modal.component';
 import {MatDialog} from '@angular/material/dialog';
+import {MatTabChangeEvent} from '@angular/material/tabs';
 
 @Component({
   selector: 'app-view-patient',
@@ -20,6 +21,7 @@ export class ViewAppointmentComponent implements OnInit, OnDestroy {
   patient: Patient;
   appointment: Appointment;
   environment: any;
+  selectedTabIndex: any;
 
   constructor(private route: ActivatedRoute,
               private patientService: PatientService,
@@ -63,4 +65,7 @@ export class ViewAppointmentComponent implements OnInit, OnDestroy {
     });
   }
 
+  onTabChanged($event: MatTabChangeEvent): void {
+    console.log(this.selectedTabIndex);
+  }
 }

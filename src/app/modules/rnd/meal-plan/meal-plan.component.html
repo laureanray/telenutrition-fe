@@ -1,2 +1,2 @@
-<p>meal-plan works!</p>
+<button mat-raised-button color="accent" (click)="saveChanges()" [disabled]="isSaving">{{ isSaving ? 'Saving... ' : 'Save Changes'}}</button>
 <div #viewer id="viewer" class="h-screen"></div>

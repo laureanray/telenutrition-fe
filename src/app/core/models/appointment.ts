@@ -17,4 +17,5 @@ export class Appointment {
   updatedAt: string;
   appointmentType: string;
   proofOfPayments: ProofOfPayment[];
+  mealPlan: string;
 }

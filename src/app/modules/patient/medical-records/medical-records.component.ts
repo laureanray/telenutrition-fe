@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {AuthenticationService} from '../../../core/authentication/authentication.service';
@@ -111,6 +111,7 @@ export class MedicalRecordsComponent implements OnInit {
 
     console.log(this.medicalRecordsForm.valid, this.medicalRecordsForm.value);
   }
+
 
   fileChange(files: any): void {
     this.isUploading = true;
@@ -264,4 +265,5 @@ export class MedicalRecordsComponent implements OnInit {
         });
     }, 600);
   }
+
 }

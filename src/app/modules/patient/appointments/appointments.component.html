@@ -77,8 +77,13 @@
           <button [routerLink]="['/patient', 'appointments', 'view', row.id]"
                   class="font-bold bg-blue-50 p-2 rounded-sm">View
           </button>
+          <a *ngIf="row.mealPlan" href="{{row.mealPlan}}"
+                  class="font-bold bg-blue-50 p-2 ml-2 rounded-sm">Download Meal Plan
+          </a>
         </td>
       </ng-container>
+
+
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns" class="text-base"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="text-base"></tr>
