@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "move-static": "cp -a ./node_modules/@pdftron/webviewer/public/. ./dist/public/webviewer"
+    "move-static": "cp -a ./node_modules/@pdftron/webviewer/public/. ./dist/aklatan/webviewer"
   },
   "private": true,
   "dependencies": {

@@ -13,7 +13,7 @@
     <a routerLink="/patient/appointments/archived" class="text-base font-medium ml-auto"> See all </a>
   </div>
   <div class="history">
-    <div routerLink="/patient/appointments/view/{{appointment.id}}" *ngFor="let appointment of appointments" class="px-4 py-2 bg-gray-200 shadow-sm rounded-md cursor-pointer hover:shadow-md hover:bg-gray-50 transition-all">
+    <div routerLink="/patient/appointments/view/{{appointment.id}}" *ngFor="let appointment of appointments |slice:0:2 let i=index" class="mt-2 px-4 py-2 bg-gray-200 shadow-sm rounded-md cursor-pointer hover:shadow-md hover:bg-gray-50 transition-all">
       <h1 class="text-md font-medium">
         Consultation
       </h1>

@@ -14,6 +14,8 @@ import {MedicalRecord} from '../../../core/models/medical-record';
 import {FileService} from '../../../core/services/file.service';
 import * as uuid from 'uuid';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialog} from '@angular/material/dialog';
+import {AddNutritionToolComponent} from '../add-nutrition-tool/add-nutrition-tool.component';
 
 @Component({
   selector: 'app-nutrition-tools',
@@ -40,7 +42,8 @@ export class NutritionToolsComponent implements OnInit, AfterViewInit {
 
   constructor(private nutritionToolsService: NutritionToolsService,
               private fileService: FileService,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private dialog: MatDialog) {
     this.moment = moment;
   }
 
@@ -87,50 +90,15 @@ export class NutritionToolsComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
   }
 
-  fileChange(files: FileList): void {
-    this.isUploading = true;
-    if (files.length === 0) {
-      return;
-    }
 
-    const fileToUpload = files[0] as File;
-    const formData = new FormData();
-    const filename = fileToUpload.name.split('.')[0] + '___' + uuid.v4() + '.' + fileToUpload.type.split('/')[1];
-    console.log(filename);
-    formData.append('file', fileToUpload, filename);
 
-    setTimeout(() => {
-      this.fileService.upload(formData)
-        .subscribe(event => {
-          if (event.type === HttpEventType.UploadProgress) {
-            // this.progress = Math.round(100 * event.loaded / event.total);
-          } else if (event.type === HttpEventType.Response) {
-            const body = event.body;
-            this.isUploading = false;
-            const nt = new NutritionTool();
-            nt.filename = filename;
+  addNutritionTool(): void {
+    const dialogRef = this.dialog.open(AddNutritionToolComponent, {
+      width: '520px'
+    });
 
-            this.nutritionToolsService.uploadNewNutritionTool(nt)
-              .subscribe(result => {
-                if (result) {
-                  this.snackBar.open('Success!', null, {
-                    duration: 2000
-                  });
-
-                  this.update();
-                }
-              }, error => {
-                this.snackBar.open('Unexpected error occurred!', null, {
-                  duration: 2000
-                });
-              });
-          }
-        }, error => {
-          this.isUploading = false;
-          this.snackBar.open('Unexpected error occurred!', null, {
-            duration: 2000
-          });
-        });
-    }, 1000);
+    dialogRef.afterClosed().subscribe(() => {
+      this.update();
+    });
   }
 }
