@@ -69,7 +69,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
     const that = this;
     this.intervalRef = setInterval(() => {
       that.updateMessage(that);
-      that.scrollToBottom();
+      // that.scrollToBottom();
     }, 500);
   }
 

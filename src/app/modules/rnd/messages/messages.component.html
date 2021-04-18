@@ -14,7 +14,7 @@
              (click)="selectPatient(appointment.patient)">
           <div class="patients flex flex-row  ">
             <div class="row flex flex-col justify-center">
-              <img src="{{appointment.patient.profileImageURL}}" alt=""
+              <img src="{{appointment.patient.profileImageURL ? appointment.patient.profileImageURL : 'assets/default.png'}}" alt=""
                    class="w-14 h-14 border rounded-full object-cover">
             </div>
             <div class="texts flex flex-col align-middle justify-center mx-4">

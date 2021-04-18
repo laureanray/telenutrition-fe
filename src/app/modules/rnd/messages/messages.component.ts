@@ -8,6 +8,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {Message} from '../../../core/models/message';
 import {MessageRequest} from '../../../core/models/message-request';
 import * as moment from 'moment';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-messages',
@@ -23,16 +24,28 @@ export class MessagesComponent implements OnInit, OnDestroy {
   isSendingMessage = false;
   intervalRef: any;
   moment: any;
+
   constructor(private rndService: RndService,
               private authService: AuthenticationService,
               private messageService: MessageService,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private route: ActivatedRoute) {
     this.moment = moment;
     this.rndService.getRND(this.authService.currentUserValue.username)
       .subscribe(res => {
         if (res) {
           this.appointments = res.appointments;
           this.scrollToBottom();
+
+          const routeParams = this.route.snapshot.paramMap;
+          const id = parseInt(routeParams.get('id'), 10);
+
+          if (id) {
+            const appointment = this.appointments.filter(a => {
+              return a.id === id;
+            })[0] as Appointment;
+            this.selectPatient(appointment.patient);
+          }
         }
       });
   }
@@ -49,7 +62,13 @@ export class MessagesComponent implements OnInit, OnDestroy {
     that.messageService.fetchMessages('rnd', that.authService.currentUserValue.id, that.selectedPatient.id)
       .subscribe(res => {
         if (res) {
-          that.messages = res as Message[];
+          if (!that.messages) {
+            that.messages = res as Message[];
+          } else if (that.messages.length !== res.length) {
+            that.messages = res as Message[];
+          } else {
+            console.log('no new');
+          }
         }
       }, error => {
         that.snackBar.open('Error', undefined, {
@@ -62,11 +81,11 @@ export class MessagesComponent implements OnInit, OnDestroy {
     const that = this;
     this.intervalRef = setInterval(() => {
       that.updateMessage(that);
-      that.scrollToBottom();
     }, 500);
   }
 
   ngOnInit(): void {
+
   }
 
   selectPatient(patient: Patient): void {

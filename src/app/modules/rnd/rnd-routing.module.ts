@@ -20,6 +20,7 @@ const routes: Routes = [
       {path: 'account-settings', component: AccountSettingsComponent, pathMatch: 'full'},
       {path: 'appointments', component: AppointmentsComponent, pathMatch: 'full' },
       {path: 'messages', component: MessagesComponent, pathMatch: 'full' },
+      {path: 'messages/:id', component: MessagesComponent, pathMatch: 'full'},
       {path: 'appointment/:id', component: AppointmentComponent, pathMatch: 'full'},
       {path: 'view-appointment/:id', component: ViewAppointmentComponent, pathMatch: 'full'},
       {path: 'patients', component: PatientsComponent, pathMatch: 'full'},

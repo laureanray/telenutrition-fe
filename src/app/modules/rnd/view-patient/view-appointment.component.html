@@ -47,7 +47,7 @@
           <button routerLink="login" mat-raised-button *ngIf="this.appointment?.status !== 'PAID'" color="white"
                   (click)="updateAmount()">Update Amount Due
           </button>
-          <button routerLink="login" mat-raised-button color="accent">Send Message</button>
+          <button [routerLink]="'/rnd/messages/' + this.appointment.id" mat-raised-button color="accent" >Send Message</button>
         </div>
       </div>
     </div>
