@@ -31,7 +31,8 @@ import {MatTabsModule} from '@angular/material/tabs';
 import { MessagesComponent } from './messages/messages.component';
 import { PdfAnnotatorComponent } from './pdf-annotator/pdf-annotator.component';
 import { MealPlanComponent } from './meal-plan/meal-plan.component';
-import { PatientComponent } from './patient/patient.component'; // a plugin
+import { PatientComponent } from './patient/patient.component';
+import { SupportComponent } from './support/support.component'; // a plugin
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -39,7 +40,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
 ]);
 
 @NgModule({
-  declarations: [RndComponent, RndNavComponent, DashboardComponent, UserCardComponent, AccountSettingsComponent, PatientsComponent, CalendarComponent, AppointmentsComponent, AppointmentComponent, ViewAppointmentComponent, MessagesComponent, PdfAnnotatorComponent, MealPlanComponent, PatientComponent],
+  declarations: [RndComponent, RndNavComponent, DashboardComponent, UserCardComponent, AccountSettingsComponent, PatientsComponent, CalendarComponent, AppointmentsComponent, AppointmentComponent, ViewAppointmentComponent, MessagesComponent, PdfAnnotatorComponent, MealPlanComponent, PatientComponent, SupportComponent],
     imports: [
         CommonModule,
         RndRoutingModule,

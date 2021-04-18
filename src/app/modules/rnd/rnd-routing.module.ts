@@ -10,6 +10,7 @@ import {AppointmentsComponent} from './appointments/appointments.component';
 import {AppointmentComponent} from './appointment/appointment.component';
 import {ViewAppointmentComponent} from './view-patient/view-appointment.component';
 import {MessagesComponent} from './messages/messages.component';
+import {SupportComponent} from './support/support.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
@@ -25,7 +26,8 @@ const routes: Routes = [
       {path: 'appointments/:optional', component: AppointmentsComponent, pathMatch: 'full'},
       {path: 'view-appointment/:id', component: ViewAppointmentComponent, pathMatch: 'full'},
       {path: 'patients', component: PatientsComponent, pathMatch: 'full'},
-      {path: 'calendar', component: CalendarComponent, pathMatch: 'full'}
+      {path: 'calendar', component: CalendarComponent, pathMatch: 'full'},
+      {path: 'support', component: SupportComponent, pathMatch: 'full'}
     ]
   }
 ];

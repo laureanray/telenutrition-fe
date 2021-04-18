@@ -47,7 +47,7 @@
           <button routerLink="login" mat-raised-button *ngIf="this.appointment?.status !== 'PAID'" color="white"
                   (click)="updateAmount()">Update Amount Due
           </button>
-          <button [routerLink]="'/rnd/messages/' + this.appointment.id" mat-raised-button color="accent" >Send Message</button>
+          <button [routerLink]="'/rnd/messages/' + this.appointment?.id" mat-raised-button color="accent" >Send Message</button>
         </div>
       </div>
     </div>
@@ -80,9 +80,9 @@
           <div class="flex flex-col">
             <mat-form-field appearance="outline">
               <mat-label class="font-sans">Notes</mat-label>
-              <textarea class="font-sans outline:none" rows="8" matInput></textarea>
+              <textarea class="font-sans outline:none" rows="8" matInput [(ngModel)]="notes"></textarea>
             </mat-form-field>
-            <button routerLink="login" mat-raised-button color="accent">Save</button>
+            <button  mat-raised-button color="accent" [disabled]="this.notes?.length < 1" (click)="saveNotes()">{{ isSavingNotes ? 'Saving' : 'Save' }}</button>
           </div>
         </mat-tab>
         <mat-tab class="font-sans text-base" label="Meal Plan">

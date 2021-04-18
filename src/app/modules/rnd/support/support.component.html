@@ -1,0 +1,24 @@
+<div class="flex flex-row container mx-auto px-4 sm:px-6 lg:px-8 items-start computed-dashboard-div">
+  <div class="col-1 py-6 w-3/4">
+    <header class="bg-white">
+      <div>
+        <h1 class="text-2xl font-medium leading-tight text-gray-900">
+          Support
+        </h1>
+      </div>
+    </header>
+    <div class="flex flex-col py-4">
+      <p class="text-base"> Having trouble? Please provide details of your problem. </p>
+      <p class="text-sm text-gray-600"> Please check your email for updates regarding your problem. If you can't find it, please check in your spam folder. </p>
+      <mat-form-field appearance="outline" class="mt-2">
+        <mat-label class="font-sans">Details of the problem</mat-label>
+        <textarea class="font-sans" rows="8" [(ngModel)]="details" matInput></textarea>
+      </mat-form-field>
+      <button type="submit" mat-raised-button color="accent" [disabled]="isSubmitting || details?.length === 0" (click)="submit()" class="-mt-5 mb-2 text-base"> {{ this.isSubmitting ? 'Submitting...' : 'Submit' }} </button>
+    </div>
+  </div>
+  <div routerLink="/patient/account-settings"
+       class="col-2 w-1/4 p-6 border rounded shadow-sm m-6 cursor-pointer hover:shadow-md outline-none">
+    <app-user-card></app-user-card>
+  </div>
+</div>

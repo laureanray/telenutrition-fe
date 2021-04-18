@@ -18,4 +18,5 @@ export class Appointment {
   appointmentType: string;
   proofOfPayments: ProofOfPayment[];
   mealPlan: string;
+  notes: string;
 }

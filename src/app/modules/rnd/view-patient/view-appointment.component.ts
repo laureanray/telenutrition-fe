@@ -9,6 +9,7 @@ import {environment} from 'src/environments/environment';
 import {UpdateAmountModalComponent} from '../../admin/update-amount-modal/update-amount-modal.component';
 import {MatDialog} from '@angular/material/dialog';
 import {MatTabChangeEvent} from '@angular/material/tabs';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-view-patient',
@@ -22,11 +23,14 @@ export class ViewAppointmentComponent implements OnInit, OnDestroy {
   appointment: Appointment;
   environment: any;
   selectedTabIndex: any;
+  notes: string;
+  isSavingNotes = false;
 
   constructor(private route: ActivatedRoute,
               private patientService: PatientService,
               private appointmentService: AppointmentService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private snackBar: MatSnackBar) {
     this.environment = environment;
   }
 
@@ -40,6 +44,7 @@ export class ViewAppointmentComponent implements OnInit, OnDestroy {
     this.appointmentServiceS = this.appointmentService.getAppointmentById(parseInt(this.id, 10))
       .subscribe((appointment: Appointment) => {
         this.appointment = appointment;
+        this.notes = this.appointment.notes;
         console.log(this.appointment);
       });
   }
@@ -67,5 +72,26 @@ export class ViewAppointmentComponent implements OnInit, OnDestroy {
 
   onTabChanged($event: MatTabChangeEvent): void {
     console.log(this.selectedTabIndex);
+  }
+
+  saveNotes(): void {
+      this.isSavingNotes = true;
+      this.appointment.notes = this.notes;
+      this.appointment.patient.roles = undefined;
+      this.appointmentService.updateAppointment(this.appointment)
+        .subscribe(res => {
+          if (res) {
+            this.fetchCurrentAppointment(this.appointment.id);
+            this.snackBar.open('Note saved', undefined, {
+              duration: 3000
+            });
+            this.isSavingNotes = false;
+          }
+        }, error => {
+          this.snackBar.open('Unexpected Error Ocurred!', undefined, {
+            duration: 3000
+          });
+          this.isSavingNotes = false;
+        });
   }
 }
