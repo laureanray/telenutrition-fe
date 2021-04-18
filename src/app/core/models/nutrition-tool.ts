@@ -6,5 +6,5 @@ export class NutritionTool {
   createdAt: string;
   updatedAt: string;
   ageGroup: string;
-  group: string;
+  folder: string;
 }

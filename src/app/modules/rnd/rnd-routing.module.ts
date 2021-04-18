@@ -11,6 +11,7 @@ import {AppointmentComponent} from './appointment/appointment.component';
 import {ViewAppointmentComponent} from './view-patient/view-appointment.component';
 import {MessagesComponent} from './messages/messages.component';
 import {SupportComponent} from './support/support.component';
+import {NutritionToolsComponent} from './nutrition-tools/nutrition-tools.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'dashboard', pathMatch: 'full'},
@@ -27,7 +28,8 @@ const routes: Routes = [
       {path: 'view-appointment/:id', component: ViewAppointmentComponent, pathMatch: 'full'},
       {path: 'patients', component: PatientsComponent, pathMatch: 'full'},
       {path: 'calendar', component: CalendarComponent, pathMatch: 'full'},
-      {path: 'support', component: SupportComponent, pathMatch: 'full'}
+      {path: 'support', component: SupportComponent, pathMatch: 'full'},
+      {path: 'nutrition-tools', component: NutritionToolsComponent, pathMatch: 'full'}
     ]
   }
 ];

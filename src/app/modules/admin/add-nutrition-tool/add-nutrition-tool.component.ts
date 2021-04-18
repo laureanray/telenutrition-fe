@@ -6,6 +6,8 @@ import {NutritionTool} from '../../../core/models/nutrition-tool';
 import {FileService} from '../../../core/services/file.service';
 import * as uuid from 'uuid';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+
 @Component({
   selector: 'app-add-nutrition-tool',
   templateUrl: './add-nutrition-tool.component.html',
@@ -15,12 +17,20 @@ export class AddNutritionToolComponent implements OnInit {
   isUploading = false;
   ageGroup: any;
   group: any;
-
+  nutritionToolsForm: FormGroup;
+  isAdding = false;
 
   constructor(private matDialogRef: MatDialogRef<AddNutritionToolComponent>,
               private nutritionToolsService: NutritionToolsService,
               private fileService: FileService,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private fb: FormBuilder) {
+
+    this.nutritionToolsForm = this.fb.group({
+      filename: ['', Validators.required],
+      ageGroup: ['', Validators.required],
+      group: ['', Validators.required]
+    });
   }
 
   ngOnInit(): void {
@@ -50,21 +60,9 @@ export class AddNutritionToolComponent implements OnInit {
           } else if (event.type === HttpEventType.Response) {
             const body = event.body;
             this.isUploading = false;
-            const nt = new NutritionTool();
-            nt.filename = filename;
-
-            this.nutritionToolsService.uploadNewNutritionTool(nt)
-              .subscribe(result => {
-                if (result) {
-                  this.snackBar.open('Success!', null, {
-                    duration: 2000
-                  });
-                }
-              }, error => {
-                this.snackBar.open('Unexpected error occurred!', null, {
-                  duration: 2000
-                });
-              });
+            this.nutritionToolsForm.patchValue({
+              filename
+            });
           }
         }, error => {
           this.isUploading = false;
@@ -76,6 +74,31 @@ export class AddNutritionToolComponent implements OnInit {
   }
 
   add(): void {
+    this.isAdding = true;
 
+    const nt = {
+      filename: this.nutritionToolsForm.controls.filename.value,
+      ageGroup: this.nutritionToolsForm.controls.ageGroup.value.toUpperCase(),
+      folder: this.nutritionToolsForm.controls.group.value.toUpperCase()
+    } as NutritionTool;
+
+    this.nutritionToolsService.uploadNewNutritionTool(nt)
+      .subscribe(result => {
+        if (result) {
+          this.snackBar.open('Success!', null, {
+            duration: 2000
+          });
+
+          this.isAdding = false;
+          this.matDialogRef.close();
+        }
+      }, error => {
+        this.snackBar.open('Unexpected error occurred!', null, {
+          duration: 2000
+        });
+        this.isAdding = false;
+        this.matDialogRef.close();
+      });
   }
+
 }

@@ -9,7 +9,7 @@
     </header>
     <div class="shadow-sm rounded border mt-4 p-4" *ngIf="nutritionTools" [hidden]="showAgeGroup">
       <div class="flex flex-row p-2 text-base font-medium shadow-sm hover:shadow-lg rounded-md cursor-pointer"
-         *ngFor="let nt of nts | keyvalue" (click)="showAgeGroupComp(nt.value)">
+           *ngFor="let nt of nts | keyvalue" (click)="showAgeGroupComp(nt.value)">
         <img src="/assets/folder.png" class="w-12 h-12 mr-4" alt="">
         <p class="text-sm align-middle justify-self-center self-center font-medium text-gray-700 pt-2">
           {{ nt.key }}
@@ -20,7 +20,7 @@
     <div *ngIf="showAgeGroup">
       <button mat-raised-button color="accent" class="mb-6 mt-3" (click)="back()" > Back </button>
       <a class="flex flex-row p-2 text-base font-medium shadow-sm hover:shadow-lg rounded-md cursor-pointer"  href="{{ environment.apiRoot + '/api/nt/get/' + nt.id}}"
-           *ngFor="let nt of currentFolder" >
+         *ngFor="let nt of currentFolder" >
         <img src="/assets/pdf.png" class="w-12 h-12 mr-4" alt="">
         <p class="text-sm align-middle justify-self-center self-center font-medium text-gray-700 pt-2">
           {{ nt.filename.split('___')[0] }}

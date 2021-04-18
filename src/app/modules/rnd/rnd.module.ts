@@ -32,7 +32,8 @@ import { MessagesComponent } from './messages/messages.component';
 import { PdfAnnotatorComponent } from './pdf-annotator/pdf-annotator.component';
 import { MealPlanComponent } from './meal-plan/meal-plan.component';
 import { PatientComponent } from './patient/patient.component';
-import { SupportComponent } from './support/support.component'; // a plugin
+import { SupportComponent } from './support/support.component';
+import { NutritionToolsComponent } from './nutrition-tools/nutrition-tools.component'; // a plugin
 
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -40,7 +41,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
 ]);
 
 @NgModule({
-  declarations: [RndComponent, RndNavComponent, DashboardComponent, UserCardComponent, AccountSettingsComponent, PatientsComponent, CalendarComponent, AppointmentsComponent, AppointmentComponent, ViewAppointmentComponent, MessagesComponent, PdfAnnotatorComponent, MealPlanComponent, PatientComponent, SupportComponent],
+  declarations: [RndComponent, RndNavComponent, DashboardComponent, UserCardComponent, AccountSettingsComponent, PatientsComponent, CalendarComponent, AppointmentsComponent, AppointmentComponent, ViewAppointmentComponent, MessagesComponent, PdfAnnotatorComponent, MealPlanComponent, PatientComponent, SupportComponent, NutritionToolsComponent],
     imports: [
         CommonModule,
         RndRoutingModule,
