@@ -66,7 +66,8 @@ export class AccountSettingsComponent implements OnInit, OnDestroy {
           // this.uploadedFilePath = body.dbPath;
           // console.log(body);
           this.patient.profileImageURL = `${environment.apiUrl}/file/files/${body.path}`;
-          console.log(this.patient);
+          this.patient.roles = undefined;
+          this.patient.appointments = undefined;
           this.patientService.updatePhoto(this.patient).subscribe(result => {
             console.log(result);
             if (result) {

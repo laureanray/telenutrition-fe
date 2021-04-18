@@ -4,14 +4,15 @@
 <div class="flex flex-row py-4 justify-around">
 </div>
 <div class="flex flex-row py-4">
-  <h1 class="text-base font-bold text-gray-700"> last Sessions </h1>
-  <a href="" class="text-base font-medium ml-auto"> See all </a>
+  <h1 class="text-base font-bold text-gray-700"> History </h1>
+  <a routerLink="/rnd/appointments/archived" class="text-base font-medium ml-auto"> See all </a>
 </div>
 <div class="history">
-  <div class="px-4 py-2 bg-gray-200 shadow-sm rounded-md cursor-pointer hover:shadow-md hover:bg-gray-50 transition-all">
+  <div routerLink="/rnd/appointments/view/{{appointment.id}}" *ngFor="let appointment of appointments |slice:0:2 let i=index" class="mt-2 px-4 py-2 bg-gray-200 shadow-sm rounded-md cursor-pointer hover:shadow-md hover:bg-gray-50 transition-all">
     <h1 class="text-md font-medium">
       Consultation
     </h1>
-    <p> 01/01/2020</p>
+    <p class="text-base">{{ appointment.appointmentType }}</p>
+    <p class="text-sm text-gray-400">{{ this.moment(appointment.schedule).fromNow() }}</p>
   </div>
 </div>

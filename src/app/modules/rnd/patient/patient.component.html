@@ -1,0 +1,6 @@
+  <img src="{{this.patient.profileImageURL ? this.patient.profileImageURL : '/assets/default.png'}}" alt="" class="rounded-full object-cover w-24 h-24 border-2">
+  <div class="info px-4">
+    <h1 class="text-lg font-medium"> {{ this.patient.firstName }} {{ this.patient.lastName }}</h1>
+    <p class="text-base font-normal"> Sex: {{ this.patient.medicalRecord?.sex ? this.patient.medicalRecord?.sex : 'Not set' }} </p>
+    <p class="text-base font-normal"> Age: {{ this.patient.medicalRecord?.age ? this.patient.medicalRecord?.age : 'Not set' }}</p>
+  </div>

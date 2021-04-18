@@ -57,8 +57,9 @@ export class AccountSettingsComponent implements OnInit {
           const body = event.body;
           // this.uploadedFilePath = body.dbPath;
           // console.log(body);
+
           this.rnd.profileImageURL = `${environment.apiUrl}/file/files/${body.path}`;
-          console.log(this.rnd);
+          this.rnd.appointments = undefined;
           this.rndService.updatePhoto(this.rnd).subscribe(result => {
             console.log(result);
             if (result) {

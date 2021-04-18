@@ -9,6 +9,7 @@ import {AuthenticationService} from '../../../core/authentication/authentication
 import {merge, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import * as moment from 'moment';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-appointments',
@@ -41,9 +42,11 @@ export class AppointmentsComponent implements AfterViewInit {
   constructor(private patientService: PatientService,
               private rndService: RndService,
               private appointmentService: AppointmentService,
-              private authService: AuthenticationService) {
+              private authService: AuthenticationService,
+              private route: ActivatedRoute) {
     this.moment = moment;
   }
+
 
   update(): void {
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
@@ -89,6 +92,14 @@ export class AppointmentsComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    const routeParams = this.route.snapshot.paramMap;
+    // tslint:disable-next-line:radix
+    const optional = routeParams.get('optional');
+    // this.fetchCurrentAppointment(id);
+    if (optional) {
+      this.selected = 'archived';
+    }
+
     this.update();
   }
 

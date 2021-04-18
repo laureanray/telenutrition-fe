@@ -22,6 +22,7 @@ const routes: Routes = [
       {path: 'messages', component: MessagesComponent, pathMatch: 'full' },
       {path: 'messages/:id', component: MessagesComponent, pathMatch: 'full'},
       {path: 'appointment/:id', component: AppointmentComponent, pathMatch: 'full'},
+      {path: 'appointments/:optional', component: AppointmentsComponent, pathMatch: 'full'},
       {path: 'view-appointment/:id', component: ViewAppointmentComponent, pathMatch: 'full'},
       {path: 'patients', component: PatientsComponent, pathMatch: 'full'},
       {path: 'calendar', component: CalendarComponent, pathMatch: 'full'}

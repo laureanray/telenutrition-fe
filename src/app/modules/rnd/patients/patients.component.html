@@ -6,22 +6,15 @@
           Patients
         </h1>
       </div>
-      <mat-form-field appearance="outline" class="mt-8 pb-0">
+      <mat-form-field appearance="outline" class="mt-8 pb-0" >
         <mat-label class="font-sans">Search</mat-label>
         <input type="text" matInput placeholder="Search" class="pb-0 font-sans" autocomplete="off"
-               spellcheck="false" required>
+               spellcheck="false" required (keyup)="update()" [(ngModel)]="searchString">
       </mat-form-field>
     </header>
     <div class="flex flex-col">
-      <div class="grid grid-cols-2 gap-4 mt-2 h-0">
-        <div class="patient bg-gray-100 rounded-md border p-4 flex flex-row hover:shadow-lg cursor-pointer">
-          <img src="assets/default.png" alt="" class="rounded-full object-cover w-24 h-24 border-2">
-          <div class="info px-4">
-            <h1 class="text-lg font-medium"> Patient Name </h1>
-            <p class="text-base font-normal"> Sex: M </p>
-            <p class="text-base font-normal"> Age: 2</p>
-          </div>
-        </div>
+      <div class="grid grid-cols-2 gap-4 mt-2 h-0"  *ngIf="patientsResult?.length > 0" >
+          <app-patient class="patient bg-gray-100 rounded-md border p-4 flex flex-row hover:shadow-lg cursor-pointer" [patient]="patient" *ngFor="let patient of patientsResult"></app-patient>
       </div>
     </div>
   </div>
