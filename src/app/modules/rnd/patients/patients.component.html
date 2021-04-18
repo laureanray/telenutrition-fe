@@ -8,13 +8,42 @@
       </div>
       <mat-form-field appearance="outline" class="mt-8 pb-0" >
         <mat-label class="font-sans">Search</mat-label>
-        <input type="text" matInput placeholder="Search" class="pb-0 font-sans" autocomplete="off"
+        <input  autofocus="autofocus" type="text" matInput placeholder="Search" class="pb-0 font-sans" autocomplete="off"
                spellcheck="false" required (keyup)="update()" [(ngModel)]="searchString">
       </mat-form-field>
     </header>
     <div class="flex flex-col">
-      <div class="grid grid-cols-2 gap-4 mt-2 h-0"  *ngIf="patientsResult?.length > 0" >
-          <app-patient class="patient bg-gray-100 rounded-md border p-4 flex flex-row hover:shadow-lg cursor-pointer" [patient]="patient" *ngFor="let patient of patientsResult"></app-patient>
+      <div class="grid grid-cols-2 gap-4 mt-2 h-0"  *ngIf="patientsResult?.length > 0 && this.isShowingPatientDetails === false">
+          <app-patient class="patient bg-gray-100 rounded-md border p-4 flex flex-row hover:shadow-lg cursor-pointer" [patient]="patient" *ngFor="let patient of patientsResult" (click)="showPatientDetails(patient)"></app-patient>
+      </div>
+
+      <div class="patient-details" *ngIf="isShowingPatientDetails">
+        <button mat-raised-button color="accent" class="mb-6 mt-3" (click)="back()" > Back </button>
+        <h1 class="text-md font-medium"> Medical Records </h1>
+        <p class="text-base"> Age: {{ this.patientSelected.medicalRecord?.age }} </p>
+        <p class="text-base"> Birthday: {{ this.patientSelected.medicalRecord?.birthday }} </p>
+        <p class="text-base"> Religion: {{ this.patientSelected.medicalRecord?.religion }} </p>
+        <p class="text-base"> Sex {{ this.patientSelected.medicalRecord?.sex }} </p>
+        <p class="text-base"> Height {{ this.patientSelected.medicalRecord?.height }} </p>
+        <p class="text-base"> Weight {{ this.patientSelected.medicalRecord?.weight }} </p>
+        <p class="text-base"> BMI {{ this.patientSelected.medicalRecord?.bmi }} </p>
+        <p class="text-base"> Biochemical Results: <a class="font-bold" href="{{ this.patientSelected.medicalRecord?.biochemicalResults }}"> Download </a> </p>
+        <p class="text-base"> Complains: </p>
+        <pre>
+          {{ this.patientSelected.medicalRecord?.complaints }}
+        </pre>
+        <p class="text-base"> Current Medications: </p>
+        <pre>
+          {{ this.patientSelected.medicalRecord?.currentMedications }}
+        </pre>
+        <h1 class="text-md font-medium" *ngIf="this.archivedAppointments.length > 0"> History </h1>
+        <div routerLink="/rnd/appointments/view/{{appointment.id}}" *ngFor="let appointment of archivedAppointments |slice:0:2 let i=index" class="mt-2 px-4 py-2 bg-gray-200 shadow-sm rounded-md cursor-pointer hover:shadow-md hover:bg-gray-50 transition-all">
+          <h1 class="text-md font-medium">
+            Consultation
+          </h1>
+          <p class="text-base">{{ appointment.appointmentType }}</p>
+          <p class="text-sm text-gray-400">{{ this.moment(appointment.schedule).fromNow() }}</p>
+        </div>
       </div>
     </div>
   </div>

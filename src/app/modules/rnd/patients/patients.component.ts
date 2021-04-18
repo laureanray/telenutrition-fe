@@ -3,6 +3,7 @@ import {AuthenticationService} from '../../../core/authentication/authentication
 import {AppointmentService} from '../../../core/services/appointment.service';
 import {Appointment} from '../../../core/models/appointment';
 import {Patient} from '../../../core/models/patient';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-patients',
@@ -11,9 +12,14 @@ import {Patient} from '../../../core/models/patient';
 })
 export class PatientsComponent implements OnInit {
   appointments: Appointment[];
+  archivedAppointments: Appointment[];
   searchString: any;
-  patients: Patient[];
+  patients: any[];
   patientsResult: Patient[];
+  isShowingPatientDetails = false;
+  JSON = JSON;
+  patientSelected: Patient;
+  moment = moment;
 
   constructor(private authService: AuthenticationService,
               private appointmentService: AppointmentService) {
@@ -22,8 +28,20 @@ export class PatientsComponent implements OnInit {
         if (res) {
           this.appointments = res;
           this.patients = this.appointments.map(a => a.patient);
+          this.patients = this.patients.map(a => JSON.stringify(a));
+          this.patients = [...new Set(this.patients)];
+          this.patients = this.patients.map(a => JSON.parse(a));
+          this.appointmentService.getArchivedAppointmentsByRND(this.authService.currentUserValue.id)
+            .subscribe(res1 => {
+              if (res1) {
+                this.archivedAppointments = res1;
+                this.patients.concat(this.archivedAppointments.map(q => q.patient));
+              }
+            });
         }
       });
+
+
   }
 
   ngOnInit(): void {
@@ -34,8 +52,18 @@ export class PatientsComponent implements OnInit {
     if (this.searchString) {
       this.patientsResult = this.patients.filter(p => {
         console.log(p.firstName, this.searchString);
-        return p.firstName.includes(this.searchString);
+        return p.firstName.toUpperCase().includes(this.searchString.toUpperCase());
       });
     }
+  }
+
+  showPatientDetails(patient: Patient): void {
+    this.isShowingPatientDetails = true;
+    this.patientSelected = patient;
+  }
+
+  back(): void {
+    this.isShowingPatientDetails = false;
+    this.patientSelected = undefined;
   }
 }

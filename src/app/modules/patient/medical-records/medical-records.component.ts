@@ -241,6 +241,7 @@ export class MedicalRecordsComponent implements OnInit {
 
     this.patient.medicalRecord = medicalRecords;
     this.patient.roles = undefined;
+    this.patient.appointments = undefined;
 
     console.log(medicalRecords);
 
