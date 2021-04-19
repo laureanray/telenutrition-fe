@@ -58,17 +58,13 @@
         </th>
         <td mat-cell class="font-sans" *matCellDef="let row">{{row.updatedAt}}</td>
       </ng-container>
-
-      <!--      <ng-container matColumnDef="buttons">-->
-      <!--        <th mat-header-cell *matHeaderCellDef></th>-->
-      <!--        <td mat-cell class="font-sans" *matCellDef="let row">-->
-      <!--          <button [routerLink]="['/admin', 'appointments', 'view', row.id]"-->
-      <!--                  class="font-bold bg-blue-50 p-2 rounded-sm">View-->
-      <!--          </button>-->
-      <!--          &lt;!&ndash;        <button [routerLink]="['/admin', 'account', 'update', this.selected, row.username]"  class="ml-2 font-bold bg-yellow-100 p-2 rounded-sm">Update</button>&ndash;&gt;-->
-      <!--        </td>-->
-      <!--      </ng-container>-->
-
+            <ng-container matColumnDef="buttons">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell class="font-sans" *matCellDef="let row">
+                <button class="font-bold bg-blue-50 p-2 rounded-sm" (click)="archive(row.id)">Delete
+                </button>
+              </td>
+            </ng-container>
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>

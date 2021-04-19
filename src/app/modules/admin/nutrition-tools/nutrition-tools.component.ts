@@ -31,7 +31,9 @@ export class NutritionToolsComponent implements OnInit, AfterViewInit {
     'id',
     'filename',
     'hits',
-    'updatedAt'];
+    'updatedAt',
+    'buttons'
+  ];
 
   resultsLength = 0;
   isLoadingResults = true;
@@ -91,7 +93,6 @@ export class NutritionToolsComponent implements OnInit, AfterViewInit {
   }
 
 
-
   addNutritionTool(): void {
     const dialogRef = this.dialog.open(AddNutritionToolComponent, {
       width: '520px'
@@ -100,5 +101,21 @@ export class NutritionToolsComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(() => {
       this.update();
     });
+  }
+
+  archive(id): void {
+      this.nutritionToolsService.archive(id)
+        .subscribe(res => {
+          if (res) {
+            this.update();
+            this.snackBar.open('Deleted', undefined, {
+              duration: 3000
+            });
+          }
+        }, error => {
+          this.snackBar.open('Unexpected Error Occurred', undefined, {
+            duration: 3000
+          });
+        });
   }
 }

@@ -23,4 +23,7 @@ export class NutritionToolsService {
   getArchivedNutritionTools(): Observable<any> {
     return this.http.get(`${environment.apiUrl}/nt/archived`);
   }
+  archive(id: number): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/nt/archive/${id}`, {});
+  }
 }
