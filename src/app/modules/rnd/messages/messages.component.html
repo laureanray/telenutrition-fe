@@ -30,8 +30,15 @@
         </div>
         <div #scrollMe class="thread flex flex-col pt-4 flex-grow overflow-y-scroll  max-h-96">
           <div *ngFor="let message of messages" [ngClass]="{ 'self-start bg-white text-gray-900': message.sender === 'patient', 'self-end bg-accent text-white' : message.sender === 'rnd' }"
-               class="message rounded-md py-2 px-4 my-1">
-            <p class="text-base"> {{ message.message}} </p>
+               class="message rounded-md py-2 px-4 my-1 max-w-max break-all">
+            <p class="text-base ">
+              <ng-container *ngFor="let word of message.words">
+                <span *ngIf="!word.isLink; else elseBlk"> {{ word.word }}</span>
+                <ng-template #elseBlk >
+                  <a class="text-gray-400 underline" href="{{word.word}}"  target="_blank"> {{ word.word}}</a>
+                </ng-template>
+              </ng-container>
+            </p>
             <p class="text-xs">{{ this.moment(message.createdAt).fromNow() }} </p>
           </div>
           <!--          <div class="message rounded-md bg-accent  py-2 px-4 text-white p-4 my-1 self-end">-->
@@ -45,7 +52,7 @@
             <textarea [(ngModel)]="message" class="font-sans text-base" matInput rows="2"></textarea>
           </mat-form-field>
           <button type="submit" mat-raised-button color="accent"
-                  class="mb-6" (click)="sendMessage()"> Send
+                  class="mb-6" (click)="sendMessage()" [disabled]="!this.message"> Send
           </button>
         </div>
       </div>

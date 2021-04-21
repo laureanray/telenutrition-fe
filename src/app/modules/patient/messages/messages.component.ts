@@ -11,6 +11,7 @@ import {MessageRequest} from '../../../core/models/message-request';
 import {RND} from '../../../core/models/rnd';
 import {PatientService} from '../../../core/services/patient.service';
 import * as moment from 'moment';
+import {Word} from '../../../core/models/word';
 
 
 @Component({
@@ -55,8 +56,14 @@ export class MessagesComponent implements OnInit, OnDestroy {
   updateMessage(that: any): void {
     that.messageService.fetchMessages('patient', that.selectedRND.id, that.authService.currentUserValue.id)
       .subscribe(res => {
-        if (res) {
+        if (!that.messages) {
           that.messages = res as Message[];
+          that.parseMessages();
+        } else if (that.messages.length !== res.length) {
+          that.messages = res as Message[];
+          that.parseMessages();
+        } else {
+          that.parseMessages();
         }
       }, error => {
         that.snackBar.open('Error', undefined, {
@@ -71,6 +78,31 @@ export class MessagesComponent implements OnInit, OnDestroy {
       that.updateMessage(that);
       // that.scrollToBottom();
     }, 500);
+  }
+
+
+  parseMessages(): void {
+    const patt = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
+
+    for (const m of this.messages) {
+      const w = m.message.split(' ');
+      m.words = [];
+      for (let word of w) {
+        word = word.trim();
+        if (patt.test(word)) {
+          m.words.push({
+            word,
+            isLink: true
+          } as Word);
+        } else {
+          m.words.push({
+            word,
+            isLink: false
+          } as Word);
+        }
+      }
+    }
+
   }
 
   ngOnInit(): void {

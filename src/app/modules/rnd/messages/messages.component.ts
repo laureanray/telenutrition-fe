@@ -9,6 +9,7 @@ import {Message} from '../../../core/models/message';
 import {MessageRequest} from '../../../core/models/message-request';
 import * as moment from 'moment';
 import {ActivatedRoute} from '@angular/router';
+import {Word} from '../../../core/models/word';
 
 @Component({
   selector: 'app-messages',
@@ -54,8 +55,31 @@ export class MessagesComponent implements OnInit, OnDestroy {
     try {
       this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight + 100;
     } catch (err) {
-      console.log(err);
     }
+  }
+
+  parseMessages(): void {
+    const patt = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gi;
+
+    for (const m of this.messages) {
+      const w = m.message.split(' ');
+      m.words = [];
+      for (let word of w) {
+        word = word.trim();
+        if (patt.test(word)) {
+          m.words.push({
+            word,
+            isLink: true
+          } as Word);
+        } else {
+          m.words.push({
+            word,
+            isLink: false
+          } as Word);
+        }
+      }
+    }
+
   }
 
   updateMessage(that: any): void {
@@ -64,10 +88,12 @@ export class MessagesComponent implements OnInit, OnDestroy {
         if (res) {
           if (!that.messages) {
             that.messages = res as Message[];
+            that.parseMessages();
           } else if (that.messages.length !== res.length) {
             that.messages = res as Message[];
+            that.parseMessages();
           } else {
-            console.log('no new');
+            that.parseMessages();
           }
         }
       }, error => {
@@ -85,11 +111,9 @@ export class MessagesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-
   }
 
   selectPatient(patient: Patient): void {
-    console.log(patient);
 
     this.selectedPatient = patient;
     this.updateMessage(this);
@@ -107,7 +131,6 @@ export class MessagesComponent implements OnInit, OnDestroy {
     this.messageService.sendMessage(mr)
       .subscribe(res => {
         if (res) {
-          console.log(res);
           this.updateMessage(this);
           this.message = null;
         }
