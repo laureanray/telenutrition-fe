@@ -82,14 +82,14 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
 
   parseMessages(): void {
-    const patt = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
-
+    const patt = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gi;
     for (const m of this.messages) {
       const w = m.message.split(' ');
       m.words = [];
       for (let word of w) {
         word = word.trim();
-        if (patt.test(word)) {
+        console.log(word.match(patt), word);
+        if (word.match(patt)) {
           m.words.push({
             word,
             isLink: true
@@ -103,6 +103,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
       }
     }
 
+    console.log(this.messages);
   }
 
   ngOnInit(): void {

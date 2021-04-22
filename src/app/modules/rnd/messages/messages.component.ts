@@ -60,13 +60,13 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
   parseMessages(): void {
     const patt = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gi;
-
     for (const m of this.messages) {
       const w = m.message.split(' ');
       m.words = [];
       for (let word of w) {
         word = word.trim();
-        if (patt.test(word)) {
+        console.log(word.match(patt), word);
+        if (word.match(patt)) {
           m.words.push({
             word,
             isLink: true
@@ -80,6 +80,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
       }
     }
 
+    console.log(this.messages);
   }
 
   updateMessage(that: any): void {
@@ -105,9 +106,9 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
   startInterval(): void {
     const that = this;
-    this.intervalRef = setInterval(() => {
-      that.updateMessage(that);
-    }, 500);
+    // this.intervalRef = setInterval(() => {
+    //   that.updateMessage(that);
+    // }, 500);
   }
 
   ngOnInit(): void {
