@@ -106,9 +106,9 @@ export class MessagesComponent implements OnInit, OnDestroy {
 
   startInterval(): void {
     const that = this;
-    // this.intervalRef = setInterval(() => {
-    //   that.updateMessage(that);
-    // }, 500);
+    this.intervalRef = setInterval(() => {
+      that.updateMessage(that);
+    }, 500);
   }
 
   ngOnInit(): void {
