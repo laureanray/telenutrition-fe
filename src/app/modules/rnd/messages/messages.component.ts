@@ -65,7 +65,6 @@ export class MessagesComponent implements OnInit, OnDestroy {
       m.words = [];
       for (let word of w) {
         word = word.trim();
-        console.log(word.match(patt), word);
         if (word.match(patt)) {
           m.words.push({
             word,
@@ -80,7 +79,6 @@ export class MessagesComponent implements OnInit, OnDestroy {
       }
     }
 
-    console.log(this.messages);
   }
 
   updateMessage(that: any): void {
@@ -108,7 +106,7 @@ export class MessagesComponent implements OnInit, OnDestroy {
     const that = this;
     this.intervalRef = setInterval(() => {
       that.updateMessage(that);
-    }, 500);
+    }, 1000);
   }
 
   ngOnInit(): void {

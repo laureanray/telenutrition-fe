@@ -39,7 +39,6 @@ export class MessagesComponent implements OnInit, OnDestroy {
       .subscribe(res => {
         if (res) {
           this.appointments = res.appointments;
-          console.log(this.appointments);
           this.scrollToBottom();
         }
       });
@@ -49,7 +48,6 @@ export class MessagesComponent implements OnInit, OnDestroy {
     try {
       this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight + 100;
     } catch (err) {
-      console.log(err);
     }
   }
 
@@ -88,7 +86,6 @@ export class MessagesComponent implements OnInit, OnDestroy {
       m.words = [];
       for (let word of w) {
         word = word.trim();
-        console.log(word.match(patt), word);
         if (word.match(patt)) {
           m.words.push({
             word,
@@ -103,15 +100,12 @@ export class MessagesComponent implements OnInit, OnDestroy {
       }
     }
 
-    console.log(this.messages);
   }
 
   ngOnInit(): void {
   }
 
   selectRND(rnd: RND): void {
-    console.log(rnd);
-
     this.selectedRND = rnd;
     this.updateMessage(this);
     this.startInterval();
@@ -128,7 +122,6 @@ export class MessagesComponent implements OnInit, OnDestroy {
     this.messageService.sendMessage(mr)
       .subscribe(res => {
         if (res) {
-          console.log(res);
           this.updateMessage(this);
           this.message = null;
         }
