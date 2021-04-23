@@ -34,6 +34,11 @@ export class AppointmentService {
       .get(`${environment.apiUrl}/appointments/${id}`);
   }
 
+  getAllAppointmentsByRND(id: number): Observable<any> {
+    return this.http
+      .get(`${environment.apiUrl}/appointments/rnd/${id}`);
+  }
+
   getArchivedAppointmentsByPatient(id: number): Observable<any> {
     return this.http
       .get(`${environment.apiUrl}/appointments/patient-archived/${id}`);

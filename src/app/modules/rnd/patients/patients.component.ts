@@ -23,7 +23,7 @@ export class PatientsComponent implements OnInit {
 
   constructor(private authService: AuthenticationService,
               private appointmentService: AppointmentService) {
-    this.appointmentService.getActiveAppointmentsByRND(this.authService.currentUserValue.id)
+    this.appointmentService.getAllAppointmentsByRND(this.authService.currentUserValue.id)
       .subscribe(res => {
         if (res) {
           this.appointments = res;
@@ -31,13 +31,6 @@ export class PatientsComponent implements OnInit {
           this.patients = this.patients.map(a => JSON.stringify(a));
           this.patients = [...new Set(this.patients)];
           this.patients = this.patients.map(a => JSON.parse(a));
-          this.appointmentService.getArchivedAppointmentsByRND(this.authService.currentUserValue.id)
-            .subscribe(res1 => {
-              if (res1) {
-                this.archivedAppointments = res1;
-                this.patients.concat(this.archivedAppointments.map(q => q.patient));
-              }
-            });
         }
       });
 
