@@ -32,11 +32,12 @@ import { NutritionToolsComponent } from './nutrition-tools/nutrition-tools.compo
 import { SupportComponent } from './support/support.component';
 import { MarkResolvedModalComponent } from './mark-resolved-modal/mark-resolved-modal.component';
 import { AddNutritionToolComponent } from './add-nutrition-tool/add-nutrition-tool.component';
+import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  declarations: [AdminComponent, DashboardComponent, AdminNavComponent, AccountManagementComponent, ConfigComponent, SiteSettingsComponent, UsersTableComponent, UsersTableComponent, ViewRndComponent, ViewPatientComponent, ApproveRndModalComponent, AppointmentsComponent, ViewAppointmentComponent, ChangeStatusComponent, AssignRndModalComponent, UpdateAmountModalComponent, NutritionToolsComponent, SupportComponent, MarkResolvedModalComponent, AddNutritionToolComponent],
+  declarations: [AdminComponent, DashboardComponent, AdminNavComponent, AccountManagementComponent, ConfigComponent, SiteSettingsComponent, UsersTableComponent, UsersTableComponent, ViewRndComponent, ViewPatientComponent, ApproveRndModalComponent, AppointmentsComponent, ViewAppointmentComponent, ChangeStatusComponent, AssignRndModalComponent, UpdateAmountModalComponent, NutritionToolsComponent, SupportComponent, MarkResolvedModalComponent, AddNutritionToolComponent, DeleteModalComponent],
   exports: [
     AdminNavComponent
   ],

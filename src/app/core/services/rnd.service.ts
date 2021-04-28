@@ -50,4 +50,9 @@ export class RndService {
     return this.http
       .post(`${environment.apiUrl}/rnd/update-account/${rnd.username}`, rnd);
   }
+
+  deleteRnd(username): Observable<any> {
+    return this.http
+      .post(`${environment.apiUrl}/rnd/delete/${username}`, {});
+  }
 }

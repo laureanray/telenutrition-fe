@@ -46,4 +46,9 @@ export class PatientService {
     return this.http
       .post(`${environment.apiUrl}/patients/update-records/${patient.username}`, patient);
   }
+
+  deleteRnd(username): Observable<any> {
+    return this.http
+      .post(`${environment.apiUrl}/patients/delete/${username}`, {});
+  }
 }

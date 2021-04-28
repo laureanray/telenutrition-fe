@@ -13,6 +13,8 @@ import {merge, Observable, of as observableOf} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import {MatSelect} from '@angular/material/select';
 import * as moment from 'moment';
+import {MatDialog} from '@angular/material/dialog';
+import {DeleteModalComponent} from '../delete-modal/delete-modal.component';
 
 
 @Component({
@@ -58,7 +60,7 @@ export class UsersTableComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private patientService: PatientService, private rndService: RndService) {
+  constructor(private patientService: PatientService, private rndService: RndService, private dialog: MatDialog) {
   }
 
   update(): void {
@@ -100,5 +102,19 @@ export class UsersTableComponent implements AfterViewInit {
 
   valueChange($event: any): void {
     this.update();
+  }
+
+  delete(row): void {
+    const dialogRef = this.dialog.open(DeleteModalComponent, {
+      width: '520px',
+      data: {
+        username: row.username,
+        role: this.selected
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(s => {
+      this.update();
+    });
   }
 }

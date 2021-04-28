@@ -68,6 +68,7 @@
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell class="font-sans" *matCellDef="let row">
         <button [routerLink]="['/admin', 'account', 'view', this.selected, row.username]" class="font-bold bg-blue-50 p-2 rounded-sm">View</button>
+        <button class="font-bold bg-red-800 text-gray-100 rounded-sm p-2" (click)="delete(row)"> Delete </button>
 <!--        <button [routerLink]="['/admin', 'account', 'update', this.selected, row.username]"  class="ml-2 font-bold bg-yellow-100 p-2 rounded-sm">Update</button>-->
       </td>
     </ng-container>
