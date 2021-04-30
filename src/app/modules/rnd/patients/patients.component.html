@@ -21,14 +21,14 @@
         <button mat-raised-button color="accent" class="mb-6 mt-3" (click)="back()" > Back </button>
         <h1 class="text-md font-medium"> Medical Records </h1>
         <p class="text-base"> Age: {{ this.patientSelected.medicalRecord?.age }} </p>
-        <p class="text-base"> Birthday: {{ this.patientSelected.medicalRecord?.birthday }} </p>
+        <p class="text-base"> Birthday: {{ this.patientSelected.medicalRecord?.birthday === null ? 'Not Set' : this.patientSelected.medicalRecord?.birthday  }} </p>
         <p class="text-base"> Religion: {{ this.patientSelected.medicalRecord?.religion }} </p>
-        <p class="text-base"> Sex {{ this.patientSelected.medicalRecord?.sex }} </p>
+        <p class="text-base"> Sex: {{ this.patientSelected.medicalRecord?.sex === null ? 'Not Set' : this.patientSelected.medicalRecord?.sex  }}  </p>
         <p class="text-base"> Height {{ this.patientSelected.medicalRecord?.height }} </p>
         <p class="text-base"> Weight {{ this.patientSelected.medicalRecord?.weight }} </p>
         <p class="text-base"> BMI {{ this.patientSelected.medicalRecord?.bmi }} </p>
         <p class="text-base"> Biochemical Results: <a class="font-bold" href="{{ this.patientSelected.medicalRecord?.biochemicalResults }}"> Download </a> </p>
-        <p class="text-base"> Complains: </p>
+        <p class="text-base"> Complaints: </p>
         <pre>
           {{ this.patientSelected.medicalRecord?.complaints }}
         </pre>

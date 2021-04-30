@@ -36,7 +36,8 @@
           </a>
         </nav>
         <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-          <button routerLink="register" mat-raised-button color="accent" class="ml-2" *ngIf="!isLoggedIn">Register</button>
+          <button routerLink="register" mat-raised-button color="accent" class="ml-2" *ngIf="!isLoggedIn">Register as Patient</button>
+          <button routerLink="register-rnd" mat-raised-button color="accent" class="ml-2" *ngIf="!isLoggedIn">Register as RND</button>
           <button routerLink="login" mat-raised-button color="primary" class="ml-2"  *ngIf="!isLoggedIn">Sign In</button>
           <button routerLink="login" mat-raised-button color="accent" class="ml-2" *ngIf="isLoggedIn">Profile</button>
         </div>
