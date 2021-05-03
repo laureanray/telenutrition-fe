@@ -33,11 +33,13 @@ import { SupportComponent } from './support/support.component';
 import { MarkResolvedModalComponent } from './mark-resolved-modal/mark-resolved-modal.component';
 import { AddNutritionToolComponent } from './add-nutrition-tool/add-nutrition-tool.component';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
+import { UpdateDateModalComponent } from './update-date-modal/update-date-modal.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  declarations: [AdminComponent, DashboardComponent, AdminNavComponent, AccountManagementComponent, ConfigComponent, SiteSettingsComponent, UsersTableComponent, UsersTableComponent, ViewRndComponent, ViewPatientComponent, ApproveRndModalComponent, AppointmentsComponent, ViewAppointmentComponent, ChangeStatusComponent, AssignRndModalComponent, UpdateAmountModalComponent, NutritionToolsComponent, SupportComponent, MarkResolvedModalComponent, AddNutritionToolComponent, DeleteModalComponent],
+  declarations: [AdminComponent, DashboardComponent, AdminNavComponent, AccountManagementComponent, ConfigComponent, SiteSettingsComponent, UsersTableComponent, UsersTableComponent, ViewRndComponent, ViewPatientComponent, ApproveRndModalComponent, AppointmentsComponent, ViewAppointmentComponent, ChangeStatusComponent, AssignRndModalComponent, UpdateAmountModalComponent, NutritionToolsComponent, SupportComponent, MarkResolvedModalComponent, AddNutritionToolComponent, DeleteModalComponent, UpdateDateModalComponent],
   exports: [
     AdminNavComponent
   ],
@@ -56,7 +58,8 @@ import { DeleteModalComponent } from './delete-modal/delete-modal.component';
         MatDialogModule,
         NgxMatSelectSearchModule,
         ReactiveFormsModule,
-        MatInputModule
+        MatInputModule,
+        MatDatepickerModule
     ]
 })
 export class AdminModule {

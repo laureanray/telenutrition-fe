@@ -9,6 +9,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {ChangeStatusComponent} from '../change-status/change-status.component';
 import {AssignRndModalComponent} from '../assign-rnd-modal/assign-rnd-modal.component';
 import {UpdateAmountModalComponent} from '../update-amount-modal/update-amount-modal.component';
+import {UpdateDateModalComponent} from '../update-date-modal/update-date-modal.component';
 
 @Component({
   selector: 'app-view-appointment',
@@ -79,6 +80,19 @@ export class ViewAppointmentComponent implements OnInit {
       }
     });
 
+
+    ref.afterClosed().subscribe(afterClosed => {
+      this.fetchCurrentAppointment(this.id);
+    });
+  }
+
+  updateAppointmentDate(): void {
+    const ref = this.dialog.open(UpdateDateModalComponent, {
+      width: '520px',
+      data: {
+        appointment: this.appointment
+      }
+    });
 
     ref.afterClosed().subscribe(afterClosed => {
       this.fetchCurrentAppointment(this.id);

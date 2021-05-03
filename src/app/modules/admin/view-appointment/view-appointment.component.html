@@ -54,7 +54,7 @@
       </div>
     </div>
     <div class="controls ml-auto flex flex-row h-12">
-      <button mat-raised-button color="white"> Archive </button>
+      <button mat-raised-button color="white" (click)="updateAppointmentDate()"> Update Date </button>
       <button mat-raised-button color="white" (click)="updateAmount()"> Update Amount </button>
       <button mat-raised-button color="white" (click)="assignRND()"> Assign RND </button>
       <button mat-raised-button color="primary" (click)="changeStatus()" class="ml-2"> Change Status</button>

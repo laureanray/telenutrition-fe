@@ -1,0 +1,26 @@
+<div mat-dialog-content>
+  <h3 class="text-3xl font-medium"> Update Schedule  </h3>
+  <p class="text-base font-normal mt-4"> Select appointment time and date</p>
+</div>
+<div class="flex flex-row w-full pt-4">
+  <mat-form-field appearance="outline" >
+    <mat-label class="font-sans">Appointment Date</mat-label>
+    <input matInput class="font-sans" [matDatepicker]="picker" [matDatepickerFilter]="dateFilter"
+           [min]="todayDate" placeholder="mm/dd/yyyy" required [(ngModel)]="date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="ml-2">
+    <mat-label class="font-sans">Appointment Time</mat-label>
+    <mat-select class="font-sans" [(ngModel)]="time">
+      <mat-option *ngFor="let time of times" [value]="time.value" class="font-sans">
+        {{time.display}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="flex  flex-row justify-items-end">
+  <button mat-raised-button (click)="onNoClick()" color="white" class="mt-4 mb-2 ml-auto">Cancel</button>
+  <button mat-raised-button type="submit" color="primary" (click)="submit()"
+          class="mt-4 mb-2 ml-2" [disabled]="!date || !time"> Apply </button>
+</div>
