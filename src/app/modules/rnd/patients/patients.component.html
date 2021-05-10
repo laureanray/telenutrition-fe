@@ -20,13 +20,14 @@
       <div class="patient-details" *ngIf="isShowingPatientDetails">
         <button mat-raised-button color="accent" class="mb-6 mt-3" (click)="back()" > Back </button>
         <h1 class="text-md font-medium"> Medical Records </h1>
+        <p class="text-base"> Contact: <span class="font-bold"> {{ this.patientSelected.contactNumber ? 'Not set' : this.patientSelected.contactNumber }} </span></p>
         <p class="text-base"> Age: {{ this.patientSelected.medicalRecord?.age }} </p>
-        <p class="text-base"> Birthday: {{ this.patientSelected.medicalRecord?.birthday === null ? 'Not Set' : this.patientSelected.medicalRecord?.birthday  }} </p>
+        <p class="text-base"> Birthday: {{ this.patientSelected.medicalRecord?.birthday === null ? 'Not set' : this.patientSelected.medicalRecord?.birthday  }} </p>
         <p class="text-base"> Religion: {{ this.patientSelected.medicalRecord?.religion }} </p>
-        <p class="text-base"> Sex: {{ this.patientSelected.medicalRecord?.sex === null ? 'Not Set' : this.patientSelected.medicalRecord?.sex  }}  </p>
-        <p class="text-base"> Height {{ this.patientSelected.medicalRecord?.height }} </p>
-        <p class="text-base"> Weight {{ this.patientSelected.medicalRecord?.weight }} </p>
-        <p class="text-base"> BMI {{ this.patientSelected.medicalRecord?.bmi }} </p>
+        <p class="text-base"> Sex: {{ this.patientSelected.medicalRecord?.sex === null ? 'Not set' : this.patientSelected.medicalRecord?.sex.toUpperCase()  }}  </p>
+        <p class="text-base"> Height: {{ this.patientSelected.medicalRecord?.height === 0 ? 'Not set' : this.patientSelected.medicalRecord.height + 'cm' }} </p>
+        <p class="text-base"> Weight: {{ this.patientSelected.medicalRecord?.weight === 0 ? 'Not set' : this.patientSelected.medicalRecord.weight + 'kg' }} </p>
+        <p class="text-base"> BMI: {{ this.patientSelected.medicalRecord?.bmi }} </p>
         <p class="text-base"> Biochemical Results: <a class="font-bold" href="{{ this.patientSelected.medicalRecord?.biochemicalResults }}"> Download </a> </p>
         <p class="text-base"> Complaints: </p>
         <pre>

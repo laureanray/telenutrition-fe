@@ -25,7 +25,8 @@ export class RegisterComponent implements OnInit {
       contactNumber: ['', [Validators.required, Validators.min(11)]],
       // birthday: ['', Validators.required],
       password: ['', [Validators.required, this.passwordValidator2(), this.passwordStrengthValidator()]],
-      passwordConfirm: new FormControl('', this.passwordValidator())
+      passwordConfirm: new FormControl('', this.passwordValidator()),
+      checkbox: ['', Validators.required]
     });
   }
 

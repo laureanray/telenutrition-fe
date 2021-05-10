@@ -67,6 +67,9 @@
       <input type="file" accept=".png,.jpg,.jpeg,.pdf" #file placeholder="Choose file" multiple
              (change)="fileChange(file.files)"
              style="display:none;">
+      <section class="mt-4">
+        <mat-checkbox class="example-margin" formControlName="checkbox" required>I agree to the Terms of Service and Privacy Policy. Please <a routerLink="/privacy" class="accent-light font-bold">click here</a> if you want to learn more.</mat-checkbox>
+      </section>
       <button type="submit" mat-raised-button color="primary" class="mt-4 mb-2 text-base"
               [disabled]="submitting || !registerForm.valid">{{ submitting ? 'Signing Up ...' : 'Sign Up' }}</button>
       <!--     <img src="{{ this.patient.profileImageURL ? this.patient.profileImageURL : 'assets/default.png'}}" alt="" class="my-4 w-72 h-72 shadow-lg border rounded-lg object-cover">-->

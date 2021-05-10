@@ -34,7 +34,8 @@ export class RegisterRndComponent implements OnInit {
       contactNumber: ['', [Validators.required, Validators.min(11)]],
       password: ['', [Validators.required, this.passwordValidator2(), this.passwordStrengthValidator()]],
       passwordConfirm: new FormControl('', this.passwordValidator()),
-      files: ['', Validators.required]
+      files: ['', Validators.required],
+      checkbox: ['', Validators.required]
     });
   }
 

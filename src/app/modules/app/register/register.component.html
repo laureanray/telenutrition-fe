@@ -54,8 +54,11 @@
         <mat-label class="font-sans">Confirm Password</mat-label>
         <input matInput (keyup)="pwKeyup()" placeholder="Re-type Password" type="password" class="font-sans" autocomplete="off" spellcheck="false" required formControlName="passwordConfirm">
       </mat-form-field>
+      <section class="-mt-4">
+        <mat-checkbox class="example-margin" formControlName="checkbox" required>I agree to the Terms of Service and Privacy Policy. Please <a routerLink="/privacy" class="accent-light font-bold">click here</a> if you want to learn more.</mat-checkbox>
+      </section>
+      <br><br>
       <button type="submit" mat-raised-button color="primary"  class="-mt-5 mb-2 text-base" [disabled]="submitting || !registerForm.valid">{{ submitting ? 'Signing Up ...' : 'Sign Up' }}</button>
-      <p class="text-sm text-gray-500 pt-4 font-normal">By clicking Sign Up you are agreeing to our <a routerLink="/privacy" class="primary font-medium">privacy policy.</a></p>
      </form>
 </div>
 </div>

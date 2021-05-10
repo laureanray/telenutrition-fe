@@ -13,7 +13,7 @@
               (click)="edit()"> {{ !hasMedicalRecords ? 'Add Medical Record' : 'Edit Medical Record' }}</button>
       <button type="submit" mat-raised-button color="accent"
               class="mb-6 mt-3" *ngIf="isEditing" (click)="save()"
-              [disabled]="isSaving || !medicalRecordsForm.valid"> {{ isSaving ? 'Saving changes...' : 'Save changes' }} </button>
+              [disabled]="isSaving"> {{ isSaving ? 'Saving changes...' : 'Save changes' }} </button>
     </div>
     <div class="shadow-sm rounded border p-4">
       <!--      <p class="text-base text-gray-600"> Click the fields you want to update. </p>-->
@@ -63,19 +63,20 @@
         <h1 class="text-lg font-medium text-gray-700 -mt-2">
           Anthropometric
         </h1>
+        <p class="text-base text-gray-700 pb-4"> Ilagay ang iyong kasalukuyang timbang at tangkad. </p>
         <div class="grid grid-cols-2 gap-2 mt-4 pt-4">
           <div class="info flex flex-row">
             <mat-form-field appearance="outline" class="-mt-6 pb-0 flex-grow text-base">
               <mat-label class="font-sans">Height (cm)</mat-label>
-              <input type="number" matInput placeholder="Height (cm)" (keyup)="update()" class="pb-0 font-sans"
+              <input type="number" matInput placeholder="Height (centimeters)" (keyup)="update()" class="pb-0 font-sans"
                      autocomplete="off"np
                      spellcheck="false" name="height" formControlName="height" required>
             </mat-form-field>
           </div>
           <div class="info flex flex-row">
             <mat-form-field appearance="outline" class="-mt-6 pb-0 flex-grow text-base">
-              <mat-label class="font-sans">Weight</mat-label>
-              <input type="number" matInput placeholder="Weight" (keyup)="update()" class="pb-0 font-sans"
+              <mat-label class="font-sans">Weight (kg)</mat-label>
+              <input type="number" matInput placeholder="Weight (kilograms)" (keyup)="update()" class="pb-0 font-sans"
                      autocomplete="off"
                      spellcheck="false" name="weight" formControlName="weight" required>
             </mat-form-field>
@@ -95,6 +96,8 @@
         <h1 class="text-lg mt-4 font-medium text-gray-700">
           Biochemical
         </h1>
+        <p class="text-base text-gray-700 pb-4"> I-upload ang resulta ng iyong mga laboratory tests at procedures na ginawa sa loob/labas ng ospital dito. </p>
+
         <div class="flex flex-col">
           <button type="button"
                   [disabled]="!isEditing || this.isUploading                                                                                                                                                           "
@@ -116,6 +119,8 @@
         <h1 class="text-lg mt-4 font-medium text-gray-700 pt-2">
           Clinical
         </h1>
+        <p class="text-base text-gray-700 pb-4"> Mangyaring ibahagi ang iyong mga nutrisyonal na problema (Chief Complaints) at kung merong mga iniinom na gamot para dito (Current Medications). </p>
+
         <div class="grid grid-cols-2 gap-2  mt-2">
           <div class="flex flex-row">
             <mat-form-field appearance="outline" class="flex-grow">
